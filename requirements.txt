@@ -1,0 +1,12 @@
+langchain==0.3.13
+langchain-openai==0.2.14
+langchain-community==0.3.13
+langchain-text-splitters==0.3.4
+langchain-chroma==0.2.0
+chromadb==0.5.23
+openai==1.58.1
+pypdf==5.1.0
+python-dotenv==1.0.1
+tiktoken==0.8.0
+pydantic==2.10.3
+pydantic-settings==2.7.0
