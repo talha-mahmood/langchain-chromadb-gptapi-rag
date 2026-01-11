@@ -95,7 +95,11 @@ class PDFRAGSystem:
             persist_directory=self.persist_directory,
             embedding_function=self.embeddings
         )
-        print(f"Loaded vectorstore with {self.vectorstore._collection.count()} documents")
+        doc_count = self.vectorstore._collection.count()
+        print(f"Loaded vectorstore with {doc_count} documents")
+        
+        # If vectorstore is empty, return False to trigger reload
+        return doc_count > 0
     
     def setup_qa_chain(self):
         """Setup the QA chain with custom prompt using LCEL"""
@@ -177,14 +181,22 @@ Answer:"""
         Args:
             force_reload: If True, reload PDFs even if vectorstore exists
         """
-        if force_reload or not os.path.exists(self.persist_directory):
+        should_load_pdfs = force_reload
+        
+        if not force_reload and os.path.exists(self.persist_directory):
+            # Try to load existing vectorstore
+            has_docs = self.load_existing_vectorstore()
+            if not has_docs:
+                print("Vectorstore is empty, reloading PDFs...")
+                should_load_pdfs = True
+        else:
+            should_load_pdfs = True
+        
+        if should_load_pdfs:
             # Load and process PDFs
             documents = self.load_pdfs()
             chunks = self.split_documents(documents)
             self.create_vectorstore(chunks)
-        else:
-            # Load existing vectorstore
-            self.load_existing_vectorstore()
         
         # Setup QA chain
         self.setup_qa_chain()
