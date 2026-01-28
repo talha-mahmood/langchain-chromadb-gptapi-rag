@@ -1,0 +1,107 @@
+PRIVATE MEDICAL RECORDS
+Winston-Salem Sleep Center
+
+PATIENT: John M. Sample
+DATE: November 3, 2025
+PROVIDER: Dr. Emily Rodriguez, MD - Sleep Medicine
+DIAGNOSIS: Obstructive Sleep Apnea, Moderate; Insomnia
+
+CHIEF COMPLAINT:
+Patient referred by primary care physician for evaluation of chronic fatigue, snoring,
+and poor sleep quality. Wife reports loud snoring and witnessed apneas during sleep.
+
+SLEEP HISTORY:
+Patient reports difficulty falling asleep (takes 45-60 minutes), frequent awakenings
+throughout night (3-5 times), early morning awakening (4:30-5:00 AM), non-restorative sleep.
+Reports being tired all day despite spending 7-8 hours in bed.
+
+Contributing factors:
+- Chronic back pain (wakes due to pain)
+- PTSD symptoms (nightmares, hypervigilance)
+- Stress and anxiety
+
+POLYSOMNOGRAPHY RESULTS (October 28, 2025):
+
+Sleep Architecture:
+- Total sleep time: 4.2 hours (out of 7 hours in bed)
+- Sleep efficiency: 60% (normal >85%)
+- Sleep latency: 52 minutes (prolonged)
+- REM latency: 145 minutes
+- Stage N1: 28% (elevated, normal 5-10%)
+- Stage N2: 48%
+- Stage N3: 12% (reduced, normal 15-20%)
+- Stage REM: 12% (reduced, normal 20-25%)
+
+Respiratory Events:
+- Apnea-Hypopnea Index (AHI): 22 events/hour (MODERATE OSA)
+  * Normal: <5
+  * Mild: 5-15
+  * Moderate: 15-30
+  * Severe: >30
+- Oxygen desaturation index: 19 events/hour
+- Lowest O2 saturation: 84% (concerning)
+- Mean O2 saturation during sleep: 92%
+
+Arousal Index: 31 per hour (markedly elevated, normal <15)
+- Respiratory arousals: 22/hour
+- Spontaneous arousals: 9/hour
+
+Position: Supine AHI 35, Side AHI 15 (positional component)
+
+INTERPRETATION:
+Study demonstrates moderate obstructive sleep apnea with significant sleep fragmentation.
+Multiple factors contributing to poor sleep quality:
+1. Obstructive sleep apnea (AHI 22)
+2. Chronic pain-related awakenings
+3. PTSD-related sleep disturbance (nightmares, hypervigilance)
+4. Insomnia with prolonged sleep latency
+
+ASSESSMENT:
+1. Obstructive Sleep Apnea, Moderate (G47.33)
+2. Chronic Insomnia Disorder (F51.01)
+3. Sleep disturbance secondary to chronic pain
+4. Sleep disturbance secondary to PTSD
+
+PLAN:
+1. CPAP therapy initiated - Auto-CPAP with pressure range 6-16 cm H2O
+2. Sleep hygiene education
+3. Cognitive Behavioral Therapy for Insomnia (CBT-I) referral
+4. Continue prazosin for PTSD-related nightmares
+5. Pain management optimization for better sleep
+6. Follow-up in 4 weeks for CPAP compliance check
+
+NEXUS OPINION:
+Patient's sleep apnea is likely aggravated by service-connected conditions:
+- PTSD contributes to insomnia and sleep fragmentation
+- Chronic pain from back condition causes frequent awakenings
+- Weight gain related to decreased physical activity from service-connected disabilities
+  may contribute to OSA severity
+
+While sleep apnea etiology is multifactorial, service-connected conditions are at least as
+likely as not (>50% probability) to be significant contributing factors to the severity
+and persistence of this sleep disorder.
+
+FUNCTIONAL IMPACT:
+- Excessive daytime sleepiness (Epworth Sleepiness Scale: 16/24 - moderate to severe)
+- Difficulty concentrating at work
+- Safety concerns (patient reports near-miss while driving due to drowsiness)
+- Worsens PTSD symptoms (sleep deprivation increases anxiety, irritability)
+- Worsens pain perception (poor sleep lowers pain threshold)
+
+RECOMMENDATIONS FOR VA:
+Consider service connection for sleep apnea secondary to:
+- PTSD (38 CFR 3.310(a))
+- Chronic pain/back condition (38 CFR 3.310(a))
+
+If service-connected, likely rating under DC 6847:
+- 30%: Chronic respiratory failure with cor pulmonale, or; requires use of breathing
+  assistance device (CPAP)
+- 50%: Chronic respiratory failure with carbon dioxide retention or cor pulmonale, or;
+  requires tracheostomy
+
+Patient requires CPAP nightly, supporting 50% rating consideration.
+
+Dr. Emily Rodriguez, MD
+Board Certified Sleep Medicine
+Winston-Salem Sleep Center
+License #: NC-67890

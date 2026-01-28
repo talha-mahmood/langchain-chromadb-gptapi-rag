@@ -1,0 +1,53 @@
+DEPARTMENT OF VETERANS AFFAIRS
+Rating Decision
+
+VETERAN: John M. Sample
+SSN: XXX-XX-1234
+C-FILE NUMBER: 12 345 678
+DATE: October 15, 2025
+
+CURRENT COMBINED DISABILITY RATING: 60%
+
+SERVICE-CONNECTED CONDITIONS:
+
+1. DEGENERATIVE DISC DISEASE, LUMBAR SPINE
+   Diagnostic Code: 5243
+   Current Rating: 20%
+   Effective Date: January 1, 2024
+   
+   Basis for Rating: C&P examination dated September 12, 2025 shows limited range of motion
+   with flexion to 60 degrees (normal 90 degrees). Veteran reports chronic lower back pain
+   rated 6/10 on average, worse with prolonged standing or lifting.
+
+2. BILATERAL KNEE STRAIN
+   Diagnostic Code: 5260 (Left), 5261 (Right)
+   Current Rating: 10% each knee (20% combined)
+   Effective Date: January 1, 2024
+   
+   Basis for Rating: C&P examination shows mild degenerative changes bilaterally. Range of
+   motion: left knee flexion 110 degrees, right knee flexion 115 degrees (normal 140 degrees).
+   Pain with weight-bearing activities.
+
+3. POST-TRAUMATIC STRESS DISORDER (PTSD)
+   Diagnostic Code: 9411
+   Current Rating: 30%
+   Effective Date: January 1, 2024
+   
+   Basis for Rating: C&P mental health examination dated August 20, 2025. Veteran reports
+   recurrent nightmares, hypervigilance, avoidance behaviors. Occupational and social
+   impairment with occasional decrease in work efficiency and intermittent periods of inability
+   to perform occupational tasks.
+
+TOTAL MONTHLY COMPENSATION: $1,361.88
+
+RATIONALE:
+The ratings assigned are based on the severity of symptoms as documented in the most recent
+C&P examinations. The veteran's conditions are evaluated under 38 CFR Part 4, which provides
+the rating schedule for various disabilities.
+
+APPEAL RIGHTS:
+If you disagree with this decision, you have the right to appeal within one year of the date
+of this letter.
+
+Regional Office: Winston-Salem, NC
+Decision Date: October 15, 2025

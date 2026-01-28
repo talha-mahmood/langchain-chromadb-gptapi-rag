@@ -1,0 +1,33 @@
+langchain>=0.1.0
+langchain-community>=0.0.13
+langchain-openai>=0.0.2
+langchain-chroma>=0.1.0
+langchain-text-splitters>=0.0.1
+chromadb>=0.4.22
+openai>=1.6.0
+python-dotenv>=1.0.0
+pypdf>=3.17.0
+docx2txt>=0.8
+
+# Optional: For Azure OpenAI
+# langchain-azure-openai
+# azure-identity
+
+# Optional: Enhanced document processing (OCR)
+# pytesseract
+# pdf2image
+# pillow
+
+# Optional: Agreement scoring and NLP
+# sentence-transformers
+# scikit-learn
+# numpy
+
+# Optional: Production deployment
+# fastapi
+# uvicorn
+# pydantic>=2.0.0
+# python-multipart
+# celery
+# redis
+# cryptography
