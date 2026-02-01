@@ -225,54 +225,133 @@ class VRISRAGSystem:
         return chunks
     
     def create_system_vectorstore(self, force_reload: bool = False):
-        """Create vectorstore for VRIS system documentation"""
+        """
+        Create or load vectorstore for VRIS system documentation
+        System docs are persisted and reused across sessions
+        """
         persist_dir = f"{self.persist_directory}/system"
         
         if not force_reload and os.path.exists(persist_dir):
-            print("Loading existing system vectorstore...")
+            print("Loading pre-built system vectorstore...")
             self.system_vectorstore = Chroma(
                 persist_directory=persist_dir,
                 embedding_function=self.embeddings
             )
-            print(f"Loaded system vectorstore with {self.system_vectorstore._collection.count()} chunks")
+            count = self.system_vectorstore._collection.count()
+            if count > 0:
+                print(f"✓ Loaded system vectorstore with {count} chunks")
+                return
+            else:
+                print("System vectorstore is empty, rebuilding...")
+        
+        # Build system vectorstore (first time or force reload)
+        print("Building system vectorstore from VRIS documentation...")
+        print("(This only happens once - subsequent runs will be instant)")
+        documents = self.load_documents(self.system_docs_folder)
+        if documents:
+            chunks = self.split_documents(documents)
+            self.system_vectorstore = Chroma.from_documents(
+                documents=chunks,
+                embedding=self.embeddings,
+                persist_directory=persist_dir
+            )
+            print(f"✓ System vectorstore created and persisted with {self.system_vectorstore._collection.count()} chunks")
         else:
-            print("Creating system vectorstore from VRIS documentation...")
-            documents = self.load_documents(self.system_docs_folder)
-            if documents:
-                chunks = self.split_documents(documents)
-                self.system_vectorstore = Chroma.from_documents(
-                    documents=chunks,
-                    embedding=self.embeddings,
-                    persist_directory=persist_dir
-                )
-                print(f"System vectorstore created with {self.system_vectorstore._collection.count()} chunks")
+            print("⚠️  Warning: No system documents found. Add VRIS documentation to system-doc folder.")
     
     def create_veteran_vectorstore(self, force_reload: bool = False):
-        """Create vectorstore for veteran-specific documents"""
-        persist_dir = f"{self.persist_directory}/veteran"
+        """
+        Create vectorstore for veteran-specific documents
+        Veteran docs are NOT persisted - processed fresh each time
+        (Complies with 72-hour deletion policy)
+        """
+        print("Processing veteran documents (not persisted)...")
+        documents = self.load_documents(self.veteran_docs_folder)
         
-        if not force_reload and os.path.exists(persist_dir):
-            print("Loading existing veteran vectorstore...")
-            self.veteran_vectorstore = Chroma(
-                persist_directory=persist_dir,
-                embedding_function=self.embeddings
-            )
-            print(f"Loaded veteran vectorstore with {self.veteran_vectorstore._collection.count()} chunks")
-        else:
-            print("Creating veteran vectorstore from uploaded documents...")
-            documents = self.load_documents(self.veteran_docs_folder)
-            if documents:
-                # Classify documents
-                self.classify_veteran_documents(documents)
+        if not documents:
+            print("⚠️  No veteran documents found. Upload documents to process.")
+            return
+        
+        # Classify documents
+        self.classify_veteran_documents(documents)
+        
+        # Create vectorstore in memory (no persistence for veteran data)
+        chunks = self.split_documents(documents)
+        self.veteran_vectorstore = Chroma.from_documents(
+            documents=chunks,
+            embedding=self.embeddings,
+            persist_directory=None  # No persistence for veteran documents
+        )
+        print(f"✓ Veteran documents processed: {self.veteran_vectorstore._collection.count()} chunks in memory")
+    
+    def process_veteran_documents_from_upload(self, document_paths: List[str]):
+        """
+        Process veteran documents from file upload paths
+        Use this method when integrating with frontend file uploads
+        
+        Args:
+            document_paths: List of absolute file paths to uploaded documents
+        """
+        print(f"Processing {len(document_paths)} uploaded document(s)...")
+        
+        documents = []
+        for file_path in document_paths:
+            path = Path(file_path)
+            if not path.exists():
+                print(f"⚠️  File not found: {file_path}")
+                continue
+            
+            print(f"Loading: {path.name}")
+            try:
+                if path.suffix.lower() == '.pdf':
+                    loader = PyPDFLoader(str(path))
+                elif path.suffix.lower() == '.docx':
+                    loader = Docx2txtLoader(str(path))
+                elif path.suffix.lower() == '.txt':
+                    with open(path, 'r', encoding='utf-8') as f:
+                        content = f.read()
+                    from langchain_core.documents import Document
+                    doc = Document(
+                        page_content=content,
+                        metadata={'filename': path.name, 'source': str(path), 'file_type': 'txt'}
+                    )
+                    documents.append(doc)
+                    continue
+                else:
+                    print(f"⚠️  Unsupported file type: {path.suffix}")
+                    continue
                 
-                # Create vectorstore
-                chunks = self.split_documents(documents)
-                self.veteran_vectorstore = Chroma.from_documents(
-                    documents=chunks,
-                    embedding=self.embeddings,
-                    persist_directory=persist_dir
-                )
-                print(f"Veteran vectorstore created with {self.veteran_vectorstore._collection.count()} chunks")
+                docs = loader.load()
+                for doc in docs:
+                    doc.metadata['filename'] = path.name
+                    doc.metadata['source'] = str(path)
+                documents.extend(docs)
+                
+            except Exception as e:
+                print(f"❌ Error loading {path.name}: {e}")
+        
+        if not documents:
+            raise ValueError("No documents could be loaded from the provided paths")
+        
+        print(f"Loaded {len(documents)} document(s)")
+        
+        # Classify documents
+        self.classify_veteran_documents(documents)
+        
+        # Create vectorstore in memory
+        chunks = self.split_documents(documents)
+        self.veteran_vectorstore = Chroma.from_documents(
+            documents=chunks,
+            embedding=self.embeddings,
+            persist_directory=None  # No persistence
+        )
+        print(f"✓ Processed {self.veteran_vectorstore._collection.count()} chunks")
+        
+        # Setup pipelines if not already done
+        if self.system_vectorstore and not self.vris_a_chain:
+            self.setup_vris_a_extraction_chain()
+        if self.system_vectorstore and self.veteran_vectorstore and not self.vris_b_chain:
+            self.setup_vris_b_reasoning_chain()
     
     def setup_vris_a_extraction_chain(self):
         """
@@ -589,23 +668,27 @@ Be precise, evidence-based, and always cite CFR sections when making rating dete
             "vris_b_result": result["vris_b_reasoning"]
         }
     
-    def initialize(self, force_reload: bool = False):
+    def initialize(self, force_reload_system: bool = False):
         """
         Initialize VRIS RAG system
         
         Args:
-            force_reload: Force reprocessing of all documents
+            force_reload_system: Force rebuilding system vectorstore (normally False)
+        
+        Note:
+            - System documents are pre-built and persisted
+            - Veteran documents are processed on-demand (not persisted)
         """
         print("\n" + "🚀 "*35)
         print("INITIALIZING VRIS™ RAG SYSTEM")
         print("Veteran Rating Intelligence System")
         print("🚀 "*35 + "\n")
         
-        # Create system vectorstore (VRIS documentation, CFR rules, specs)
-        self.create_system_vectorstore(force_reload)
+        # Load or build system vectorstore (persisted)
+        self.create_system_vectorstore(force_reload=force_reload_system)
         
-        # Create veteran vectorstore (uploaded veteran documents)
-        self.create_veteran_vectorstore(force_reload)
+        # Process veteran documents (NOT persisted, fresh each time)
+        self.create_veteran_vectorstore(force_reload=True)
         
         # Setup dual pipelines
         if self.veteran_vectorstore:

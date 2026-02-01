@@ -9,6 +9,11 @@ python-dotenv>=1.0.0
 pypdf>=3.17.0
 docx2txt>=0.8
 
+# API Server (Required for vris_api_example.py)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+
 # Optional: For Azure OpenAI
 # langchain-azure-openai
 # azure-identity
@@ -23,11 +28,9 @@ docx2txt>=0.8
 # scikit-learn
 # numpy
 
-# Optional: Production deployment
-# fastapi
-# uvicorn
+# Optional: Production deployment enhancements
 # pydantic>=2.0.0
-# python-multipart
 # celery
 # redis
 # cryptography
+# aiofiles
