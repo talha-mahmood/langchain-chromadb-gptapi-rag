@@ -1,0 +1,83 @@
+DEPARTMENT OF VETERANS AFFAIRS
+COMPENSATION AND PENSION EXAMINATION REPORT
+
+VETERAN: John M. Sample
+DATE OF EXAM: September 12, 2025
+EXAMINER: Dr. Sarah Thompson, MD
+CONDITION: Degenerative Disc Disease, Lumbar Spine
+
+CHIEF COMPLAINT:
+Veteran reports constant lower back pain since service-related injury in 2018. Pain is described
+as sharp and radiating, rated 6-7/10 on most days, increasing to 8-9/10 with physical activity.
+
+HISTORY:
+Veteran injured lower back during training exercise in 2018 while on active duty. Initial treatment
+included physical therapy and NSAIDs. MRI from 2019 showed disc bulging at L4-L5 and L5-S1.
+Pain has progressively worsened since separation from service.
+
+CURRENT SYMPTOMS:
+- Constant lower back pain, worse with standing, walking, lifting
+- Pain radiates down left leg to knee (possible radiculopathy)
+- Stiffness in morning lasting 1-2 hours
+- Difficulty sleeping due to pain (wakes 3-4 times per night)
+- Uses ibuprofen 800mg 3x daily
+- Unable to perform yard work, heavy lifting, or prolonged physical activities
+- Ambulates with slight antalgic gait
+
+PHYSICAL EXAMINATION:
+Range of Motion (measured with goniometer):
+- Forward flexion: 60 degrees (normal: 90 degrees) - PAINFUL
+- Extension: 15 degrees (normal: 30 degrees) - PAINFUL
+- Left lateral flexion: 20 degrees (normal: 30 degrees) - PAINFUL
+- Right lateral flexion: 20 degrees (normal: 30 degrees) - PAINFUL
+- Left lateral rotation: 20 degrees (normal: 30 degrees)
+- Right lateral rotation: 20 degrees (normal: 30 degrees)
+
+Neurological:
+- Positive straight leg raise test on left at 45 degrees
+- Decreased sensation in L5 dermatome distribution left leg
+- Reduced left ankle reflex
+- No motor weakness noted
+
+IMAGING REVIEW:
+MRI Lumbar Spine (May 2025):
+- Disc bulge at L4-L5 with mild central canal stenosis
+- Disc bulge at L5-S1 with left foraminal narrowing
+- Facet arthropathy at multiple levels
+- No evidence of nerve root compression
+
+FUNCTIONAL IMPACT:
+Veteran reports significant impact on daily activities:
+- Cannot work full 8-hour days (reduced to 6 hours)
+- Unable to play with children
+- Difficulty with household chores
+- Stopped recreational activities (hiking, sports)
+- Requires frequent position changes
+
+CURRENT TREATMENT:
+- NSAIDs (ibuprofen 800mg TID)
+- Physical therapy 2x per month
+- Heating pad for pain relief
+- Considering epidural steroid injections
+
+EXAMINER'S OPINION:
+Veteran has significant degenerative disc disease of the lumbar spine with radiculopathy.
+Current symptoms and objective findings suggest chronic condition with functional limitations.
+
+Based on 38 CFR 4.71a Schedule of Ratings – Spine:
+- 5243 Intervertebral disc syndrome
+  * 20%: Forward flexion of the thoracolumbar spine greater than 30 degrees but not greater
+    than 60 degrees with painful motion
+  * 40%: Forward flexion of the thoracolumbar spine 30 degrees or less with painful motion
+
+EXAMINER RECOMMENDATION:
+Current 20% rating appears consistent with examination findings. However, veteran's symptoms
+including radiculopathy (radiating pain, sensory changes, positive nerve tension signs) may
+warrant separate rating consideration under DC 8520 (incomplete paralysis of sciatic nerve).
+
+Additional consideration for sleep disturbance as secondary to chronic pain.
+
+Dr. Sarah Thompson, MD
+Board Certified Physical Medicine and Rehabilitation
+VA Medical Center - Winston-Salem
+License #: NC-12345
