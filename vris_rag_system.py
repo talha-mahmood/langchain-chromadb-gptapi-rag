@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader
+from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, TextLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_chroma import Chroma
@@ -117,16 +117,17 @@ class VRISRAGSystem:
         self.classified_docs = {}
     
     def load_documents(self, folder_path: str) -> List:
-        """Load all PDF and DOCX files from specified folder"""
+        """Load all PDF, DOCX, and TXT files from specified folder"""
         pdf_files = list(Path(folder_path).glob("*.pdf"))
         docx_files = list(Path(folder_path).glob("*.docx"))
-        all_files = pdf_files + docx_files
+        txt_files = list(Path(folder_path).glob("*.txt"))
+        all_files = pdf_files + docx_files + txt_files
         
         if not all_files:
-            print(f"No PDF or DOCX files found in {folder_path}")
+            print(f"No PDF, DOCX, or TXT files found in {folder_path}")
             return []
         
-        print(f"Found {len(pdf_files)} PDF file(s) and {len(docx_files)} DOCX file(s) in {folder_path}")
+        print(f"Found {len(pdf_files)} PDF, {len(docx_files)} DOCX, and {len(txt_files)} TXT file(s) in {folder_path}")
         
         documents = []
         
@@ -164,6 +165,24 @@ class VRISRAGSystem:
                 documents.extend(docs)
             except Exception as e:
                 print(f"  Error loading {docx_file.name}: {e}")
+        
+        # Load TXT files
+        for txt_file in txt_files:
+            print(f"Loading TXT: {txt_file.name}")
+            try:
+                loader = TextLoader(str(txt_file), encoding='utf-8')
+                docs = loader.load()
+                
+                # Add document type metadata
+                for doc in docs:
+                    doc.metadata['filename'] = txt_file.name
+                    doc.metadata['folder'] = folder_path
+                    doc.metadata['file_type'] = 'txt'
+                    doc.metadata['page'] = 0  # TXT doesn't have pages
+                
+                documents.extend(docs)
+            except Exception as e:
+                print(f"  Error loading {txt_file.name}: {e}")
         
         print(f"Loaded {len(documents)} document(s) total")
         return documents
@@ -591,12 +610,19 @@ Be precise, evidence-based, and always cite CFR sections when making rating dete
         # Setup dual pipelines
         if self.veteran_vectorstore:
             self.setup_vris_a_extraction_chain()
+        else:
+            print("⚠️  Warning: No veteran documents loaded. VRIS-A will not be available.")
         
         if self.system_vectorstore and self.veteran_vectorstore:
             self.setup_vris_b_reasoning_chain()
+        elif not self.veteran_vectorstore:
+            print("⚠️  Warning: VRIS-B requires veteran documents. Please add documents to analyze.")
         
         print("\n" + "✅ "*35)
-        print("VRIS™ RAG SYSTEM READY")
+        if self.veteran_vectorstore:
+            print("VRIS™ RAG SYSTEM READY")
+        else:
+            print("VRIS™ RAG SYSTEM READY (Limited - Add veteran documents for full functionality)")
         print("✅ "*35 + "\n")
 
 
