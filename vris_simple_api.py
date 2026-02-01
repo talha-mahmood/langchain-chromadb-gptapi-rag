@@ -130,14 +130,21 @@ async def analyze_veteran_documents(
         
         print("\n🔄 Running VRIS dual-pipeline analysis...")
         print("   VRIS-A: Extracting diagnostic codes, symptoms, evidence...")
-        print("   VRIS-B: Reasoning against CFR Title 38 criteria...")
         
         # Run complete VRIS analysis (Second Look VRE for comprehensive analysis)
         analysis_result = vris.generate_second_look_vre()
         
+        print("   VRIS-B: Reasoning against CFR Title 38 criteria...")
+        
         # Extract findings and structure response
         vris_a_data = analysis_result.get('vris_a_result', '')
         vris_b_data = analysis_result.get('vris_b_result', '')
+        
+        # Check if VRIS-B failed to analyze
+        if "I don't have the ability" in vris_b_data or "I can't" in vris_b_data or len(vris_b_data) < 200:
+            print("⚠️  Warning: VRIS-B analysis may have failed - retrying with explicit instructions...")
+            # This shouldn't happen with the updated prompts, but log it
+            raise Exception("VRIS-B refused to analyze. Please check system vectorstore has CFR documentation.")
         
         # Parse VRIS-B output to extract structured findings
         findings = parse_vris_findings(vris_b_data)

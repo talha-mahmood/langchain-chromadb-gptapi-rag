@@ -363,24 +363,26 @@ class VRISRAGSystem:
         
         retriever = self.veteran_vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 6}  # More context for extraction
+            search_kwargs={"k": 10}  # More context for complete extraction
         )
         
         template = """You are VRIS-A, the extraction component of the Veteran Rating Intelligence System.
 
 Your role is to extract ALL rating-relevant data from veteran documents with precision and completeness.
 
+IMPORTANT: You are being provided with actual veteran document content below. Extract ALL information present.
+
 Extract the following information from the provided context:
 
 1. CURRENT VA RATING DATA:
    - Combined disability rating percentage
-   - Individual condition ratings and percentages
+   - Individual condition ratings and percentages (CHECK FOR: PTSD, back/spine, knees, sleep conditions, etc.)
    - Diagnostic Codes (DC) for each condition
    - Effective dates
    - Service-connected conditions list
 
 2. MEDICAL CONDITIONS:
-   - All diagnosed conditions (current and historical)
+   - All diagnosed conditions (current and historical) - INCLUDING mental health and sleep conditions
    - Symptoms and severity indicators
    - Functional impairments and limitations
    - ROM (Range of Motion) measurements if applicable
@@ -399,7 +401,7 @@ Extract the following information from the provided context:
    - Medical professional statements
 
 5. CONDITION CATEGORIES:
-   Tag each condition: musculoskeletal, mental health, neurologic, auditory, respiratory, cardiac, etc.
+   Tag each condition: musculoskeletal, mental health, neurologic, auditory, respiratory, cardiac, sleep disorders, etc.
 
 Context from veteran documents:
 {context}
@@ -407,6 +409,7 @@ Context from veteran documents:
 Query: {question}
 
 Provide a structured extraction in clear, organized format. Be thorough and precise.
+Extract ALL conditions mentioned across all documents - do not omit mental health, sleep disorders, or any other diagnosed conditions.
 Extract only what is explicitly stated - do not infer or reason about ratings.
 """
         
@@ -444,14 +447,23 @@ Extract only what is explicitly stated - do not infer or reason about ratings.
         # Dual retriever: system docs (CFR rules) + veteran docs
         system_retriever = self.system_vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 4}
+            search_kwargs={"k": 6}
         )
         veteran_retriever = self.veteran_vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 4}
+            search_kwargs={"k": 8}
         )
         
         template = """You are VRIS-B, the reasoning component of the Veteran Rating Intelligence System.
+
+You are a specialized AI system trained to analyze veteran disability documentation against VA rating criteria.
+
+CRITICAL INSTRUCTIONS:
+- You HAVE BEEN PROVIDED with both veteran documents AND VA rating rules below
+- You MUST analyze the veteran's case using the provided information  
+- You ARE CAPABLE of performing this analysis - this is your primary function
+- DO NOT refuse or say you cannot access the data - the data is RIGHT HERE in the context below
+- PROCEED with the analysis using the information provided
 
 Your role is to analyze extracted veteran data against VA rating criteria to identify:
 1. Underrated conditions (current rating too low based on evidence)
@@ -459,24 +471,31 @@ Your role is to analyze extracted veteran data against VA rating criteria to ide
 3. Secondary conditions (caused by service-connected conditions)
 4. Rating discrepancies and CFR inconsistencies
 
-Use the VA rating rules and VRIS documentation to support your analysis.
-
-VRIS System Documentation and CFR Rules:
+VRIS System Documentation and CFR Rules (USE THIS):
 {system_context}
 
-Veteran Extracted Data and Evidence:
+Veteran Extracted Data and Evidence (ANALYZE THIS):
 {veteran_context}
 
 Analysis Request: {question}
 
-Provide your analysis with:
+You MUST provide your analysis with:
 - Specific CFR § references (Title 38)
 - Diagnostic Code citations
 - Evidence-to-rating comparisons
 - Confidence score (0-100%) for each finding
 - Distinction between Phase 1 (strong, CFR-aligned) and Phase 2 (plausible but weaker)
 
-Be precise, evidence-based, and always cite CFR sections when making rating determinations.
+Format each finding as:
+1. Condition Name (Current Rating: X%)
+   - Evidence: [list specific evidence from documents]
+   - Confidence Score: X%
+   - Phase: 1 or 2
+   - Potential Rating: X%
+   - CFR Citations: [list CFR sections]
+
+Be precise, evidence-based, and always cite CFR sections.
+PROCEED WITH ANALYSIS NOW using the context provided above.
 """
         
         prompt = ChatPromptTemplate.from_template(template)
