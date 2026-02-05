@@ -377,9 +377,11 @@ Extract the following information from the provided context:
 1. CURRENT VA RATING DATA:
    - Combined disability rating percentage
    - Individual condition ratings and percentages (CHECK FOR: PTSD, back/spine, knees, sleep conditions, etc.)
+   - CRITICAL: Include the CURRENT RATING PERCENTAGE for each service-connected condition
    - Diagnostic Codes (DC) for each condition
    - Effective dates
    - Service-connected conditions list
+   - If VA Decision Letter shows PTSD at 30%, extract: "PTSD: 30% (DC: 9411)"
 
 2. MEDICAL CONDITIONS:
    - All diagnosed conditions (current and historical) - INCLUDING mental health and sleep conditions
@@ -387,6 +389,7 @@ Extract the following information from the provided context:
    - Functional impairments and limitations
    - ROM (Range of Motion) measurements if applicable
    - Test results (labs, imaging, sleep studies, etc.)
+   - NOTE: Only list conditions HERE if they are NOT already listed in section 1 above
 
 3. TEMPORAL RELATIONSHIPS:
    - Onset dates
@@ -568,8 +571,16 @@ PROCEED WITH ANALYSIS NOW using the context provided above.
         # Run VRIS-A
         vris_a_result = self.vris_a_extract(extraction_query)
         
-        # Run VRIS-B
-        vris_b_result = self.vris_b_analyze(reasoning_query)
+        # Run VRIS-B with VRIS-A's extraction included in the query
+        vris_b_query = f"""
+VRIS-A EXTRACTED DATA:
+{vris_a_result}
+
+---
+
+{reasoning_query}
+"""
+        vris_b_result = self.vris_b_analyze(vris_b_query)
         
         # In production, implement sophisticated agreement scoring
         # For now, return both results
@@ -656,22 +667,37 @@ PROCEED WITH ANALYSIS NOW using the context provided above.
         """
         extraction_query = """
         Extract from VA Decision Letter and all supporting documents:
-        1. Current VA rating profile (all conditions, DCs, percentages, effective dates)
+        1. Current VA rating profile - CAREFULLY extract ALL service-connected conditions with their current ratings:
+           - List EVERY condition that has a current VA rating (including back, knees, PTSD, etc.)
+           - Include diagnostic codes, percentages, effective dates
+           - Do not miss mental health conditions like PTSD
         2. All evidence from medical records, C&P exams, DBQs
-        3. Any conditions in evidence that are NOT currently rated
+        3. Any conditions in evidence that are NOT currently rated (new conditions not yet service-connected)
         4. Severity indicators that may exceed current rating criteria
         5. Potential secondary conditions
+        
+        CRITICAL: If a condition appears in the VA Decision Letter with a percentage rating, 
+        it MUST be listed in section 1 with its current rating, even if there are also C&P exams about it.
         """
         
         reasoning_query = """
-        Compare veteran's current VA rating to evidence:
-        1. Identify conditions where evidence supports higher rating than assigned
-        2. Map current ratings to CFR criteria - identify underrating
-        3. Identify conditions present in evidence but not rated (missed conditions)
+        Using the VRIS-A extraction above, compare veteran's current VA rating to evidence:
+        
+        CRITICAL: Use the CURRENT RATINGS from VRIS-A extraction section 1 (CURRENT VA RATING DATA).
+        If VRIS-A shows a condition with a percentage (e.g., "PTSD: 30%"), that is the CURRENT rating, not "Not Rated".
+        
+        1. Identify conditions where evidence supports higher rating than currently assigned (UNDERRATED)
+        2. Map current ratings to CFR criteria - identify underrating gaps
+        3. Identify conditions present in evidence but with NO current rating (MISSED CONDITIONS)
         4. Identify secondary conditions with causal linkage to rated conditions
         5. Calculate potential increased combined rating
         6. Provide detailed CFR citations and evidence mappings
         7. Confidence scores for each finding
+        
+        IMPORTANT: 
+        - If a condition has a current rating (even 0%), it goes in UNDERRATED category
+        - Only conditions with NO rating at all go in MISSED CONDITIONS
+        - Always check VRIS-A section 1 for the current rating before labeling as "Not Rated"
         
         Phase 1: Strong increase opportunities (90%+ confidence)
         Phase 2: Plausible increases requiring VSO evaluation
@@ -748,8 +774,8 @@ def main():
         model_name="gpt-4"  # Use GPT-4 for production
     )
     
-    # Initialize (set force_reload=True to reprocess all documents)
-    vris.initialize(force_reload=False)
+    # Initialize (set force_reload_system=True to reprocess all documents)
+    vris.initialize(force_reload_system=False)
     
     # Example workflows
     print("\n" + "="*70)

@@ -217,6 +217,16 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
         
         # Look for condition headers (numbered items)
         if line and line[0].isdigit() and '.' in line[:3]:
+            # Save previous condition before starting new one
+            if current_condition and current_condition.get("name"):
+                # Categorize the condition
+                if current_condition.get("current_rating") == "Not Rated":
+                    findings["missed_conditions"].append(current_condition)
+                elif "secondary" in current_condition["name"].lower():
+                    findings["secondary_conditions"].append(current_condition)
+                elif current_condition.get("current_rating") and current_condition.get("potential_rating"):
+                    findings["underrated_conditions"].append(current_condition)
+            
             # Extract condition info
             if 'Current Rating:' in line or 'Not Rated' in line:
                 current_condition = {
@@ -264,26 +274,28 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
                 pass
         
         # Extract CFR citations
-        elif current_condition and ('38 CFR' in line or 'DC ' in line or 'Diagnostic Code' in line):
+        elif current_condition and ('38 CFR' in line or 'Diagnostic Code' in line) and 'Evidence:' not in line:
             current_condition["cfr_citations"].append(line)
         
-        # Extract evidence
+        # Extract evidence (make sure "Evidence:" lines go to evidence, not cfr_citations)
         elif current_condition and 'Evidence:' in line:
-            evidence_text = line.split('Evidence:')[1].strip() if 'Evidence:' in line else line
+            evidence_text = line.split('Evidence:')[1].strip() if ':' in line else line
             if evidence_text:
                 current_condition["evidence"].append(evidence_text)
         
         # Store condition when we hit a new one or end
         elif current_condition and (line.startswith('---') or line == ''):
-            # Categorize the condition
-            if current_condition.get("current_rating") == "Not Rated":
-                findings["missed_conditions"].append(current_condition)
-            elif "secondary" in current_condition["name"].lower():
-                findings["secondary_conditions"].append(current_condition)
-            elif current_condition.get("current_rating") and current_condition.get("potential_rating"):
-                findings["underrated_conditions"].append(current_condition)
-            
-            current_condition = None
+            pass  # Don't store here, we'll store when we hit the next condition
+    
+    # Don't forget the last condition!
+    if current_condition and current_condition.get("name"):
+        # Categorize the condition
+        if current_condition.get("current_rating") == "Not Rated":
+            findings["missed_conditions"].append(current_condition)
+        elif "secondary" in current_condition["name"].lower():
+            findings["secondary_conditions"].append(current_condition)
+        elif current_condition.get("current_rating") and current_condition.get("potential_rating"):
+            findings["underrated_conditions"].append(current_condition)
     
     # Count total opportunities
     findings["total_opportunities"] = (
