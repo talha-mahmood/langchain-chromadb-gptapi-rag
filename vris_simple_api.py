@@ -184,9 +184,17 @@ async def analyze_veteran_documents(
         
         return response
     
+    except HTTPException:
+        raise
     except Exception as e:
-        print(f"❌ Error during analysis: {str(e)}")
-        raise HTTPException(status_code=500, detail=f"Analysis failed: {str(e)}")
+        error_text = str(e)
+        print(f"❌ Error during analysis: {error_text}")
+
+        # OCR/setup issues should be user-actionable (400), not server-fault (500)
+        if "OCR is required" in error_text or "Install OCR dependencies" in error_text:
+            raise HTTPException(status_code=400, detail=error_text)
+
+        raise HTTPException(status_code=500, detail=f"Analysis failed: {error_text}")
     
     finally:
         # Cleanup: Delete temporary files immediately

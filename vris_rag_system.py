@@ -7,7 +7,7 @@ import os
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from dotenv import load_dotenv
-from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, TextLoader
+from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, TextLoader, UnstructuredPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_chroma import Chroma
@@ -18,6 +18,195 @@ import json
 
 # Load environment variables
 load_dotenv()
+
+
+def configure_ocr_runtime() -> None:
+    """
+    Configure OCR binaries for the current process.
+
+    This avoids failures when PATH changes are not yet reflected in the shell.
+    """
+    # Configure Tesseract executable
+    try:
+        import pytesseract  # type: ignore
+
+        tesseract_cmd = os.getenv("TESSERACT_CMD", "").strip()
+        if tesseract_cmd and Path(tesseract_cmd).exists():
+            pytesseract.pytesseract.tesseract_cmd = tesseract_cmd
+        else:
+            default_tesseract = Path(r"C:\Program Files\Tesseract-OCR\tesseract.exe")
+            if default_tesseract.exists():
+                pytesseract.pytesseract.tesseract_cmd = str(default_tesseract)
+    except Exception:
+        # If pytesseract is not installed yet, keep runtime unchanged.
+        pass
+
+    # Configure Poppler path if not already available in PATH
+    poppler_env = os.getenv("POPPLER_PATH", "").strip()
+    candidate_paths: List[Path] = []
+
+    if poppler_env:
+        candidate_paths.append(Path(poppler_env))
+
+    # Default WinGet Poppler location pattern
+    local_app_data = os.getenv("LOCALAPPDATA", "")
+    if local_app_data:
+        winget_root = Path(local_app_data) / "Microsoft" / "WinGet" / "Packages"
+        if winget_root.exists():
+            for package_dir in winget_root.glob("oschwartz10612.Poppler_*"):
+                for poppler_dir in package_dir.glob("poppler-*"):
+                    candidate_paths.append(poppler_dir / "Library" / "bin")
+
+    for candidate in candidate_paths:
+        if candidate.exists() and (candidate / "pdftoppm.exe").exists():
+            current_path = os.environ.get("PATH", "")
+            candidate_str = str(candidate)
+            if candidate_str.lower() not in current_path.lower():
+                os.environ["PATH"] = f"{current_path};{candidate_str}" if current_path else candidate_str
+            break
+
+
+configure_ocr_runtime()
+
+
+def inspect_pdf_text_coverage(pdf_path: str, min_chars_per_page: int = 40) -> Dict[str, Any]:
+    """
+    Inspect text coverage for every page in a PDF.
+
+    Returns stats used to decide whether OCR is required. A mixed PDF
+    (some text pages + some image-only pages) is treated as OCR-required.
+    """
+    try:
+        from pypdf import PdfReader
+
+        reader = PdfReader(pdf_path)
+        total_pages = len(reader.pages)
+        if total_pages == 0:
+            return {
+                "total_pages": 0,
+                "text_pages": 0,
+                "low_text_pages": 0,
+                "empty_pages": 0,
+                "is_scanned": False,
+                "is_mixed": False,
+                "needs_ocr": False,
+            }
+
+        text_lengths: List[int] = []
+        for page in reader.pages:
+            text = page.extract_text() or ""
+            text_lengths.append(len(text.strip()))
+
+        text_pages = sum(1 for count in text_lengths if count >= min_chars_per_page)
+        low_text_pages = total_pages - text_pages
+        empty_pages = sum(1 for count in text_lengths if count == 0)
+
+        is_scanned = text_pages == 0
+        is_mixed = text_pages > 0 and low_text_pages > 0
+        needs_ocr = is_scanned or is_mixed
+
+        return {
+            "total_pages": total_pages,
+            "text_pages": text_pages,
+            "low_text_pages": low_text_pages,
+            "empty_pages": empty_pages,
+            "is_scanned": is_scanned,
+            "is_mixed": is_mixed,
+            "needs_ocr": needs_ocr,
+        }
+    except Exception as e:
+        print(f"  Warning: Could not inspect PDF text coverage: {e}")
+        return {
+            "total_pages": 0,
+            "text_pages": 0,
+            "low_text_pages": 0,
+            "empty_pages": 0,
+            "is_scanned": False,
+            "is_mixed": False,
+            "needs_ocr": False,
+        }
+
+
+def save_ocr_text_for_testing(docs: List, source_stem: str) -> None:
+    """Save OCR text output to a file for validation/testing."""
+    ocr_output_dir = Path("ocr_output")
+    ocr_output_dir.mkdir(exist_ok=True)
+    ocr_text_file = ocr_output_dir / f"{source_stem}_ocr.txt"
+
+    with open(ocr_text_file, "w", encoding="utf-8") as handle:
+        for idx, doc in enumerate(docs):
+            page = doc.metadata.get("page", idx + 1)
+            content = (doc.page_content or "").strip()
+            handle.write(f"--- Segment {idx + 1} (Page {page}) ---\n")
+            handle.write(content)
+            handle.write("\n\n")
+
+
+def _to_scalar_metadata_value(value: Any) -> Optional[Any]:
+    """Convert metadata values to Chroma-supported scalar types."""
+    if value is None or isinstance(value, (str, int, float, bool)):
+        return value
+
+    # Handle numpy scalar types without importing numpy directly.
+    if hasattr(value, "item"):
+        try:
+            scalar_value = value.item()
+            if scalar_value is None or isinstance(scalar_value, (str, int, float, bool)):
+                return scalar_value
+        except Exception:
+            pass
+
+    return None
+
+
+def sanitize_metadata_for_vectorstore(metadata: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Keep only vectorstore-safe metadata fields.
+
+    OCR loaders attach nested objects like coordinates and layout metadata that
+    Chroma rejects during upsert.
+    """
+    safe_metadata: Dict[str, Any] = {}
+    preferred_keys = [
+        "filename",
+        "source",
+        "folder",
+        "file_type",
+        "document_type",
+        "page",
+        "page_number",
+        "category",
+        "element_id",
+    ]
+
+    for key in preferred_keys:
+        if key in metadata:
+            scalar_value = _to_scalar_metadata_value(metadata.get(key))
+            if scalar_value is not None:
+                safe_metadata[key] = scalar_value
+
+    # Normalize OCR page_number into the page field used elsewhere in the app.
+    if "page" not in safe_metadata and "page_number" in safe_metadata:
+        safe_metadata["page"] = safe_metadata["page_number"]
+
+    return safe_metadata
+
+
+def can_fallback_to_text_extraction(pdf_stats: Dict[str, Any], min_text_ratio: float = 0.80) -> bool:
+    """
+    Decide if fallback to plain text extraction is acceptable when OCR fails.
+
+    We only allow fallback when most pages already have extractable text.
+    """
+    total_pages = max(1, int(pdf_stats.get("total_pages", 0) or 0))
+    text_pages = int(pdf_stats.get("text_pages", 0) or 0)
+    text_ratio = text_pages / total_pages
+    return text_ratio >= min_text_ratio
+
+
+def is_pdf_scanned(pdf_path: str) -> bool:
+    """Backward-compatible helper: returns True when OCR should be used."""
+    return inspect_pdf_text_coverage(pdf_path).get("needs_ocr", False)
 
 
 class VRISDocumentClassifier:
@@ -130,13 +319,46 @@ class VRISRAGSystem:
         print(f"Found {len(pdf_files)} PDF, {len(docx_files)} DOCX, and {len(txt_files)} TXT file(s) in {folder_path}")
         
         documents = []
+        load_errors: List[str] = []
         
         # Load PDF files
         for pdf_file in pdf_files:
             print(f"Loading PDF: {pdf_file.name}")
             try:
-                loader = PyPDFLoader(str(pdf_file))
-                docs = loader.load()
+                pdf_stats = inspect_pdf_text_coverage(str(pdf_file))
+
+                # OCR for scanned or mixed PDFs
+                if pdf_stats.get("needs_ocr"):
+                    if pdf_stats.get("is_mixed"):
+                        print(
+                            "  -> Mixed PDF detected "
+                            f"({pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages have extractable text), using OCR..."
+                        )
+                    else:
+                        print("  -> Scanned PDF detected, using OCR...")
+                    try:
+                        # ocr_only is more stable on Windows for mixed scanned PDFs
+                        loader = UnstructuredPDFLoader(str(pdf_file), mode="elements", strategy="ocr_only")
+                        docs = loader.load()
+                        save_ocr_text_for_testing(docs, pdf_file.stem)
+                        print(f"  OCR text saved to: ocr_output/{pdf_file.stem}_ocr.txt")
+
+                    except Exception as ocr_error:
+                        if can_fallback_to_text_extraction(pdf_stats):
+                            print(f"  ⚠️ OCR failed, but most pages are text-based. Falling back to PyPDFLoader: {ocr_error}")
+                            loader = PyPDFLoader(str(pdf_file))
+                            docs = loader.load()
+                        else:
+                            raise RuntimeError(
+                                "OCR is required for this PDF but failed. "
+                                f"Detected {pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages with extractable text. "
+                                "Install OCR dependencies: pip install \"unstructured[pdf]\" pytesseract pdf2image pillow, "
+                                "and install system tools Tesseract OCR + Poppler."
+                            )
+                else:
+                    print("  -> Text-based PDF, using standard extraction...")
+                    loader = PyPDFLoader(str(pdf_file))
+                    docs = loader.load()
                 
                 # Add document type metadata
                 for doc in docs:
@@ -147,6 +369,7 @@ class VRISRAGSystem:
                 documents.extend(docs)
             except Exception as e:
                 print(f"  Error loading {pdf_file.name}: {e}")
+                load_errors.append(f"{pdf_file.name}: {e}")
         
         # Load DOCX files
         for docx_file in docx_files:
@@ -165,6 +388,7 @@ class VRISRAGSystem:
                 documents.extend(docs)
             except Exception as e:
                 print(f"  Error loading {docx_file.name}: {e}")
+                load_errors.append(f"{docx_file.name}: {e}")
         
         # Load TXT files
         for txt_file in txt_files:
@@ -183,7 +407,14 @@ class VRISRAGSystem:
                 documents.extend(docs)
             except Exception as e:
                 print(f"  Error loading {txt_file.name}: {e}")
+                load_errors.append(f"{txt_file.name}: {e}")
         
+        if not documents and load_errors:
+            raise ValueError(
+                "No documents could be loaded. "
+                f"First error: {load_errors[0]}"
+            )
+
         print(f"Loaded {len(documents)} document(s) total")
         return documents
     
@@ -221,6 +452,8 @@ class VRISRAGSystem:
         )
         
         chunks = text_splitter.split_documents(documents)
+        for chunk in chunks:
+            chunk.metadata = sanitize_metadata_for_vectorstore(dict(chunk.metadata))
         print(f"Split into {len(chunks)} chunks")
         return chunks
     
@@ -295,6 +528,7 @@ class VRISRAGSystem:
         print(f"Processing {len(document_paths)} uploaded document(s)...")
         
         documents = []
+        load_errors: List[str] = []
         for file_path in document_paths:
             path = Path(file_path)
             if not path.exists():
@@ -304,9 +538,43 @@ class VRISRAGSystem:
             print(f"Loading: {path.name}")
             try:
                 if path.suffix.lower() == '.pdf':
-                    loader = PyPDFLoader(str(path))
+                    pdf_stats = inspect_pdf_text_coverage(str(path))
+
+                    # OCR for scanned or mixed PDFs
+                    if pdf_stats.get("needs_ocr"):
+                        if pdf_stats.get("is_mixed"):
+                            print(
+                                "  -> Mixed PDF detected "
+                                f"({pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages have extractable text), using OCR..."
+                            )
+                        else:
+                            print("  -> Scanned PDF detected, using OCR...")
+                        try:
+                            # ocr_only is more stable on Windows for mixed scanned PDFs
+                            loader = UnstructuredPDFLoader(str(path), mode="elements", strategy="ocr_only")
+                            docs = loader.load()
+                            save_ocr_text_for_testing(docs, path.stem)
+                            print(f"  OCR text saved to: ocr_output/{path.stem}_ocr.txt")
+
+                        except Exception as ocr_error:
+                            if can_fallback_to_text_extraction(pdf_stats):
+                                print(f"  ⚠️ OCR failed, but most pages are text-based. Falling back to PyPDFLoader: {ocr_error}")
+                                loader = PyPDFLoader(str(path))
+                                docs = loader.load()
+                            else:
+                                raise RuntimeError(
+                                    "OCR is required for this uploaded PDF but failed. "
+                                    f"Detected {pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages with extractable text. "
+                                    "Install OCR dependencies: pip install \"unstructured[pdf]\" pytesseract pdf2image pillow, "
+                                    "and install system tools Tesseract OCR + Poppler."
+                                )
+                    else:
+                        print("  -> Text-based PDF, using standard extraction...")
+                        loader = PyPDFLoader(str(path))
+                        docs = loader.load()
                 elif path.suffix.lower() == '.docx':
                     loader = Docx2txtLoader(str(path))
+                    docs = loader.load()
                 elif path.suffix.lower() == '.txt':
                     with open(path, 'r', encoding='utf-8') as f:
                         content = f.read()
@@ -320,8 +588,7 @@ class VRISRAGSystem:
                 else:
                     print(f"⚠️  Unsupported file type: {path.suffix}")
                     continue
-                
-                docs = loader.load()
+
                 for doc in docs:
                     doc.metadata['filename'] = path.name
                     doc.metadata['source'] = str(path)
@@ -329,8 +596,14 @@ class VRISRAGSystem:
                 
             except Exception as e:
                 print(f"❌ Error loading {path.name}: {e}")
+                load_errors.append(f"{path.name}: {e}")
         
         if not documents:
+            if load_errors:
+                raise ValueError(
+                    "No documents could be loaded from the provided paths. "
+                    f"First error: {load_errors[0]}"
+                )
             raise ValueError("No documents could be loaded from the provided paths")
         
         print(f"Loaded {len(documents)} document(s)")

@@ -19,9 +19,10 @@ python-multipart>=0.0.6
 # azure-identity
 
 # Optional: Enhanced document processing (OCR)
-# pytesseract
-# pdf2image
-# pillow
+unstructured[pdf]>=0.16.9
+pytesseract>=0.3.13
+pdf2image>=1.17.0
+pillow>=11.0.0
 
 # Optional: Agreement scoring and NLP
 # sentence-transformers
