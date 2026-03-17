@@ -9,6 +9,7 @@ from typing import List, Dict, Any
 from pathlib import Path
 import shutil
 import os
+import re
 from datetime import datetime
 import tempfile
 from vris_rag_system import VRISRAGSystem
@@ -49,6 +50,153 @@ vris_system.create_system_vectorstore(force_reload=False)
 print("✓ System vectorstore ready")
 print("✓ VRIS ready to analyze veteran documents")
 print("="*70 + "\n")
+
+
+def _normalize_condition_key(name: str) -> str:
+    normalized = re.sub(r"[^a-z0-9]+", " ", (name or "").lower()).strip()
+    return re.sub(r"\s+", " ", normalized)
+
+
+def _append_parsed_condition(findings: Dict[str, Any], condition: Dict[str, Any] | None) -> None:
+    if not condition or not condition.get("name"):
+        return
+
+    if condition.get("current_rating") == "Not Rated":
+        findings["missed_conditions"].append(condition)
+    elif "secondary" in condition["name"].lower():
+        findings["secondary_conditions"].append(condition)
+    elif condition.get("current_rating") and condition.get("potential_rating"):
+        findings["underrated_conditions"].append(condition)
+
+
+def _merge_unique_condition_entries(entries: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    merged: Dict[tuple[str, str, str], Dict[str, Any]] = {}
+    order: List[tuple[str, str, str]] = []
+
+    for entry in entries:
+        name = (entry or {}).get("name", "").strip()
+        if not name:
+            continue
+
+        current_rating = (entry.get("current_rating") or "").strip()
+        potential_rating = (entry.get("potential_rating") or "").strip()
+        key = (
+            _normalize_condition_key(name),
+            current_rating.lower(),
+            potential_rating.lower(),
+        )
+
+        if key not in merged:
+            merged[key] = {
+                "name": name,
+                "current_rating": entry.get("current_rating"),
+                "potential_rating": entry.get("potential_rating"),
+                "confidence": entry.get("confidence"),
+                "phase": entry.get("phase"),
+                "evidence": list(dict.fromkeys(entry.get("evidence", []))),
+                "cfr_citations": list(dict.fromkeys(entry.get("cfr_citations", []))),
+            }
+            order.append(key)
+            continue
+
+        existing = merged[key]
+        if existing.get("confidence") is None or (
+            entry.get("confidence") is not None and entry["confidence"] > existing["confidence"]
+        ):
+            existing["confidence"] = entry.get("confidence")
+
+        if not existing.get("phase") and entry.get("phase") is not None:
+            existing["phase"] = entry.get("phase")
+
+        if not existing.get("current_rating") and entry.get("current_rating"):
+            existing["current_rating"] = entry.get("current_rating")
+
+        if not existing.get("potential_rating") and entry.get("potential_rating"):
+            existing["potential_rating"] = entry.get("potential_rating")
+
+        existing["evidence"] = list(dict.fromkeys(existing["evidence"] + entry.get("evidence", [])))
+        existing["cfr_citations"] = list(dict.fromkeys(existing["cfr_citations"] + entry.get("cfr_citations", [])))
+
+    return [merged[key] for key in order]
+
+
+def _dedupe_findings(findings: Dict[str, Any]) -> Dict[str, Any]:
+    findings["underrated_conditions"] = _merge_unique_condition_entries(findings.get("underrated_conditions", []))
+    findings["missed_conditions"] = _merge_unique_condition_entries(findings.get("missed_conditions", []))
+    findings["secondary_conditions"] = _merge_unique_condition_entries(findings.get("secondary_conditions", []))
+    findings["total_opportunities"] = (
+        len(findings["underrated_conditions"]) +
+        len(findings["missed_conditions"]) +
+        len(findings["secondary_conditions"])
+    )
+    return findings
+
+
+def _parse_condition_coverage_index(text: str) -> List[Dict[str, Any]]:
+    titles = {
+        "SUPPLEMENTAL CONDITION COVERAGE INDEX:",
+        "SUPPLEMENTAL MEDICAL RECORD CONDITION INDEX:",
+    }
+    item_pattern = re.compile(
+        r"^\d+\.\s+(?P<name>.+?)\s+\|\s+ICD:\s+(?P<codes>.+?)\s+\|\s+Pages:\s+(?P<pages>.+?)$"
+    )
+
+    conditions: List[Dict[str, Any]] = []
+    in_section = False
+
+    for raw_line in (text or "").splitlines():
+        line = raw_line.strip()
+
+        if line in titles:
+            in_section = True
+            continue
+
+        if not in_section:
+            continue
+
+        if not line or line.lower().startswith("checklist generated from deterministic"):
+            continue
+
+        match = item_pattern.match(line)
+        if not match:
+            if line.endswith(":") and not re.match(r"^\d+\.", line):
+                in_section = False
+            continue
+
+        name = match.group("name").strip(" -:;,.\t()[]")
+        codes = [code.strip() for code in match.group("codes").split(",") if code.strip() and code.strip().lower() != "none"]
+        pages = [int(page.strip()) for page in match.group("pages").split(",") if page.strip().isdigit()]
+        codes_text = ", ".join(codes) if codes else "ICD not listed"
+        pages_text = ", ".join(str(page) for page in pages) if pages else "Unknown"
+        page_label = "Page" if len(pages) == 1 else "Pages"
+
+        conditions.append(
+            {
+                "name": name,
+                "current_rating": "Not Rated",
+                "potential_rating": "Not specified due to lack of VA rating/service-connection evidence",
+                "confidence": None,
+                "phase": None,
+                "evidence": [f"{name} - {codes_text} ({page_label} {pages_text})"],
+                "cfr_citations": [],
+            }
+        )
+
+    return _merge_unique_condition_entries(conditions)
+
+
+def _is_medical_only_packet(vris_a_output: str, vris_b_output: str) -> bool:
+    combined = f"{vris_a_output}\n{vris_b_output}".lower()
+    return (
+        "current va rating data: not found" in combined and
+        "medical-only gap summary" in combined
+    )
+
+
+def _enrich_medical_only_findings(findings: Dict[str, Any], vris_a_output: str, vris_b_output: str) -> Dict[str, Any]:
+    findings["missed_conditions"].extend(_parse_condition_coverage_index(vris_a_output))
+    findings["missed_conditions"].extend(_parse_condition_coverage_index(vris_b_output))
+    return _dedupe_findings(findings)
 
 
 @app.post("/api/vris/analyze")
@@ -148,6 +296,28 @@ async def analyze_veteran_documents(
         
         # Parse VRIS-B output to extract structured findings
         findings = parse_vris_findings(vris_b_data)
+
+        medical_only = _is_medical_only_packet(vris_a_data, vris_b_data)
+        if medical_only:
+            findings = _enrich_medical_only_findings(findings, vris_a_data, vris_b_data)
+
+        # Generate summary with medical-only fallback guidance
+        summary = generate_summary(findings)
+        combined_analysis_text = f"{vris_a_data}\n{vris_b_data}".lower()
+        medical_only_signals = [
+            "current va rating data: not found",
+            "medical-only gap summary",
+            "missing claim-critical evidence",
+            "insufficient va rating",
+            "service-connection evidence",
+        ]
+        if medical_only or any(signal in combined_analysis_text for signal in medical_only_signals):
+            summary["analysis_mode"] = "medical-evidence-only"
+            summary["recommendation"] = (
+                "Medical conditions found, but VA rating/service-connection evidence is missing. "
+                "Upload VA Decision Letter/Code Sheet, relevant C&P or DBQ documents, "
+                "and service-connection evidence (in-service event + nexus)."
+            )
         
         # Build response
         response = {
@@ -172,7 +342,7 @@ async def analyze_veteran_documents(
             "findings": findings,
             
             # Summary
-            "summary": generate_summary(findings),
+            "summary": summary,
             
             # Compliance
             "data_retention": "Files processed in-memory only. Not stored. Deleted immediately after analysis.",
@@ -193,6 +363,17 @@ async def analyze_veteran_documents(
         # OCR/setup issues should be user-actionable (400), not server-fault (500)
         if "OCR is required" in error_text or "Install OCR dependencies" in error_text:
             raise HTTPException(status_code=400, detail=error_text)
+
+        # Token-limit errors should be surfaced as actionable request issues.
+        lowered = error_text.lower()
+        if "context_length_exceeded" in lowered or "maximum context length" in lowered:
+            raise HTTPException(
+                status_code=400,
+                detail=(
+                    "Analysis input exceeded model context limit. "
+                    "Retry with fewer/lower-length documents or use a higher-context model configuration."
+                ),
+            )
 
         raise HTTPException(status_code=500, detail=f"Analysis failed: {error_text}")
     
@@ -219,43 +400,30 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
     
     lines = vris_b_output.split('\n')
     current_condition = None
+    condition_header_pattern = re.compile(
+        r"^\d+\.\s+(?P<name>.+?)\s+\((?:Current Rating:\s*(?P<current_rating>[^)]+)|(?P<not_rated>Not Rated))\)\s*$"
+    )
     
     for line in lines:
         line = line.strip()
+
+        if line in {"SUPPLEMENTAL MEDICAL RECORD CONDITION INDEX:", "SUPPLEMENTAL CONDITION COVERAGE INDEX:"}:
+            break
         
         # Look for condition headers (numbered items)
-        if line and line[0].isdigit() and '.' in line[:3]:
-            # Save previous condition before starting new one
-            if current_condition and current_condition.get("name"):
-                # Categorize the condition
-                if current_condition.get("current_rating") == "Not Rated":
-                    findings["missed_conditions"].append(current_condition)
-                elif "secondary" in current_condition["name"].lower():
-                    findings["secondary_conditions"].append(current_condition)
-                elif current_condition.get("current_rating") and current_condition.get("potential_rating"):
-                    findings["underrated_conditions"].append(current_condition)
-            
-            # Extract condition info
-            if 'Current Rating:' in line or 'Not Rated' in line:
-                current_condition = {
-                    "name": line.split('(')[0].strip().lstrip('0123456789. '),
-                    "current_rating": None,
-                    "potential_rating": None,
-                    "confidence": None,
-                    "phase": None,
-                    "evidence": [],
-                    "cfr_citations": []
-                }
-                
-                # Extract current rating
-                if 'Current Rating:' in line:
-                    try:
-                        current_rating = line.split('Current Rating:')[1].split(')')[0].strip()
-                        current_condition["current_rating"] = current_rating
-                    except:
-                        pass
-                else:
-                    current_condition["current_rating"] = "Not Rated"
+        header_match = condition_header_pattern.match(line)
+        if header_match:
+            _append_parsed_condition(findings, current_condition)
+            current_condition = {
+                "name": header_match.group("name").strip(),
+                "current_rating": header_match.group("current_rating").strip() if header_match.group("current_rating") else "Not Rated",
+                "potential_rating": None,
+                "confidence": None,
+                "phase": None,
+                "evidence": [],
+                "cfr_citations": []
+            }
+            continue
         
         # Extract potential rating
         elif current_condition and 'Potential Rating:' in line:
@@ -296,23 +464,8 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
             pass  # Don't store here, we'll store when we hit the next condition
     
     # Don't forget the last condition!
-    if current_condition and current_condition.get("name"):
-        # Categorize the condition
-        if current_condition.get("current_rating") == "Not Rated":
-            findings["missed_conditions"].append(current_condition)
-        elif "secondary" in current_condition["name"].lower():
-            findings["secondary_conditions"].append(current_condition)
-        elif current_condition.get("current_rating") and current_condition.get("potential_rating"):
-            findings["underrated_conditions"].append(current_condition)
-    
-    # Count total opportunities
-    findings["total_opportunities"] = (
-        len(findings["underrated_conditions"]) + 
-        len(findings["missed_conditions"]) + 
-        len(findings["secondary_conditions"])
-    )
-    
-    return findings
+    _append_parsed_condition(findings, current_condition)
+    return _dedupe_findings(findings)
 
 
 def generate_summary(findings: Dict[str, Any]) -> Dict[str, Any]:

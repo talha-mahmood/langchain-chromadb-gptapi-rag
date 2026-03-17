@@ -1,3171 +1,1133 @@
 --- Segment 1 (Page 1) ---
 Ciox Health - PAYMENTS ONLY Date
-
---- Segment 2 (Page 2) ---
 P.O. Box 409900 10/06/2023 Atlanta, GA 30384-9900 Fed Tax ID 58 - 2659941
-
---- Segment 3 (Page 3) ---
 1-800-367-1500 https://www.smartrequest.com/
-
---- Segment 4 (Page 4) ---
 Ship To: Requested By: SPENCE, ANYA Patient Name: SPENCE ANYA
-
---- Segment 5 (Page 5) ---
 anya Spence ence, Anya . ii WILLARD WAY DOB : 12/29/1992 BERLIN,NJ 08009-9605
-
---- Segment 6 (Page 6) ---
 Records From: Please Note:
-
---- Segment 7 (Page 7) ---
 KENNEDY MEDICAL GROUP Your medical record request has been PRACTICE delivered electronically to your Ciox eDelivery 500 MARLBORO AVE account.
-
---- Segment 8 (Page 8) ---
 CHERRY HILL,NJ 08002
-
---- Segment 9 (Page 9) ---
 0433930583 INVOICE NUMBER
-
---- Segment 10 (Page 10) ---
 Ciox Health - PAYMENTS ONLY
-
---- Segment 11 (Page 11) ---
 P.O. Box 409900 Atlanta, GA 30384-9900 Fed Tax ID 58 - 2659941 1-800-367-1500
 
---- Segment 12 (Page 12) ---
+--- Segment 2 (Page 2) ---
 a Jefferson Health.
-
---- Segment 13 (Page 13) ---
 Authorization to Release Protected Health Information
-
---- Segment 14 (Page 14) ---
 Section 1: Patient Information
-
---- Segment 15 (Page 15) ---
 PATIENT NAME Anya M Spence SOCIAL SECURITY NO. LAST 4 DIGITS ONLY DATE OF BIRTH
-
---- Segment 16 (Page 16) ---
 PATIENT ADDRESS CITY STATE ZIP CODE TELEPHONE NO. 11 Willard Way Berlin NJ 08009 (856) 361-3414
-
---- Segment 17 (Page 17) ---
 Section 2: Location(s) of Care
-
---- Segment 18 (Page 18) ---
 O Jefferson Cherry Hill Hospital 1 Jefferson Stratford Hospital 1 Jefferson Washington Township Hospital 1 Other (if other location is selected - provide the specific location, address or physician practice/name where you received care):
-
---- Segment 19 (Page 19) ---
 Physician Practice / Other - Rosemary Decicco Jefferson Health Stratford Care Now 205 E Laurel Rd Stratford, NJ 08084-1301
-
---- Segment 20 (Page 20) ---
 Section 3: Release Records To:
-
---- Segment 21 (Page 21) ---
 | hereby consent to and authorize the above entities to release information from my medical record to:
-
---- Segment 22 (Page 22) ---
 Name of Doctor/Hospital/Insurance Company/Other Agency, Person, or Self: Anya Spence Address: Telephone No: 11 Willard Way eDelivery to: anya.spence@yahoo.com
-
---- Segment 23 (Page 23) ---
 Berlin, NJ, 08009 Fax No:
-
---- Segment 24 (Page 24) ---
 For the Purpose of:
-
---- Segment 25 (Page 25) ---
 @ Continuation of Care O Social Security Disability O Insurance Purposes O Legal Purposes
-
---- Segment 26 (Page 26) ---
 O Lay Caregiver O Benefits Assignment O School Registration O Camp Registrations O Personal Access O Other:
-
---- Segment 27 (Page 27) ---
 Information disclosed pursuant to this authorization may be subject to re-disclosure by the recipient and may no longer be protected by the federal HIPAA Privacy Rule or other confidentiality laws.
-
---- Segment 28 (Page 28) ---
 Section 4: Specific Information to Be Released The information to be released will cover the time period from 01/01/2016 to 12/31/2020 SPECIFIC INFORMATION TO RELEASE:
-
---- Segment 29 (Page 29) ---
 Abstract* O Discharge Summary Office Notes/Visit Notes Operations Report
-
---- Segment 30 (Page 30) ---
 Physician Orders
-
---- Segment 31 (Page 31) ---
 Imaging Films (X-rays, Scans, CD) Discharge Instructions Pathology Reports Photographs Immunizations Consultation Reports Disability/FMLA Form Laboratory Results Medication List Imaging Reports Problem List ECG, EEG, Stress Tests
-
---- Segment 32 (Page 32) ---
 History & Physical Exams
-
---- Segment 33 (Page 33) ---
 Itemized Bills Catheterization Lab Reproductive Health Care Services
-
---- Segment 34 (Page 34) ---
 OOOQOaqangcagnN
-
---- Segment 35 (Page 35) ---
 Emergency Room Record
-
---- Segment 36 (Page 36) ---
 Other (specify) Nurse Notes, Office Notes/Visit Notes
-
---- Segment 37 (Page 37) ---
 ON NOODOADAODA
-
---- Segment 38 (Page 38) ---
 Exception: | do not give permission to release (specify):
-
---- Segment 39 (Page 39) ---
 An abstract is a composite of the record that is most helpful to our patients and contains the information that is sent to physicians for continuity of care. The abstract contains the discharge summary, history and physical, consultation reports, all operations, diagnostic and laboratory results.
-
---- Segment 40 (Page 40) ---
 MRD-11 rev 10/2022 SIDE 1 of 2
 
---- Segment 41 (Page 41) ---
+--- Segment 3 (Page 3) ---
 Authorization to Release Protected Health Information
-
---- Segment 42 (Page 42) ---
 Section 5: Special Authorizations For Mental Health, Drug and Alcohol and HIV Records ATTENTION PATIENT: IF APPLICABLE, PLEASE COMPLETE THIS SECTION
-
---- Segment 43 (Page 43) ---
 | understand that my medical record may contain “protected information” related to the following categories. This protected information is being disclosed from records whose confidentiality is protected by the below Federal and State Laws. My signature next to these items acknowledges my awareness and my authorization to release “protected information” in the record.
-
---- Segment 44 (Page 44) ---
 Drug or alcohol information, if drug or alcohol tests were ordered or treatment provided by my physician/provider. (Confidential Alcohol and Drug Abuse Patient Signature Information 42 C.F.R. Part II)
-
---- Segment 45 (Page 45) ---
 Psychiatric or psychological information, if psychiatric or psychological treatment was
-
---- Segment 46 (Page 46) ---
 given by my physician/provider. (N.J. Division of Mental Health and Addiction Svc.) Signature
-
---- Segment 47 (Page 47) ---
 HIV related information for individuals 12 years or older, if HIV-related tests were
-
---- Segment 48 (Page 48) ---
 ordered by my physician/provider.
-
---- Segment 49 (Page 49) ---
 NJ Code (N.J.A.C. 13:35-6.5 (3)(c).
-
---- Segment 50 (Page 50) ---
 Signature
-
---- Segment 51 (Page 51) ---
 Section 6: Authorization Signatures AUTHORIZATION SIGNATURES | hereby authorize Thomas Jefferson University (TJU), including the clinical operations referred to as Jefferson Health,
-
---- Segment 52 (Page 52) ---
 which includes, Kennedy University Hospital, Inc., Jefferson Medical Group and the above mentioned locations to disclose the health information as described above.
-
---- Segment 53 (Page 53) ---
 | understand the nature of this authorization and understand that it is voluntary. My refusal to sign this form in no way affects my treatment, payment, enrollment in health plans or eligibility for benefits, except: (a) when this authorization is for the use or disclosure of health information obtained in a research study, or (b) when | have requested a service by Jefferson (for example, a medical second opinion) and the sole purpose of the service is to provide health information to a third party at my request.
-
---- Segment 54 (Page 54) ---
 | understand that | may revoke this authorization at any time by sending a written request to the address indicated on the back of this form. | understand that the revocation will not apply to information that has already been released in response to this authorization. | have a right to request a copy of this authorization. A copy of this authorization is as valid as the original.
-
---- Segment 55 (Page 55) ---
 Authorization Expires (insert date or event) O 1 year from date of authorization | @ Other Date or Event (please specify): 03/29/2024
-
---- Segment 56 (Page 56) ---
 If no expiration date is designat is aythorization will expire six (6) months from the signature date.
-
---- Segment 57 (Page 57) ---
 Patient Signature: Date Signed: _09/29/2023
-
---- Segment 58 (Page 58) ---
 Signature of Parent/Legal Guardian/Authorized Representative:
-
---- Segment 59 (Page 59) ---
 Printed Name of Parent/Legal Guardian/Authorized Representative: Anya M Spence
-
---- Segment 60 (Page 60) ---
 Unable to sign because:
-
---- Segment 61 (Page 61) ---
 Verbal Consent (/f the patient is physically unable to provide a signature. A verbal consent may be revoked by a verbal statement
-
---- Segment 62 (Page 62) ---
 verified in writing by two witnesses.) | witness that the patient was physically unable to provide a signature, but that he/she understood the nature of this release and freely gave his/her oral authorization.
-
---- Segment 63 (Page 63) ---
 Witness Signature Witness Printed Name Date
-
---- Segment 64 (Page 64) ---
-Witness Signature Witness Printed Name Date
-
---- Segment 65 (Page 65) ---
 O Attached is a copy of the appropriate legal document, which proved authority to act on behalf of the patient.
-
---- Segment 66 (Page 66) ---
 Records of deceased patients: If the requester is not the executor of the decedent’s estate or if there is no executor or administrator then the requester certifies by signing above that he/she is the next of kin responsible for the disposition of the decedent’s remains and the attached legal documentation confirms the above statement.
 
---- Segment 67 (Page 67) ---
+--- Segment 4 (Page 4) ---
 Anya Spence (D.O.B. 12/29/1992)
-
---- Segment 68 (Page 68) ---
 Additional Identifiers Requested 1. Government ID
-
---- Segment 69 (Page 69) ---
 Uploaded by Requestor (see attachment below)
-
---- Segment 70 (Page 70) ---
 2. Mailing Address 11 Willard Way Berlin, NJ 08009
-
---- Segment 71 (Page 71) ---
 3. Email Address (user confirmed)
-
---- Segment 72 (Page 72) ---
 anya.spence@yahoo.com (consented to an unencrypted emailed copy of their request)
-
---- Segment 73 (Page 73) ---
 4. Phone Number (verified) (856) 361-3414.
-
---- Segment 74 (Page 74) ---
 5. Signature
-
---- Segment 75 (Page 75) ---
 REASON FOR REQUEST Continued Care
-
---- Segment 76 (Page 76) ---
 REQUEST SPECIFIC COMMENTS Patient records from primary care doctor needed only no hospital records
 
---- Segment 77 (Page 77) ---
+--- Segment 5 (Page 5) ---
 (Government ID: "Passport .pdf" - Uploaded by Requestor)
-
---- Segment 78 (Page 78) ---
 ANYAMICHELLE lationality / Nationalité / Nacionglidad ‘
-
---- Segment 79 (Page 79) ---
 | UNITED STATES OF AMERICA” me Date of birth / Date de bard | vpaha de facimiento ae 1 oe speee:Dec 1992 | 3A Is . ag sate a= Place 2 of birth / Lieu de recip og de sotrolenic Sex / Sexe / Sexo
-
---- Segment 80 (Page 80) ---
 Fe *.
-
---- Segment 81 (Page 81) ---
 JERSEY, USA. Fa, 2 Se | 2 Date of tssue / Date pada sad / ret de gaa Authority / Autonté / pibtneided t 01 Mar 2021 Serine aka) United States” Date of expiration / Date fot caduci Department of St ee 28 Feb 2031 ie ate
-
---- Segment 82 (Page 82) ---
 .. \ Mt Edrernante [Melons Spells Ariat US ) ri SEE PAGE 27
-
---- Segment 83 (Page 83) ---
 SS eee
-
---- Segment 84 (Page 84) ---
 P<USASPENCE<<ANYA<MICHELLE<<<<<<<<<<<<<K<<KK< 6609892491USA9212299F 3102282686597679<182666
 
---- Segment 85 (Page 85) ---
+--- Segment 6 (Page 6) ---
 swellbox Audit Trail
-
---- Segment 86 (Page 86) ---
 SENT 09/29/2023 Sent for signature to Anya Spence 17:21:37 GMT-04:00 (anya.spence@yahoo.com) VIEWED 09/29/2023 Viewed by Anya Spence (anya.spence@yahoo.com)
-
---- Segment 87 (Page 87) ---
 17:21:39 GMT-04:00 IP: 73.172.14.40
-
---- Segment 88 (Page 88) ---
 SIGNED 09/29/2023 Signed by Anya Spence (anya.spence@yahoo.com) 17:21:47 GMT-04:00 IP: 73.172.14.40 COMPLETED 09/29/2023 The document has been completed. (Request ID:
-
---- Segment 89 (Page 89) ---
 17:21:49 GMT-04:00 AAEYJI4Z)
 
---- Segment 90 (Page 90) ---
+--- Segment 7 (Page 7) ---
 Kennedy University Spence, Anya ; Jefferson Health. Hospital, Inc.-Jefferson Cherry MRN: 402532746, DOB: 12/29/1992, Sex: F Hill Hospital Visit date: 6/19/2018 2201 Chapel Avenue Vest CHERRY HILL NJ 08002
-
---- Segment 91 (Page 91) ---
 Labs Last 3 Days of Visit RESULT [151815851] (Final result)
-
---- Segment 92 (Page 92) ---
 Specimen Information
-
---- Segment 93 (Page 93) ---
 JOllectec JNJLL16904235 — — 06/19/18 0000 900 RESULT [151915659] ee ceseeaeetsraenssss Resulted: 06/19/18 0000, Res * Final result Order status: Completed Filed by: interface, Jhnj Labcorp Lab Results Conversion 09/14/19 2243 Collected by: 06/19/18 0000 Resulting lab: LABCORP Narrative:
-
---- Segment 94 (Page 94) ---
 Performed at: 01 - LabCorp Raritan 69 First Avenue, Raritan, NJ 088691800 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 95 (Page 95) ---
 Components
-
---- Segment 96 (Page 96) ---
 Result 1 No growth —_ —_— LabCorp
-
---- Segment 97 (Page 97) ---
 Testing Performed By
-
---- Segment 98 (Page 98) ---
 _ Lab-Abbreviation Name ...._—«—«.s=.s=siDirector ..—_—_._._—=s«=~Address”«sssi‘“i(izlealaCRE Walid Date Range. 281 - LabCorp LABCORP. Unknown 1912 Alexander Drive 04/19/16 1004 - 11/27/18 1443 Research Triangle Park NC 27709
-
---- Segment 99 (Page 99) ---
 “Specimen Information
-
---- Segment 100 (Page 100) ---
 iD Type _ — “Sours ____ Collected By _ — —- JNJLL16904235 — — 06/19/18 0000 900
-
---- Segment 101 (Page 101) ---
 SPECIMEN STATUS REPORT [151815852] . Resulted: ; 06/19 9/18 0000, Result status: Final result Order status: Completed Filed by: ‘Interface, Jhnj Labcorp Lab Results Conversion
-
---- Segment 102 (Page 102) ---
 09/14/19 2243
-
---- Segment 103 (Page 103) ---
 Collected by: 06/19/18 0000 Resulting lab: LABCORP Narrative:
-
---- Segment 104 (Page 104) ---
-Performed at: 01 - LabCorp Raritan 69 First Avenue, Raritan, NJ 088691800 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 105 (Page 105) ---
-Components
-
---- Segment 106 (Page 106) ---
 Specimen Status Report — — — LabCorp Comment: Please note Please note The date and/or time of collection was not indicated on the requisition as required by state and federal law. The date of receipt of the specimen was used as the collection date if not supplied.
-
---- Segment 107 (Page 107) ---
 Testing Performed By Generated on 10/6/23 9:46 AM Page 1
 
---- Segment 108 (Page 108) ---
+--- Segment 8 (Page 8) ---
 Kennedy University Spence, Anya
-
---- Segment 109 (Page 109) ---
 ; Jefferson Health. Hospital, Inc.-Jefferson Cherry MRN: 402532746, DOB: 12/29/1992, Sex: F Hill Hospital Visit date: 6/19/2018
-
---- Segment 110 (Page 110) ---
 2201 Chapel Avenue Vest
-
---- Segment 111 (Page 111) ---
 CHERRY HILL NJ 08002
-
---- Segment 112 (Page 112) ---
 06/ n Labs Last 3 Days of Visit (continued)
-
---- Segment 113 (Page 113) ---
-u OF
-
---- Segment 114 (Page 114) ---
 alid Di Unknown
-
---- Segment 115 (Page 115) ---
 04/19/16 1004 - 11/27/18 1443
-
---- Segment 116 (Page 116) ---
 1912 Alexander Drive Research Triangle Park NC 27709
-
---- Segment 117 (Page 117) ---
 281 - LabCorp _ LABCORP
-
---- Segment 118 (Page 118) ---
 URINE CULTURE ROUTINE [151845850] (Fira result)
-
---- Segment 119 (Page 119) ---
 Specimen Information
-
---- Segment 120 (Page 120) ---
 JNJLL16904235 — _ 06/19/18 0000 900 URINE CULTURE ROUTINE [151815850] Resulted: 06/19/18 0000, Result status: Final result Order status: Completed Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/14/19 2243 Collected by: 06/19/18 0000 Resulting lab: LABCORP Narrative:
-
---- Segment 121 (Page 121) ---
 Performed at: 01 - LabCorp Raritan 69 First Avenue, Raritan, NJ 088691800 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 122 (Page 122) ---
 Components Component Value Reference Range Flag Lab Urine Culture, Routine - L Finalreportt — —_ LabCorp
-
---- Segment 123 (Page 123) ---
 Testing Performed By
-
---- Segment 124 (Page 124) ---
 Research Triangle Park NC 27709
-
---- Segment 125 (Page 125) ---
 JNJLL16904235. — — 06/19/18 0000 900 Ct, Ng, Trich Vag By Naa - L [151815849] Resulted: 06/19/18 0000, Result status: Final result Order status: Completed Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/1 4/19 2243 Collected by: 06/19/18 0000 Resulting lab: LABCORP Narrative:
-
---- Segment 126 (Page 126) ---
-Performed at: 01 - LabCorp Raritan 69 First Avenue, Raritan, NJ 088691800 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 127 (Page 127) ---
 Components _ Component Value Reference Range Flag Lab
-
---- Segment 128 (Page 128) ---
 Chlamydia By Naa onususuruusnunnsinondlegative Negative en 2202) | Gonococcus BY N@@ ew wwnadegative Negative ew nnbh APC OMP a Trich Vag By Naa Negative Negative — LabCorp
-
---- Segment 129 (Page 129) ---
 Generated on 10/6/23 9:46 AM Page 2
 
---- Segment 130 (Page 130) ---
+--- Segment 9 (Page 9) ---
 Kennedy University Spence, Anya
-
---- Segment 131 (Page 131) ---
 & Jefferson Health. Hospital, Inc.-Jefferson Cherry MRN: 402532746, DOB: 12/29/1992, Sex: F Hill Hospital Visit date: 6/19/2018
-
---- Segment 132 (Page 132) ---
 2201 Chapel Avenue Vest CHERRY HILL NJ 08002
-
---- Segment 133 (Page 133) ---
 Labs Last 3 Days of Visit (continued)
-
---- Segment 134 (Page 134) ---
 Testing Performed By
-
---- Segment 135 (Page 135) ---
 Lab - Abbreviation Name Director Address Valid Date Range
-
---- Segment 136 (Page 136) ---
 281 - LabCorp LABCORP Unknown 1912 Alexander Drive 04/19/16 1004 - 11/27/18 1443 Research Triangle Park NC 27709
-
---- Segment 137 (Page 137) ---
 Vaginitis/Vaginosis, JNJLL16904235 — on 900
-
---- Segment 138 (Page 138) ---
 06/19/18 0000
-
---- Segment 139 (Page 139) ---
 Vaginitis/Vaginosis, Dna Probe - L [151815848] (Abnormal) = _Resulted: 06/19/18 0000, Result status: Final result Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/14/19 2243
-
---- Segment 140 (Page 140) ---
 Resulting lab: LABCORP
-
---- Segment 141 (Page 141) ---
 Order status: Completed
-
---- Segment 142 (Page 142) ---
 Collected by: 06/19/18 0000
-
---- Segment 143 (Page 143) ---
 Narrative:
-
---- Segment 144 (Page 144) ---
 Performed at: 01 - LabCorp Raritan
-
---- Segment 145 (Page 145) ---
 69 First Avenue, Raritan, NJ 088691800
-
---- Segment 146 (Page 146) ---
 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 147 (Page 147) ---
 Components _Component. efel Re
-
---- Segment 148 (Page 148) ---
 _Candida Species Positive Negative A! G - Sureswab(r) trichomonas vaginalis rna, ql, Negative tma
-
---- Segment 149 (Page 149) ---
 LabCorp
-
---- Segment 150 (Page 150) ---
 Negative _— LabCorp
-
---- Segment 151 (Page 151) ---
-Testing Performed By
-
---- Segment 152 (Page 152) ---
 Lab - Abbreviation 281 - LabCorp LABCORP Unknown
-
---- Segment 153 (Page 153) ---
 Name Director Address Valid Date Range
-
---- Segment 154 (Page 154) ---
 1912 Alexander Drive 04/19/16 1004 - 11/27/18 1443 Research Triangle Park
-
---- Segment 155 (Page 155) ---
 NC 27709
-
---- Segment 156 (Page 156) ---
 Generated on 10/6/23 9:46 AM Page 3
 
---- Segment 157 (Page 157) ---
+--- Segment 10 (Page 10) ---
 Kennedy University Spence, Anya ; Jefferson Health. Hospital, Inc.-Jefferson Cherry MRN: 402532746, DOB: 12/29/1992, Sex: F Hill Hospital Visit date: 10/5/2018 2201 Chapel Avenue Vest CHERRY HILL NJ 08002
-
---- Segment 158 (Page 158) ---
 Labs Last 3 Days of Visit CBC WDIFF/PLATELET [151815853] (Final result)
-
---- Segment 159 (Page 159) ---
 Specimen Information
-
---- Segment 160 (Page 160) ---
 JNJLL27840135 590
-
---- Segment 161 (Page 161) ---
 10/05/18 1529
-
---- Segment 162 (Page 162) ---
 CBC WDIFF/PLATELET [151815853] (Abnormal) Resulted: 10/05/18 1529, Result status: Final result Order status: Completed Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/23/19 1340 Collected by: 10/05/18 1529 Resulting lab: LABCORP Narrative: Performed at: 01 - LabCorp Raritan 69 First Avenue, Raritan, NJ 088691800 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 163 (Page 163) ---
 ponents
-
---- Segment 164 (Page 164) ---
 WBC 7.9 3.4-10.8 — LabCorp sctsinieatanicnininnainninnannnnncnnnnnnnapannennnnnannen ESE uatinnnninannensannianepinsainannenennanaannnnnnnnsn RBC 4.26 3.77 - 5.28 — LabCorp x10E6/uL
-
---- Segment 165 (Page 165) ---
 Hemoghopin nb ATT WS 9 gfe LabCorp Hematocrit - L 39.9 0) LabCor
-
---- Segment 166 (Page 166) ---
 LabCorp
-
---- Segment 167 (Page 167) ---
 Platelet 204 150 - 379 —_— LabCorp ESE Neutrophils 51 Not Estab. % — LabCorp Lymphs 40 Not Estab. % — LabCorp
-
---- Segment 168 (Page 168) ---
 MONOCYTES oo vonumnuvarrusasasanannunnnrunnn Orennnnnnncnnnenn LO ESEAD J cone AP COMP cs _Basophils ) Not Estab. % — LabCorp
-
---- Segment 169 (Page 169) ---
 Baso (Absolute) 9 Ow :0 2 0.2 TOE IU eel APOCOMP Immature Granulocytes - L fe) Not Estab. % _— LabCorp Immature Grans (Abs) - L 0.0 0.0-0.1 x10E3/uL — LabCorp
-
---- Segment 170 (Page 170) ---
 Testing Performed By
-
---- Segment 171 (Page 171) ---
 Research Triangle Park NC 27709
-
---- Segment 172 (Page 172) ---
 FERRITIN [151815855] (Final result)
-
---- Segment 173 (Page 173) ---
-Specimen Information
-
---- Segment 174 (Page 174) ---
-JN
-
---- Segment 175 (Page 175) ---
 Generated on 10/6/23 9:46 AM Page 4
 
---- Segment 176 (Page 176) ---
+--- Segment 11 (Page 11) ---
 Kennedy University Spence, Anya
-
---- Segment 177 (Page 177) ---
 ; Jefferson Health. Hospital, Inc.-Jefferson Cherry MRN: 402532746, DOB: 12/29/1992, Sex: F Hill Hospital Visit date: 10/5/2018
-
---- Segment 178 (Page 178) ---
 2201 Chapel Avenue Vest
-
---- Segment 179 (Page 179) ---
 CHERRY HILL NJ 08002
-
---- Segment 180 (Page 180) ---
 10/05/20: n L ily in CONVERS con Labs Last 3 Days of Visit (continued) 590
-
---- Segment 181 (Page 181) ---
 FERRITIN [151815855] Resulted: 10/05/18 1529, Result status: Final result
-
---- Segment 182 (Page 182) ---
 Order status: Completed Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/23/19 1340
-
---- Segment 183 (Page 183) ---
 Collected by: 10/05/18 1529 Resulting lab: LABCORP
-
---- Segment 184 (Page 184) ---
 Narrative:
-
---- Segment 185 (Page 185) ---
 Performed at: 01 - LabCorp Raritan
-
---- Segment 186 (Page 186) ---
 69 First Avenue, Raritan, NJ 088691800
-
---- Segment 187 (Page 187) ---
 Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 188 (Page 188) ---
 Components
-
---- Segment 189 (Page 189) ---
 Component Value Reference Range Flag Lab Ferritin, Serum - L 16 15 - 150 ng/mL _— LabCorp
-
---- Segment 190 (Page 190) ---
 Testing Performed By
-
---- Segment 191 (Page 191) ---
 “281 - LabCorp LABCORP Unknown | “4912 Alexander Drive 04/19/16 1004 - 11/27/18 1443 Research Triangle Park NC 27709
-
---- Segment 192 (Page 192) ---
 IRON+TIBC [151815854] (Final result) Specimen Information
-
---- Segment 193 (Page 193) ---
-590
-
---- Segment 194 (Page 194) ---
 IRON+TIBC [151815854] Resulted: 10/05/18 1529, Result status: Final result
-
---- Segment 195 (Page 195) ---
-Order status: Completed Filed by: Interface, Jhnj Labcorp Lab Results Conversion 09/23/19 1340
-
---- Segment 196 (Page 196) ---
-Collected by: 10/05/18 1529 Resulting lab: LABCORP
-
---- Segment 197 (Page 197) ---
-Narrative:
-
---- Segment 198 (Page 198) ---
-Performed at: 01 - LabCorp Raritan
-
---- Segment 199 (Page 199) ---
-69 First Avenue, Raritan, NJ 088691800
-
---- Segment 200 (Page 200) ---
-Lab Director: Araceli B Reyes MD, Phone: 8006315250
-
---- Segment 201 (Page 201) ---
-Components
-
---- Segment 202 (Page 202) ---
 Jron Bind.Cap.(Tibe) 0 MOT 280 - 450 g/dL LabCorp, UIBC 331 131 - 425 ug/dL — LabCorp Iron, Serum 70 27 - 159 ug/dL — LabCorp Iron, Saturation 17 15-55% _— LabCorp
-
---- Segment 203 (Page 203) ---
 281 - LabCorp LABCORP Unknown 1912 Alexander Drive 04/19/16 1004 - 11/27/18 1443 Research Triangle Park NC 27709
-
---- Segment 204 (Page 204) ---
 END OF REPORT
-
---- Segment 205 (Page 205) ---
 Generated on 10/6/23 9:46 AM Page 5
 
---- Segment 206 (Page 206) ---
+--- Segment 12 (Page 12) ---
 Release of Information
-
---- Segment 207 (Page 207) ---
 Patient Name SPENCE, ANYA MPI 402532746 Page Count 58
 
---- Segment 208 (Page 208) ---
+--- Segment 13 (Page 13) ---
 Name SPENCE, ANYA MPI 402532746
-
---- Segment 209 (Page 209) ---
 There are no record status change log entries for the records in this report.
 
---- Segment 210 (Page 210) ---
+--- Segment 14 (Page 14) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 211 (Page 211) ---
 Progress Note - nausea, dizziness
-
---- Segment 212 (Page 212) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 2304753
-
---- Segment 213 (Page 213) ---
 Patient: Spence, Anya Account Number: 63424 DOB: 12/29/1992 Age:23 Y Sex: Female Date: 06/17/2016 Phone: 856-361-3414
-
---- Segment 214 (Page 214) ---
 Address: 219 Camden Avenue, Atco, NJ-08004
-
---- Segment 215 (Page 215) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 216 (Page 216) ---
 Subjective:
-
---- Segment 217 (Page 217) ---
 Chief Complaints: 1. Nausea, dizziness. 2. patient states that after she exercises after she runs she gets dizzy, nauseous, weakness, cold sweats and blurred vision, and SOB. .
-
---- Segment 218 (Page 218) ---
 HPI: PCMH:
-
---- Segment 219 (Page 219) ---
 Pre-visit Preparation Conducted Pre-visit Preparation Yes. Referral Management Patient seen by specialist? No, Patient had any self-referrals? No. Hospital Visits Patient was admitted to hospital/ER? No. Interpretation Services Language services were provided at time of appointment No.
-
---- Segment 220 (Page 220) ---
 Todays concerns: Patient states that after running, she feels a pulsating in her head, chest, dizziness, SOB,
-
---- Segment 221 (Page 221) ---
 nausea and palpatations. She states that when she rests for about 90 minutes it feels better. She states that her chest gets tight and she feels weak. She notices now that she feels out of breath when going up steps. She does have a history of mild intermittent asthma that she uses Albuterol for, however it has not helped her symptoms.
-
---- Segment 222 (Page 222) ---
 ROS: CONSTITUTIONAL: no Fever. no Chills. no Sweats. no Night Sweats. no Weight Loss. no Weight Gain. GASTROENTEROLOGY: no Abdominal Pain. no Nausea. no Vomiting. no Diarrhea. RESPIRATORY: no Persistent Cough. no Chest Congestion. no Wheezing. UROLOGY: no Dysuria. no Urinary Frequency.
-
---- Segment 223 (Page 223) ---
 Medical History: Allergic rhinitis, Iron deficiency anemia.
-
---- Segment 224 (Page 224) ---
 Surgical History: Denies Past Surgical History.
-
---- Segment 225 (Page 225) ---
 Hospitalization /Major Diagnostic Procedure: Denies Past Hospitalization. Family History: Father: alive 53 yrsMother: alive 52 yrs
-
---- Segment 226 (Page 226) ---
 Social History:
-
---- Segment 227 (Page 227) ---
 Drug/Alcohol: Alcohol Points: 0, Intrepretation: Negative.
-
---- Segment 228 (Page 228) ---
 PCMH : Substance abuse and family mental health FH of Mental Illness No, FH Substance Abuse No.
-
---- Segment 229 (Page 229) ---
 Tobacco Use: Smoking Are you a:: never smoker . Exposure to second hand smoke Exposed to environmental tobacco smoke (ETS)? No. Smoker and CT scan review Current or former smoker No. Medications: Taking ProAir HFA 108 {90 Base) MCG/ACT Aerosol Solution 2 puffs as needed every 4 hrs, Taking Singulair 10 MG Tablet 1 tablet in the evening Once a day, Not-Taking/PRN Nasonex 50 MCG/ACT Suspension 2 sprays in each nostril Once a day
-
---- Segment 230 (Page 230) ---
 Jefferson Health Stratford
 
---- Segment 231 (Page 231) ---
+--- Segment 15 (Page 15) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 232 (Page 232) ---
 Progress Note - nausea, dizziness
-
---- Segment 233 (Page 233) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 2304753
-
---- Segment 234 (Page 234) ---
 Allergies: N.K.D.A.
-
---- Segment 235 (Page 235) ---
 Objective: Vitals: Ht 63.5 in, Wt 141.8 lbs, BP Nurse:105/72, BMI 24.72 Index, HR 70 /min, RR 14 /min. Examination: General Examination:
-
---- Segment 236 (Page 236) ---
 General Appearance: pleasant, alert and oriented, well developed and well- nourished. HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric. Oral cavity: clear, moist mucus membranes. Neck, Thyroid : supple, no lymphadenopathy, no thyromegaly. Heart: RRR, no murmurs. Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales. Abdomen soft, NT/ND, BS present, no hepatosplenomegaly. Extremities: no clubbing, no edema. Neurologic Exam: unremarkable, alert and oriented x 3.
-
---- Segment 237 (Page 237) ---
 Assessment:
-
---- Segment 238 (Page 238) ---
-Assessment:
-
---- Segment 239 (Page 239) ---
 1. Palpitations - RO0.2 (Primary)
-
---- Segment 240 (Page 240) ---
 2. DOE {dyspnea on exertion) - RO6.09 3. Mild intermittent asthma - J45.20
-
---- Segment 241 (Page 241) ---
 Plan: 1. Palpitations LAB: FERRITIN Ferritin, Serum 5 L 15-150 - ng/mL This lab was reviewed by Bridgette Garcia on 06/24/2016 at 12:05 PM EDT LAB: CBC with DIFF/PLT
-
---- Segment 242 (Page 242) ---
 WHITE BLOOD CELL COUNT 5.4 3.4-10.8 - x10E3/uL RED BLOOD CELL COUNT 4.20 3.77-5.28 - x10E6/uL HEMOGLOBIN 10.4 L 11.1-15.9 - g/dL HEMATOCRIT 34.7 34.0-46.6 - %
-
---- Segment 243 (Page 243) ---
 MCV 83 79-97 -fL
-
---- Segment 244 (Page 244) ---
 MCH 24.8 L 26.6-33.0 - pg MCHC 30.0 L 31.5-35.7 - g/dL RDW 14.1 12.3-15.4 - % PLATELET COUNT 193 150-379 - x10E3/uL NEUTROPHILS 43 -%
-
---- Segment 245 (Page 245) ---
 ABSOLUTE NEUTROPHILS 2.4 1.4-7.0 - x10E3/uL LYMPHOCYTES 45 -%
-
---- Segment 246 (Page 246) ---
 ABSOLUTE LYMPHOCYTES 2.4 0.7-3.1 - x10E3/uL MONOCYTES 10 -%
-
---- Segment 247 (Page 247) ---
 ABSOLUTE MONOCYTES 0.5 0.1-0.9 - x10E3/uL EOSINOPHILS 2 -%
-
---- Segment 248 (Page 248) ---
 ABSOLUTE EOSINOPHILS 0.1 0.0-0.4 - x10E3/uL BASOPHILS 0 -%
-
---- Segment 249 (Page 249) ---
 Jefferson Health Stratford
 
---- Segment 250 (Page 250) ---
+--- Segment 16 (Page 16) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 251 (Page 251) ---
 Progress Note - nausea, dizziness
-
---- Segment 252 (Page 252) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 2304753 ABSOLUTE BASOPHILS 0.0 0.0-0.2 - x10E3/uL Immature Granulocytes 0 - % Immature Grans (Abs) 0.0 0.0-0.1 - x10E3/uL
-
---- Segment 253 (Page 253) ---
 This lab was reviewed by Bridgette Garcia on 06/24/2016 at 12:05 PM EDT LAB: COMPREHENSIVE METABOLIC PANEL
-
---- Segment 254 (Page 254) ---
 GLUCOSE 74 65-99 - mg/dL PROTEIN, TOTAL 7.2 6.0-8.5 - g/dL CARBON DIOXIDE 18 18-29 - mmol/L SODIUM 142 134-144 - mmol/L POTASSIUM 4.1 3.5-5.2 - mmol/L CHLORIDE 105 97-108 - mmol/L CALCIUM 9.3 8.7-10.2 - mg/dL CREATININE 0.80 0.57-1.00 - mg/dL BILIRUBIN, TOTAL 1.0 0.0-1.2 - mg/dL ALBUMIN 4.5 3.5-5.5 - g/dL GLOBULIN 2.7 1.5-4.5 - g/dL ALBUMIN/GLOBULIN RATIO 1.7 1.1-2.5 - ALKALINE PHOSPHATASE 50 39-117 - IU/L
-
---- Segment 255 (Page 255) ---
 AST 20 0-40 - IU/L
-
---- Segment 256 (Page 256) ---
 ALT 11 0-32 - IU/L
-
---- Segment 257 (Page 257) ---
 eGFR If NonAfricn Am 104 >59 - mL/min/1.73 eGFR If Africn Am 120 >59 - mL/min/1.73 Bun 13 6-20 - mg/dL BUN/CREATININE RATIO 16 8-20 -
-
---- Segment 258 (Page 258) ---
 This lab was reviewed by Bridgette Garcia on 06/24/2016 at 12:05 PM EDT LAB: THYROID PANEL WITH TSH
-
---- Segment 259 (Page 259) ---
 Free Thyroxine Index 2.0 1.2-4.9 -
-
---- Segment 260 (Page 260) ---
 T3 Uptake 28 24-39 -%
-
---- Segment 261 (Page 261) ---
 Thyroxine (T4) 7.3 4.5-12.0 - ug/dL
-
---- Segment 262 (Page 262) ---
 TSH 1.250 0.450-4.500 - ulU/mL
-
---- Segment 263 (Page 263) ---
 This lab was reviewed by Bridgette Garcia on 06/24/2016 at 12:05 PM EDT
-
---- Segment 264 (Page 264) ---
 Imading: eka Notes: patient will need a holter monitor and echocardiogram in the least. She will need to see
-
---- Segment 265 (Page 265) ---
 cardiology. Referral To:Brian Corbett Cardiology Reason:eval and treat
-
---- Segment 266 (Page 266) ---
 2. Mild intermittent asthma
-
---- Segment 267 (Page 267) ---
 Notes: Patient's symptoms do not sound like asthma at this point. Would like to rule out cardiac origin at this point. She should hold on any physical activity until she is cleared from a cardiac standpoint.
-
---- Segment 268 (Page 268) ---
 Procedure Codes: 93000 EKG, Routine, 12 Leads, w/interpretation & report Follow Up: prn after cardio
-
---- Segment 269 (Page 269) ---
 Jefferson Health Stratford
 
---- Segment 270 (Page 270) ---
+--- Segment 17 (Page 17) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 271 (Page 271) ---
 Progress Note - nausea, dizziness
-
---- Segment 272 (Page 272) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 2304753
-
---- Segment 273 (Page 273) ---
 Provider: Rosemary A DeCicco, PA Patient: Spence, Anya DOB: 12/29/1992 Date: 06/17/2016
-
---- Segment 274 (Page 274) ---
-aa
-
---- Segment 275 (Page 275) ---
 Electronically signed by John Lowe , D.O. on 06/21/2016 at 07:36 AM EDT Sign off status: Completed
-
---- Segment 276 (Page 276) ---
 Jefferson Health Stratford
 
---- Segment 277 (Page 277) ---
+--- Segment 18 (Page 18) ---
 Jefferson Health Stratford
-
---- Segment 278 (Page 278) ---
 Patient SPENCE, ANYA
-
---- Segment 279 (Page 279) ---
 MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 280 (Page 280) ---
 Patient Name: SPENCE, ANYA Gender: Female MRN #: 63424
-
---- Segment 281 (Page 281) ---
 Birth Date: 12/29/1992
-
---- Segment 282 (Page 282) ---
 Provider Information
-
---- Segment 283 (Page 283) ---
 Provider
-
---- Segment 284 (Page 284) ---
 DeCicco, Rosemary A
-
---- Segment 285 (Page 285) ---
-Jefferson Health Stratford
-
---- Segment 286 (Page 286) ---
 Ordering DeCicco, Rosemary CBC with DIFF/PLT
-
---- Segment 287 (Page 287) ---
 Component 06/22/2016 08:38:00 Reference Units Baso 0.0 (1) X10E3/uL (Absolute) Hematology Comments: Hemoglobin . ) g/dL Immature Grans 0.0 (1) 0.0-0.1 x10E3/uL (Abs) Immature 0 (1) P| % Granulocytes (Absolute) MCHC g/dL MCV fL olute) Neutrophils 2.4 (1) 1.4-7.0 xX10E3/uL
-
---- Segment 288 (Page 288) ---
 Created on 10/6/2023 Page 1 of 2
 
---- Segment 289 (Page 289) ---
+--- Segment 19 (Page 19) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 290 (Page 290) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 291 (Page 291) ---
 (Absolute)
-
---- Segment 292 (Page 292) ---
 7] S| as
-
---- Segment 293 (Page 293) ---
 Result Comments ()
-
---- Segment 294 (Page 294) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 295 (Page 295) ---
 x10E3/uL x10E6/uL
-
---- Segment 296 (Page 296) ---
 Platelets
-
---- Segment 297 (Page 297) ---
 X10E3/uL
-
---- Segment 298 (Page 298) ---
 Flowsheet Comments
-
---- Segment 299 (Page 299) ---
 CBC with DIFF/PLT 06/21/2016 9:33:00 AM
-
---- Segment 300 (Page 300) ---
 DeCicco,Rosemary A, PA 6/23/2016 11:00:38 AM > Is anemic. Needs to start OTC iron twice a day with stool softerner as needed. Recheck 4 weeks and then follow up Garcia, Bridgette 6/24/2016 11:46:19 AM > lmom for c/b. Garcia, Bridgette 6/24/2016 12:01:51 PM > “patient aware of results and to start otc iron twice a day along with stool softner as needed. rechek in 4 weeks and sch f/u appt.
-
---- Segment 301 (Page 301) ---
 Created on 10/6/2023 Page 2 of 2
-
---- Segment 302 (Page 302) ---
 Jefferson Health Stratford
 
---- Segment 303 (Page 303) ---
+--- Segment 20 (Page 20) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 304 (Page 304) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 305 (Page 305) ---
 Provider Information
-
---- Segment 306 (Page 306) ---
 Provider DeCicco, Rosemary A
-
---- Segment 307 (Page 307) ---
 Ordering DeCicco, Rosemary
-
---- Segment 308 (Page 308) ---
 FERRITIN
-
---- Segment 309 (Page 309) ---
 Ferritin, Serum Result Comments () 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone
-
---- Segment 310 (Page 310) ---
 8006315250, Director - MDReyes
-
---- Segment 311 (Page 311) ---
 Flowsheet Comments
-
---- Segment 312 (Page 312) ---
 FERRITIN 06/21/2016 9:33:00 AM
-
---- Segment 313 (Page 313) ---
 DeCicco,Rosemary A, PA 6/23/2016 11:00:38 AM > Is anemic. Needs to start OTC iron
-
---- Segment 314 (Page 314) ---
 twice a day with stool softerner as needed. Recheck 4 weeks and then follow up
-
---- Segment 315 (Page 315) ---
 Garcia, Bridgette 6/24/2016 11:46:19 AM > lmom for c/b. Stephens, Stefani 6/24/2016 11:59:58 AM > Patient returning call back, per Natasha, patient was transferred over to the office. Garcia,Bridgette 6/24/2016 12:01:51 PM > “patient aware of results and to start otc iron twice a day along with stool softner as needed. rechek in 4 weeks and sch f/u appt.
-
---- Segment 316 (Page 316) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 317 (Page 317) ---
 Jefferson Health Stratford
 
---- Segment 318 (Page 318) ---
+--- Segment 21 (Page 21) ---
 Jefferson Health Stratford
-
---- Segment 319 (Page 319) ---
 Patient SPENCE, ANYA
-
---- Segment 320 (Page 320) ---
 MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 321 (Page 321) ---
 Patient Name: SPENCE, ANYA
-
---- Segment 322 (Page 322) ---
 MRN #:
-
---- Segment 323 (Page 323) ---
 63424
-
---- Segment 324 (Page 324) ---
 Gender:
-
---- Segment 325 (Page 325) ---
 Birth Date: 12/29/1992
-
---- Segment 326 (Page 326) ---
 Female
-
---- Segment 327 (Page 327) ---
 Provider Information
-
---- Segment 328 (Page 328) ---
 Provider
-
---- Segment 329 (Page 329) ---
 DeCicco, Rosemary A
-
---- Segment 330 (Page 330) ---
-Jefferson Health Stratford
-
---- Segment 331 (Page 331) ---
 Ordering DeCicco, Rosemary
-
---- Segment 332 (Page 332) ---
 COMPREHENSIVE METABOLIC PANEL Component 06/22/2016 08:38:00 Reference Units Alkaline 50 (1) 39-117 IU/L Phosphatase, S Bilirubin, 1.0 (1) 0.0-1.2 mg/dl Total BUN/Creatinine 1é (1) 8-20 Ratio Carbon 18 (1) 18-29 mmol/L Dioxide, Total Chloride, 105 (1) 97-108 mmol/L Serum Creatinine, 0.57-1.00 mg/dL Serum eGFR If Africn mLi/min/1.73 Am eGFR If 104 (1) >59 | mL/min/1.73 NonAfricn Am Globulin, 2.7 (1) 1.5-4.5 g/dL Total Glucose, Serum 74 (1) 65-99 mg/dL Potassium, 4.1 (1) 3.5-5.2 mmol/L
-
---- Segment 333 (Page 333) ---
 Created on 10/6/2023 Page 1 of 2
 
---- Segment 334 (Page 334) ---
+--- Segment 22 (Page 22) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 335 (Page 335) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 336 (Page 336) ---
 Protein, Total, Serum
-
---- Segment 337 (Page 337) ---
 134-144 mmol/L
-
---- Segment 338 (Page 338) ---
-(1)
-
---- Segment 339 (Page 339) ---
 Sodium, Serum
-
---- Segment 340 (Page 340) ---
 Result Comments ()
-
---- Segment 341 (Page 341) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 342 (Page 342) ---
 Flowsheet Comments
-
---- Segment 343 (Page 343) ---
 COMPREHENSIVE METABOLIC PANEL 06/21/2016 9:33:00 AM
-
---- Segment 344 (Page 344) ---
 DeCicco,Rosemary A, PA 6/23/2016 11:00:38 AM > Is anemic. Needs to start OTC iron twice a day with stool softerner as needed. Recheck 4 weeks and then follow up Garcia, Bridgette 6/24/2016 11:46:19 AM > lmom for c/b. Garcia, Bridgette 6/24/2016 12:01:51 PM > “patient aware of results and to start otc iron twice a day along with stool softner as needed. rechek in 4 weeks and sch f/u appt.
-
---- Segment 345 (Page 345) ---
 Created on 10/6/2023 Page 2 of 2
-
---- Segment 346 (Page 346) ---
 Jefferson Health Stratford
 
---- Segment 347 (Page 347) ---
+--- Segment 23 (Page 23) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 348 (Page 348) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 349 (Page 349) ---
 Provider Information
-
---- Segment 350 (Page 350) ---
 Provider DeCicco, Rosemary A
-
---- Segment 351 (Page 351) ---
 DeCicco, Rosemary THYROID PANEL WITH TSH
-
---- Segment 352 (Page 352) ---
 Ordering
-
---- Segment 353 (Page 353) ---
 Free Thyroxine Index
-
---- Segment 354 (Page 354) ---
 T3 Uptake
-
---- Segment 355 (Page 355) ---
 Thyroxine (T4) TSH ulU/mL Result Comments () 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes Flowsheet Comments THYROID PANEL WITH TSH 06/21/2016 9:33:00 AM DeCicco,Rosemary A, PA 6/23/2016 11:00:38 AM > Is anemic. Needs to start OTC iron twice a day with stool softerner as needed. Recheck 4 weeks and then follow up Garcia, Bridgette 6/24/2016 11:46:19 AM > lmom for c/b. Garcia, Bridgette 6/24/2016 12:01:51 PM > “patient aware of results and to start ote iron twice a day along with stool softner as needed. rechek in 4 weeks and sch f/u appt. Created on 10/6/2023 Page 1 of 1
-
---- Segment 356 (Page 356) ---
 Jefferson Health Stratford
 
---- Segment 357 (Page 357) ---
+--- Segment 24 (Page 24) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #2304753, DOB 12/29/1992
-
---- Segment 358 (Page 358) ---
 Patient Name: SPENCE, ANYA Gender: Female Vitals
-
---- Segment 359 (Page 359) ---
 Flowsheet Comments
-
---- Segment 360 (Page 360) ---
 Flowsheet 06/17/2016 12:00:00 AM
-
---- Segment 361 (Page 361) ---
 Provider Information
-
---- Segment 362 (Page 362) ---
 Provider DeCicco, Rosemary
-
---- Segment 363 (Page 363) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 364 (Page 364) ---
 Jefferson Health Stratford
 
---- Segment 365 (Page 365) ---
+--- Segment 25 (Page 26) ---
 G Jo 7 abe
-
---- Segment 366 (Page 366) ---
 BONPAJ 0} JABUSYJOS |OO}S & YM FJ MOIS JO pueIG josoay Aly - Aep & 80U0 UOJ! Le}Sal 0} Sau ‘UI! MO| < WV SZ:0S°6 ZLOZ/P L/9 Wd ‘v Alewasoy‘oo91IDaq
-
---- Segment 367 (Page 367) ---
 yseoA Jo} Aoewweud 0} Juss XY JUsHTed YM eyods <
-
---- Segment 368 (Page 368) ---
 Wd 6P:6Z:ZL BLOZ/LZ/9 Vd ‘y Alewasoy‘o991ID8q
-
---- Segment 369 (Page 369) ---
 < Nd 9P:6Z:€ 8LOZ/ZL/9 Wd ‘Vv Alewasoy'os01neq
-
---- Segment 370 (Page 370) ---
 jseoh Joy Aoeuueud 0] Jues KY ‘JUeITed YA eyods <
-
---- Segment 371 (Page 371) ---
 Wd 6P:6Z:ZL SLOZ/LZ/9 Vd ‘Vv Alewasoy'os21N98q yseoh
-
---- Segment 372 (Page 372) ---
 Joy Aoewweud 0} JUes XY ‘Used Uj ayods <
-
---- Segment 373 (Page 373) ---
 Wd 6:67:71 SLOZ/LZ/9 Vd ‘v Alewasoy'os21N98q ‘S]]NSO! JO Meme
-
---- Segment 374 (Page 374) ---
 juaijed < WY 9P:8€:6 SLOZ/Z/OL eHebpug ‘elores YSOM/SOUUI] € UII SNUIJUOD ‘18}}8q YONW S|SAe] LOL! < WV SS:90'6 8LOZ/Z/OL Vd ‘v Alewasoy'os01INaq ‘s]]NSoJ Jo seme
-
---- Segment 375 (Page 375) ---
-t
-
---- Segment 376 (Page 376) ---
 juaijed < WY 9P:8E:6 SLOZ/Z/OL eHabpug ‘eloes Y@aMYSALUI] € UOJ! SNUIJUOD ‘Ja}]}Eaq YONW $}9Aa] UOJ!
-
---- Segment 377 (Page 377) ---
 < WV SS:90°6 8LOZ/Z/OL Vd ‘v Alewasoy‘oo91IDaq ‘SINS JO aeme
-
---- Segment 378 (Page 378) ---
 juaied < WY 9:86 SLOZ/Z/OL ayeBpiug ‘eloleS YBaMYSOLUI] € UOJ! SNUIJUOS ‘Ja}}8q YONW $]|9Aa] UOJ!
-
---- Segment 379 (Page 379) ---
 < WV SS'90:6 8LOZ/Z/OL Vd ‘v Alewasoy'os01Neq Aluo JUS < Wd 8L:0%:r SLOZ/9Z/OL PUSe}ET'SIA}8q
-
---- Segment 380 (Page 380) ---
 PIONS YIJesH UOsayer
-
---- Segment 381 (Page 381) ---
 EcOT/O/OL UO peyeelD
-
---- Segment 382 (Page 382) ---
 NILIWdss
-
---- Segment 383 (Page 383) ---
 ANILNOY ‘SNIYN ‘SYNLINO
-
---- Segment 384 (Page 384) ---
 NOILVYNIWYX3 OIA TAd AdoosoJdlw of yOIIS diq ‘sIsAjeUL)
-
---- Segment 385 (Page 385) ---
 VVN sljeuIBeA SEUOLUOUOI | °g “Wea0uJoUCB
-
---- Segment 386 (Page 386) ---
 BUASSION ‘siyewoUoe eIpDAWEIUD
-
---- Segment 387 (Page 387) ---
 aqOld YN ‘sisoulbesysiulbe,
-
---- Segment 388 (Page 388) ---
 L1d/4sld WM Od
-
---- Segment 389 (Page 389) ---
-NILIWdss
-
---- Segment 390 (Page 390) ---
 ALIOVdVO ONIGNIG NOdl WLOL ONV NOdl
-
---- Segment 391 (Page 391) ---
 4 Japuay
-
---- Segment 392 (Page 392) ---
 C6BL/6C/CL = BFE YING
-
---- Segment 393 (Page 393) ---
 C661L/6Z/ZL BOC ‘ESL POETH 199" ‘PZ7PVEO NUN
-
---- Segment 394 (Page 394) ---
 VANV ‘SONAdS qwalled
-
---- Segment 395 (Page 395) ---
 M9? SAP FNHF
-
---- Segment 396 (Page 396) ---
 WV 00:7L ZLOZ/S/9 GS8/6L WY 00:2 SLOZ/ZL/9 €vel6Z Alewasoy ‘ooalneq Ag WY 00:CL SLOC/ZL/9
-
---- Segment 397 (Page 397) ---
 WY 00-cL 8LOC/ZL/9
-
---- Segment 398 (Page 398) ---
 WY 00-cL 8LOC/ZL/9 evce/6C WY 00-2 8LOC/ZL/9 eve/6c
-
---- Segment 399 (Page 399) ---
 WY 00-2 SLOC/S/OL S8/ LEE WY 00-cL 8LOZ/S/OL SBA LEE
-
---- Segment 400 (Page 400) ---
 WY 00-:cL SLOC/S/OL S8/ LEE
-
---- Segment 401 (Page 401) ---
 VANV ‘SONSdS = aweN 9p ZCeSCOP IdiAJ
-
---- Segment 402 (Page 402) ---
 piojyesjs Yea} Uosiayor
 
---- Segment 403 (Page 403) ---
+--- Segment 26 (Page 27) ---
 PIONS YIJesH UOsayer
-
---- Segment 404 (Page 404) ---
 G jog abe EcOT/O/OL UO peyeelD
-
---- Segment 405 (Page 405) ---
 ONMOdvV LAW SAISNSHSAYdNOO
-
---- Segment 406 (Page 406) ---
 9LOZz/Pz/9 eHeBpig'eldseD dn mojjoj uey} pue SHSM Pp HOSUDOY PSPS9u Se JAUJBYOS |OO}S YIM Aep ® 801M] UCI DLO UkIS 0] Speen) ‘OlLUSUe S| < y Arewasoy
-
---- Segment 407 (Page 407) ---
-t t
-
---- Segment 408 (Page 408) ---
 WY 8€:00:LL 9LOZ/EZ/9 Vd 09919eq Aluo JAUOS < Wd 9S: QLOZ/ZL/9 BUse}eT'Ssa}aq
-
---- Segment 409 (Page 409) ---
 < Wd SO:SL'L
-
---- Segment 410 (Page 410) ---
 QLOZ/ZL/9 Vd ‘VW Alewasoy‘0091D8q ‘sajON
-
---- Segment 411 (Page 411) ---
 suoweydied - Z'004 ‘sisouBeiq 0 ‘AqWOUd
-
---- Segment 412 (Page 412) ---
 Bulpudd :snjeis Alewasoy
-
---- Segment 413 (Page 413) ---
 (LISIA) A :adAL yun K NLM 6 Jee} pue [BAS os919aq Ag BE9v LZ WYY3SSY 'VHy :0} paubissy WY O0:ZL 9LOZ/ZL/9
-
---- Segment 414 (Page 414) ---
 WVOO:7L ZLO0c ZL UN :ayeq pug WVOO:CL 9L0% ZL UNr :a}eq He}S WVOO0:CL 9L0Z% ZL UNr ‘eyed Joy ABojolpuen :Ayeloeds o} Joy Alewasoy ‘o00Igeq ‘wos Aqioes Alewasoy ‘0991ID8q ‘WOJ4 Joy LOFYIC PN - SADE NOZIYOH -e0ueuNsy|
-
---- Segment 415 (Page 415) ---
 ‘S}INSAJ JO aleMe Jual}ed < Wd LO:60:7L ZLOZ/9L/9 anjeBpug‘eloses SuJUOW yOaYoel ‘UOlTed!]suCO ALlOvdyo BONPSl O} JOUS}YOS |OO}S & YM 44 MOlS JO PUI WV 00-:cL ZLOC/S/9 SS8/61L josoay Aly - Aep & 80U0 UOJ! We\Sal 0} Sau ‘UI! MO| ONIGNIG NOal WLOl NW Nod!
-
---- Segment 416 (Page 416) ---
 < WV SZ:0S°6 ZLOZ/P L/9 Wd ‘vy Alewasoy‘os01IDaq ‘S}INSA JO queme Jua}ed < Wd LO:60:Z1 ZLOZ/9L/9 aneaBpug ‘elses SuJUOW yOaYoal ‘UOlTed!}suCO sONpsl O} JEUS}JOS |OO}S & YM 44 MO|S JO PUI Md/ssld WM Odd WY 00:cL ZL0C/S/9 GS8/61 josoay Aly - Aep & 80U0 UOJ! Wesel 0} P9au ‘UI! MO| < WV SZ:0S°6 ZLOZ/P L/9 Wd ‘v Alewasoy‘o091I08q
-
---- Segment 417 (Page 417) ---
 S}INSB JO seme Jual}ed < Wd LO:60:Z1 ZLOZ/9L/9 aneBpug ‘elses SuJUOWW YO@YoaI ‘UO!Ted!}suCO
-
---- Segment 418 (Page 418) ---
 ss JEpusy VANV ‘SONSdS = aweN C6BL/6C/CL = BFE YING 9p ZCeSCOP IdiAJ
-
---- Segment 419 (Page 419) ---
 M9? SAP FNHF
-
---- Segment 420 (Page 420) ---
 C661L/67/ZL POC ‘ESLPOETH POV ‘PZPEO NYW VANYV ‘JON3dS JUsed PJOHJENS YYesH UOSUayar
 
---- Segment 421 (Page 421) ---
+--- Segment 27 (Page 28) ---
 PIONS YIJesH UOsayer
-
---- Segment 422 (Page 422) ---
 G Joy abe EcOT/O/OL UO peyeelD
-
---- Segment 423 (Page 423) ---
 ‘PAPSeU SB JAUYOS |OO0}s YIM Buoye Aep e acim) UOJ! 0J0 Le}s 0] PUe S}INSa Jo aleMe JUaIPeEd, < Wd LS: LO:Zb 9LOZ/PZ/9 sHEBpUug'eIeS “ad1JJo ayy 0] JAAO pawassue) sem Jualjed ‘eyseyen Jad ‘yoeq eo Bulwunjad JUaHed < WY 8S:6S: LL 9LOZ%/PZ/9 NIL WY 00:2L QLO/ZL/9 9EC/LLL lURJa}g ‘sUsUdalg “g/d JO} WOW] < WY 6L:9b:bL 9LOz/rz/9 ayeBpig'eldseD dn mojjoj uay} pue SIAM fp HOSUDAY ‘PAPSau Se JAUJAYJOS |OO}S YIM Aep @ 801M] UOII DO UeISs 0] SPSaN ‘DiLUsUR S| < WY 8€:00:LL SLOZ/EZ/9 Vd ‘v Alewasoy'‘os21N98q
-
---- Segment 424 (Page 424) ---
 ‘ydde n/j YOS PUB SYSOM P Ul YSUOS1 PSpseu Se JauIJos joo}s Uj Buoye Aep & aol} UOJ! 9J0 We}s 0} pue S}insal jo aseme yuaijed. < Wd LS:LO:ZL 9LOZ/PZz/9 ayahpug‘eloses “q/9 JO} WOW < WY 6L:9p:LL L1d/4asld WM Ogd WY 00:2 QLOZ/ZL/9 9EcZLL 9LOZ/PZ/9 SYeBpug'eloeD dn mojjoy Udy} pue SHBOM fp HOSUOSY PSPSSu SP JOLSYOS |OO]S YIM Aep & 801M] UO! DLO UBS 0] SPaan) ‘OlLUaUe S| < WY 8€:00:LL SLOZ/€Z/9 Vd ‘v Alewasoy'os1N98q
-
---- Segment 425 (Page 425) ---
 ‘ydde
-
---- Segment 426 (Page 426) ---
 N/j YOS PU SHaEM P Ul YAUDSI ‘papseu se Jauyos jooys YM Buoje Aep & aol] UO! 9JO Wes 0} pue syinsal Jo aseme yualjed. < Wd LS:LO:ZL 9LOz/Pz/9 ayahpug ‘eles ‘g/o JO} WOW < WY 6L:9b: LL HSL HLIM TANVd GIONAHL WY 00:ZL QLOZz/ZL/9 QETZ LL 9LOz/rz/9 eHebpug‘ela1eD dn mojjoj usu pue SHSM p HOSUDOY PSPS9u Se JAUJBYJOS |OO}S YIM Aep & 801M] UOJ! DLO UeIS 0] SPSSN ‘OILWSUR S| < WY 8€:00:LL 9LOZ/Ez/9 Wd ‘Vv Alewasoy‘oo01IN8q
-
---- Segment 427 (Page 427) ---
-‘ydde
-
---- Segment 428 (Page 428) ---
 N/J YOS PUB SHSEM P Ul YSYOS! ‘papseu se JauLJOS
-
---- Segment 429 (Page 429) ---
 joo}s YM Buoje Aep & 801] UO! 9]0 Wes 0] pue
-
---- Segment 430 (Page 430) ---
 S}INSa Jo aJeme yUal}eEd < Wd LS:LO:ZL 9LOt/PTZ/9 apeBpug'elores “q/o 10} WOW] < WV BLP: LL WY 00:71 QLOZ/ZL/9 QETZLL
-
---- Segment 431 (Page 431) ---
 ss JEpusy VANV ‘SONSdS = aweN C6BL/6C/CL = BFE YING 9p ZCeSCOP IdiAJ
-
---- Segment 432 (Page 432) ---
 M9? SAP FNHF
-
---- Segment 433 (Page 433) ---
 C661L/67/ZL POC ‘ESLPOETH POV ‘PZPEO NYW VANYV ‘JON3dS JUsed PJOHJENS YYesH UOSUayar
 
---- Segment 434 (Page 434) ---
+--- Segment 28 (Page 30) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 435 (Page 435) ---
 Progress Note - hospital discharge followup
-
---- Segment 436 (Page 436) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 3472049
-
---- Segment 437 (Page 437) ---
 Progress Note
-
---- Segment 438 (Page 438) ---
 Patient: Spence, Anya Account Number: 63424 DOB: 12/29/1992 Age: 24 Y Sex: Female Date: 06/05/2017 Phone: 856-361-3414
-
---- Segment 439 (Page 439) ---
 Address: 219 Camden Avenue, Atco, NJ-08004
-
---- Segment 440 (Page 440) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 441 (Page 441) ---
 Subjective:
-
---- Segment 442 (Page 442) ---
 Chief Complaints: 1. Hospital discharge followup. 2. patient is being seen for kennedy ER f/u last week for vomiting, nausea, dizzines, abdominal pain and sob. .
-
---- Segment 443 (Page 443) ---
 HPI: PCMH:
-
---- Segment 444 (Page 444) ---
 Pre-visit Preparation Conducted Pre-visit Preparation Yes. Referral Management Patient seen by specialist? No, Patient had any self-referrals? No. Hospital Visits Patient was admitted to hospital/ER? Yes. Interpretation Services Language services were provided at time of appointment No.
-
---- Segment 445 (Page 445) ---
 Chief complaints:
-
---- Segment 446 (Page 446) ---
 Patinet is being seen for ER follow up. She had a self-limiting GI viral infection. She does that she has been getting frontal and peri-orbilat headaches about 2 times/week for the last month. She has had these in the past, but never this frequent. Advil releives headaches. No nocturnal symptoms, neck pain, blurry vision, vision changes, nausea, +minimal dizziness with headaches.
-
---- Segment 447 (Page 447) ---
 ROS: CONSTITUTIONAL: no Fever. no Chills. no Sweats. no Night Sweats. CARDIOLOGY: no Chest Pain. no Shortness of Breath. no Palpitations. ENT:
-
---- Segment 448 (Page 448) ---
 c/o Rhinorrhea. NO Sore Throat. no Hoarseness. no Cough. Sinus Pain yes. no Teeth Pain. no Otalgia. no Ringing in Ears. no Hearing Loss. no Epistaxis. no Post nasal Drip. no Swollen Lymph Nodes. c/o Dizziness.
-
---- Segment 449 (Page 449) ---
 GASTROENTEROLOGY:
-
---- Segment 450 (Page 450) ---
 no Abdominal Pain. no Nausea. no Vomiting. OPHTHALMOLOGY:
-
---- Segment 451 (Page 451) ---
 no Blurred Vision. no Change in Vision. no Eye Redness. no Eye Irritation. RESPIRATORY:
-
---- Segment 452 (Page 452) ---
 no Shortness of Breath. no DOE {dyspnea on exertion). no Persistent Cough. no Chest Congestion.
-
---- Segment 453 (Page 453) ---
 Medical History: Allergic rhinitis, Iron deficiency anemia.
-
---- Segment 454 (Page 454) ---
 Surgical History: Denies Past Surgical History.
-
---- Segment 455 (Page 455) ---
 Hospitalization /Major Diagnostic Procedure: Denies Past Hospitalization. Family History: Father: alive 54 yrsMother: alive 53 yrs
-
---- Segment 456 (Page 456) ---
 Social History: Drug/Alcohol: Alcohol Points: 0, Intrepretation: Negative. PCMH : Substance abuse and family mental health FH of Mental Illness No, FH Substance
-
---- Segment 457 (Page 457) ---
 Jefferson Health Stratford
 
---- Segment 458 (Page 458) ---
+--- Segment 29 (Page 31) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 459 (Page 459) ---
 Progress Note - hospital discharge followup
-
---- Segment 460 (Page 460) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 3472049 Abuse No.
-
---- Segment 461 (Page 461) ---
 Tobacco Use: Smoking Are you a:: never smoker . Exposure to second hand smoke Exposed to environmental tobacco smoke (ETS)? No. Smoker and CT scan review Current or former smoker No. Medications: Taking Zyrtec 10 mg 1 tab Oral qd, Not-Taking ProAir HFA{Albuterol Sulfate HFA) 108 (90 Base) MCG/ACT Aerosol Solution 2 puffs as needed Inhalation every 4 hrs, Discontinued Singulair(Montelukast Sodium) 10 MG Tablet 1 tablet in the evening Orally Once a day, Discontinued Nasonex(Mometasone Furoate) 50 MCG/ACT Suspension 2 sprays in each nostril Nasally Once a day, Medication List reviewed and reconciled with the patient
-
---- Segment 462 (Page 462) ---
 Allergies: N.K.D.A.
-
---- Segment 463 (Page 463) ---
 Objective: Vitals: Ht 63.5 in, Wt 148.8 Ibs, BP Nurse:105/70, BMI 25.94 Index. Examination: General Examination:
-
---- Segment 464 (Page 464) ---
 General Appearance: pleasant, alert and oriented, well developed and well- nourished. HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric. Oral cavity: clear, moist mucus membranes. Neck, Thyroid : supple, no lymphadenopathy, no thyromegaly. Heart: RRR, no murmurs. Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales. Extremities: no clubbing, no edema. Neurologic Exam: unremarkable, alert and oriented x 3, non-focal exam, no meningeal
-
---- Segment 465 (Page 465) ---
 signs.
-
---- Segment 466 (Page 466) ---
-ENT:
-
---- Segment 467 (Page 467) ---
 General Appearance : normal. Eyes: ho nystagmus. Ears: auditory canals normal bilaterally, tympanic membranes congested bilaterally. Nose : normal pink nasal mucosa, , clear rhinorrhoea, congested. Sinuses : non tender bilaterally. Mouth: moist mucus membranes, normal mucosa, no lesions. Throat: no erythema or exudate.
-
---- Segment 468 (Page 468) ---
 Assessment:
-
---- Segment 469 (Page 469) ---
 Assessment: 1. Sinus headache - R51 (Primary) 2. Iron deficiency anemia, Unspecified iron deficiency anemia type - D50.9
-
---- Segment 470 (Page 470) ---
 Plan:
-
---- Segment 471 (Page 471) ---
 1. Sinus headache
-
---- Segment 472 (Page 472) ---
 Notes: hot compresses on face, saline nasal mist 2 times/day. Recommend FLonase/Nasonex once a day for 10-14 days and then as needed after that. If there's no improvement, call. Ok to use Advil as needed.
-
---- Segment 473 (Page 473) ---
 Clinical Notes: I suspect the headaches patient is having are secondary to sinus cangestion and pressure for allergic rhinits. Neuro exam is normal.
-
---- Segment 474 (Page 474) ---
 2. Iron deficiency anemia, unspecified iron deficiency anemia type LAB: FERRITIN
-
---- Segment 475 (Page 475) ---
 Jefferson Health Stratford
 
---- Segment 476 (Page 476) ---
+--- Segment 30 (Page 32) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 477 (Page 477) ---
 Progress Note - hospital discharge followup
-
---- Segment 478 (Page 478) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 3472049 Ferritin, Serum 5 L 15-150 - ng/mL
-
---- Segment 479 (Page 479) ---
 This lab was reviewed by Bridgette Garcia on 06/16/2017 at 12:09 PM EDT LAB: CBC with DIFF/PLT
-
---- Segment 480 (Page 480) ---
 WHITE BLOOD CELL COUNT 6.2 3.4-10.8 - x10E3/uL RED BLOOD CELL COUNT 3.93 3.77-5.28 - x10E6/uL HEMOGLOBIN 10.6 L 11,.1-15.9 - g/dL HEMATOCRIT 35.0 34.0-46.6 -%
-
---- Segment 481 (Page 481) ---
 MCV 89 79-97 -TL
-
---- Segment 482 (Page 482) ---
 MCH 27.0 26.6-33.0 - pg MCHC 30.3 L 31.5-35.7 - g/dL RDW 13.1 12.3-15.4-% PLATELET COUNT 220 150-379 - x10E3/uL NEUTROPHILS 59 -%
-
---- Segment 483 (Page 483) ---
 ABSOLUTE NEUTROPHILS 3.7 1.4-7.0 - x10E3/uL LYMPHOCYTES 32 -%
-
---- Segment 484 (Page 484) ---
 ABSOLUTE LYMPHOCYTES 2.0 0.7-3.1 - x10E3/uL MONOCYTES 6 -%
-
---- Segment 485 (Page 485) ---
 ABSOLUTE MONOCYTES 0.4 0.1-0.9 - x10E3/uL EOSINOPHILS 2 -%
-
---- Segment 486 (Page 486) ---
 ABSOLUTE EOSINOPHILS 0.1 0.0-0.4 - x10E3/uL BASOPHILS 1 -%
-
---- Segment 487 (Page 487) ---
 ABSOLUTE BASOPHILS 0.1 0.0-0.2 - x10E3/uL Immature Granulocytes ie) - %
-
---- Segment 488 (Page 488) ---
 Immature Grans (Abs) 0.0 0.0-0.1 - x10E3/uL
-
---- Segment 489 (Page 489) ---
 This lab was reviewed by Bridgette Garcia on 06/16/2017 at 12:09 PM EDT LAB: IRON AND TOTAL IRON BINDING CAPACITY
-
---- Segment 490 (Page 490) ---
 IRON, TOTAL 71 27-159 - ug/dL IRON BINDING CAPACITY 480 H 250-450 - ug/dL % SATURATION 15 15-55 -%
-
---- Segment 491 (Page 491) ---
 UIBC 409 131-425 - ug/dL
-
---- Segment 492 (Page 492) ---
 This lab was reviewed by Bridgette Garcia on 06/16/2017 at 12:09 PM EDT Clinical Notes: Patient was not able to tolerate oral iron, will check labs and see how low her Ferritin is.
-
---- Segment 493 (Page 493) ---
 Follow Up: prn
-
---- Segment 494 (Page 494) ---
 Provider: Rosemary A DeCicco, PA Patient: Spence, Anya DOB: 12/29/1992 Date: 06/05/2017
-
---- Segment 495 (Page 495) ---
 Jefferson Health Stratford
 
---- Segment 496 (Page 496) ---
+--- Segment 31 (Page 33) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 497 (Page 497) ---
 Progress Note - hospital discharge followup
-
---- Segment 498 (Page 498) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 3472049
-
---- Segment 499 (Page 499) ---
 Electronically signed by John Lowe , D.O. on 06/05/2017 at 09:48 PM EDT Sign off status: Completed
-
---- Segment 500 (Page 500) ---
 Jefferson Health Stratford
 
---- Segment 501 (Page 501) ---
+--- Segment 32 (Page 34) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 502 (Page 502) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 503 (Page 503) ---
 Provider Information
-
---- Segment 504 (Page 504) ---
 Provider
-
---- Segment 505 (Page 505) ---
 DeCicco, Rosemary A
-
---- Segment 506 (Page 506) ---
 Decicco, Rosemary IRON AND TOTAL IRON BINDING CAPACITY
-
---- Segment 507 (Page 507) ---
 Ordering
-
---- Segment 508 (Page 508) ---
 edaleiee | eee ge
-
---- Segment 509 (Page 509) ---
 250-450 ug/dL
-
---- Segment 510 (Page 510) ---
-eee
-
---- Segment 511 (Page 511) ---
 Iron Bind. Cap. (TIB- C)
-
---- Segment 512 (Page 512) ---
 Iron Saturation
-
---- Segment 513 (Page 513) ---
 Result Comments ()
-
---- Segment 514 (Page 514) ---
-%
-
---- Segment 515 (Page 515) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 516 (Page 516) ---
 Flowsheet Comments
-
---- Segment 517 (Page 517) ---
 IRON AND TOTAL IRON BINDING CAPACITY 06/12/2017 10:52:00 AM
-
---- Segment 518 (Page 518) ---
 DeCicco,Rosemary A, PA 6/14/2017 9:50:25 AM > low iron, need to restart iron once a
-
---- Segment 519 (Page 519) ---
 day - try feosol brand or slow FE with a stool softener to reduce constipation, recheck months Garcia,Bridgette 6/16/2017 12:09:01 PM > patient aware of results.
-
---- Segment 520 (Page 520) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 521 (Page 521) ---
 Jefferson Health Stratford
 
---- Segment 522 (Page 522) ---
+--- Segment 33 (Page 35) ---
 Jefferson Health Stratford
-
---- Segment 523 (Page 523) ---
 Patient SPENCE, ANYA
-
---- Segment 524 (Page 524) ---
 MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 525 (Page 525) ---
 Patient Name: SPENCE, ANYA MRN #:
-
---- Segment 526 (Page 526) ---
 63424
-
---- Segment 527 (Page 527) ---
 Gender: Female
-
---- Segment 528 (Page 528) ---
 Birth Date: 12/29/1992
-
---- Segment 529 (Page 529) ---
 Provider Information
-
---- Segment 530 (Page 530) ---
 Provider
-
---- Segment 531 (Page 531) ---
 DeCicco, Rosemary A
-
---- Segment 532 (Page 532) ---
-Jefferson Health Stratford
-
---- Segment 533 (Page 533) ---
 Ordering Decicco, Rosemary CBC with DIFF/PLT Component 06/13/2017 06:21:00 Reference Units (Absolute) Comments: Hemoglobin (1)]11.1-15.9 | | 11.1-15.9 | 1-15.9 g/dL Immature Grans 0.0 (1) x10E3/uL (Abs) Immature 0 (1) P| % Granulocytes Lymphs 32 (1) P| % Lymphs 2.0 (1) x10E3/uL (Absolute) MCHC g/dL olute) Neutrophils 3.7 (1) 1.4-7.0 xX10E3/uL Created on 10/6/2023 Page 1 of 2
 
---- Segment 534 (Page 534) ---
+--- Segment 34 (Page 36) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 535 (Page 535) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 536 (Page 536) ---
 (Absolute)
-
---- Segment 537 (Page 537) ---
-a
-
---- Segment 538 (Page 538) ---
 Result Comments ()
-
---- Segment 539 (Page 539) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 540 (Page 540) ---
 x10E3/uL x10E6/uL
-
---- Segment 541 (Page 541) ---
 Platelets
-
---- Segment 542 (Page 542) ---
 X10E3/uL
-
---- Segment 543 (Page 543) ---
 Flowsheet Comments
-
---- Segment 544 (Page 544) ---
 CBC with DIFF/PLT 06/12/2017 10:52:00 AM
-
---- Segment 545 (Page 545) ---
 DeCicco,Rosemary A, PA 6/14/2017 9:50:25 AM > low iron, need to restart iron once a day - try feosol brand or slow FE with a stool softener to reduce constipation, recheck months Garcia,Bridgette 6/16/2017 12:09:01 PM > patient aware of results.
-
---- Segment 546 (Page 546) ---
 Created on 10/6/2023 Page 2 of 2
-
---- Segment 547 (Page 547) ---
 Jefferson Health Stratford
 
---- Segment 548 (Page 548) ---
+--- Segment 35 (Page 37) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 549 (Page 549) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 550 (Page 550) ---
 Provider Information
-
---- Segment 551 (Page 551) ---
 DeCicco, Rosemary A
-
---- Segment 552 (Page 552) ---
 Provider
-
---- Segment 553 (Page 553) ---
 Ordering Decicco, Rosemary
-
---- Segment 554 (Page 554) ---
 FERRITIN
-
---- Segment 555 (Page 555) ---
 omponent 06/13/2017 06:21:00
-
---- Segment 556 (Page 556) ---
 Ferritin, Serum Result Comments () 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone
-
---- Segment 557 (Page 557) ---
 8006315250, Director - MDReyes
-
---- Segment 558 (Page 558) ---
 Flowsheet Comments
-
---- Segment 559 (Page 559) ---
 FERRITIN 06/12/2017 10:52:00 AM
-
---- Segment 560 (Page 560) ---
 DeCicco,Rosemary A, PA 6/14/2017 9:50:25 AM > low iron, need to restart iron once a day - try feosol brand or slow FE with a stool softener to reduce constipation, recheck months Garcia,Bridgette 6/16/2017 12:09:01 PM > patient aware of results.
-
---- Segment 561 (Page 561) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 562 (Page 562) ---
 Jefferson Health Stratford
 
---- Segment 563 (Page 563) ---
+--- Segment 36 (Page 38) ---
 Jefferson Health Stratford
-
---- Segment 564 (Page 564) ---
 Patient SPENCE, ANYA
-
---- Segment 565 (Page 565) ---
 MRN 63424, Acct #3472049, DOB 12/29/1992
-
---- Segment 566 (Page 566) ---
 Patient Name: SPENCE, ANYA Gender: Female MRN #: 63424
-
---- Segment 567 (Page 567) ---
 Birth Date: 12/29/1992
-
---- Segment 568 (Page 568) ---
 BMI BP HC HR Ht RR Temp
-
---- Segment 569 (Page 569) ---
 Vitals
-
---- Segment 570 (Page 570) ---
 Flowsheet Comments
-
---- Segment 571 (Page 571) ---
 Flowsheet 06/05/2017 12:00:00 AM
-
---- Segment 572 (Page 572) ---
 Provider Information
-
---- Segment 573 (Page 573) ---
 Provider
-
---- Segment 574 (Page 574) ---
 DeCicco, Rosemary
-
---- Segment 575 (Page 575) ---
 Created on 10/6/2023
-
---- Segment 576 (Page 576) ---
-Jefferson Health Stratford
-
---- Segment 577 (Page 577) ---
 Page 1 of 1
 
---- Segment 578 (Page 578) ---
+--- Segment 37 (Page 39) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #4455435, DOB 12/29/1992
-
---- Segment 579 (Page 579) ---
 Progress Note - knee pain
-
---- Segment 580 (Page 580) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 4455435
-
---- Segment 581 (Page 581) ---
 Patient: SPENCE, ANYA Account Number: 63424 DOB: 12/29/1992 Age:25 Y Sex: Female Date: 03/09/2018 Phone: 855-361-3414
-
---- Segment 582 (Page 582) ---
 Address: 11 WILLARD WAY, BERLIN, NJ-08009
-
---- Segment 583 (Page 583) ---
 Pep: Rosemary Decicco, PA-C
-
---- Segment 584 (Page 584) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 585 (Page 585) ---
 Subjective:
-
---- Segment 586 (Page 586) ---
 Chief Complaints: 1. Knee pain. 2. Both knees x 2 years. 3. Right has been bad for 6 months. 4. Flares when she is active. 5. no OTC's taken. 6. Uses ice with no help.
-
---- Segment 587 (Page 587) ---
-HPI:
-
---- Segment 588 (Page 588) ---
 Depression Screening: PHQ2 Little interest or Pleasure in doing things No, Feeling own, depressed or Hopeless. No.
-
---- Segment 589 (Page 589) ---
 Care Plan: Hospital Visits Patient was admitted to hospital/ER? No. Interpretation Services No. Chief complaints:
-
---- Segment 590 (Page 590) ---
 Patient has had intermittent b/l Knee pain since 2016. She noticed this started with alot of exercise/running. Had a course of PT in 2017 and has ben trying to limit her running. However whenever she starts to run she gets the pain again and the pain is of the distal patellar tendon. No swelling/redness. Has never worn any type of brace. At times she feels that her knees will give out, never has fallen/no clicking/locking/grinding. Has never had any imaging.
-
---- Segment 591 (Page 591) ---
 ROS: NEUROLOGY: no Weakness. no Tingling/Numbness.
-
---- Segment 592 (Page 592) ---
 Medical History: Allergic rhinitis, Iron deficiency anemia.
-
---- Segment 593 (Page 593) ---
 Surgical History: Denies Past Surgical History.
-
---- Segment 594 (Page 594) ---
 Hospitalization /Major Diagnostic Procedure: Denies Past Hospitalization. Family History: Father: alive 55 yrs. Mother: alive 54 yrs.
-
---- Segment 595 (Page 595) ---
 Social History:
-
---- Segment 596 (Page 596) ---
 Drudg/Alcoholk: Alcahal Points: 0, Intrepretation: Negative.
-
---- Segment 597 (Page 597) ---
 Tobacco Use: Smoking Are you a:: never smoker . Exposure to second hand smoke Exposed to environmental tobacco smoke (ETS)? No. Smoker and CT scan review Current or former smoker No.
-
---- Segment 598 (Page 598) ---
 PCMH : Substance abuse and family mental health: FH of Mental Illness No, FH Substance Abuse No,
-
---- Segment 599 (Page 599) ---
 Medications: Taking Zyrtec 10 mg 1 tab Oral qd, Taking Tri-Linyah{Norgestimate-Ethinyl Estradiol) 0.18/0.215/0.25 MG-35 MCG Tablet 1 tablet Orally Once a day, Not-Taking ProAir HFA{Albuterol Sulfate HFA) 108 (90 Base) MCG/ACT Aerosol Solution 2 puffs as needed Inhalation every 4 hrs, Medication List reviewed and reconciled with the patient
-
---- Segment 600 (Page 600) ---
 Allergies: N.K.D.A.
-
---- Segment 601 (Page 601) ---
 Objective: Vitals: Ht 63.5 in, Wt 152 Ibs, BP Nurse:122/72, BMI 26.50 Index.
-
---- Segment 602 (Page 602) ---
 Jefferson Health Stratford
 
---- Segment 603 (Page 603) ---
+--- Segment 38 (Page 40) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #4455435, DOB 12/29/1992
-
---- Segment 604 (Page 604) ---
 Progress Note - knee pain
-
---- Segment 605 (Page 605) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 4455435
-
---- Segment 606 (Page 606) ---
 Examination: General Examination:
-
---- Segment 607 (Page 607) ---
 General Appearance: pleasant, alert and oriented, well developed and well- nourished.
-
---- Segment 608 (Page 608) ---
 HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric.
-
---- Segment 609 (Page 609) ---
 Heart: RRR, no murmurs.
-
---- Segment 610 (Page 610) ---
 Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales.
-
---- Segment 611 (Page 611) ---
 Extremities: no clubbing, no edema b/I knees, -edema/effusion. -patellar grind, +FROM, -McMurrays/Lachmans.
-
---- Segment 612 (Page 612) ---
 Neurologic Exam: unremarkable, alert and oriented x 3.
-
---- Segment 613 (Page 613) ---
 Assessment:
-
---- Segment 614 (Page 614) ---
 Assessment: 1. Pain in right knee - M25,.561 (Primary) 2. Pain in left knee - M25.562
-
---- Segment 615 (Page 615) ---
 Plan:
-
---- Segment 616 (Page 616) ---
 1. Pain in right knee Imaging: XR Knee BL - 3 VIEWS EACH 73562 Notes: recommend heat/stretching prior to exercise and ice for 10-15 minutes after. Also wear a patellar tendon brace to take pressure off. will see how patient does with bracing. T/C sports medicine consult/possible orthotics.
-
---- Segment 617 (Page 617) ---
 Follow Up: prn
-
---- Segment 618 (Page 618) ---
 Provider: Rosemary A DeCicco, PA Patient: SPENCE, ANYA DOB: 12/29/1992 Date: 03/09/2018
-
---- Segment 619 (Page 619) ---
 Electronically signed by John Lowe , D.O. on 03/14/2018 at 05:45 PM EDT Sign off status: Completed
-
---- Segment 620 (Page 620) ---
 Jefferson Health Stratford
 
---- Segment 621 (Page 621) ---
+--- Segment 39 (Page 41) ---
 Jefferson Health Stratford Patient SPENCE, ANYA MRN 63424, Acct #4455435, DOB 12/29/1992
-
---- Segment 622 (Page 622) ---
 Patient Name: SPENCE, ANYA Gender: Female Vitals
-
---- Segment 623 (Page 623) ---
 Temp pe F
-
---- Segment 624 (Page 624) ---
 Provider Information
-
---- Segment 625 (Page 625) ---
 Role Name
-
---- Segment 626 (Page 626) ---
 Provider DeCicco, Rosemary
-
---- Segment 627 (Page 627) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 628 (Page 628) ---
 Jefferson Health Stratford
 
---- Segment 629 (Page 629) ---
+--- Segment 40 (Page 42) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 630 (Page 630) ---
 Progress Note - UTI
-
---- Segment 631 (Page 631) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 4923118
-
---- Segment 632 (Page 632) ---
 Patient: SPENCE, ANYA Account Number: 63424 DOB: 12/29/1992 Age:25 Y Sex: Female Date: 06/17/2018 Phone: 855-361-3414
-
---- Segment 633 (Page 633) ---
 Address: 11 WILLARD WAY, BERLIN, NJ-08009
-
---- Segment 634 (Page 634) ---
 Pep: Rosemary Decicco, PA-C
-
---- Segment 635 (Page 635) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 636 (Page 636) ---
 Subjective: Chief Complaints: 1. UTI. 2. Patient complains of burning with urination, urgency, abdominal pain thats started yesterday. .
-
---- Segment 637 (Page 637) ---
-HPI:
-
---- Segment 638 (Page 638) ---
 Chief complaints: Patient has a 1 day history of yellow vaginal discharge, skin irritation, urinary frequency, and
-
---- Segment 639 (Page 639) ---
 burning with discharge. +sexually active with a new partner. FDLMP 2 weeks ago. ROS: CONSTITUTIONAL: no Fever. no Chills. NO Sweats. no Night Sweats. GASTROENTEROLOGY: no Abdominal Pain. c/o Nausea. no Vomiting. no Diarrhea. no Constipation.
-
---- Segment 640 (Page 640) ---
 Medical History: Allergic rhinitis, Iron deficiency anemia.
-
---- Segment 641 (Page 641) ---
 Surgical History: Denies Past Surgical History.
-
---- Segment 642 (Page 642) ---
 Hospitalization /Major Diagnostic Procedure: Denies Past Hospitalization. Family History: Father: alive 55 yrs. Mother: alive 54 yrs.
-
---- Segment 643 (Page 643) ---
 Social History:
-
---- Segment 644 (Page 644) ---
 Drug/Aleohol: Alcohol Points: 0, Intrepretation: Negative.
-
---- Segment 645 (Page 645) ---
 Tobacco Use: Smoking Are you a:: never smoker . Exposure to second hand smoke Exposed to environmental tobacco smoke (ETS)? No. Smoker and CT scan review Current or former smoker No. Medications: Taking Xyzal(Levocetirizine Dihydrochloride) 5 MG Tablet 1 tablet in the evening Orally Once a day, Taking Enskyce(Desogestrel-Ethinyl Estradiol) 0.15-30 MG-MCG Tablet 1 tablet Orally Once a day, Taking Probiotic - Capsule Orally , Taking Iron 325 (65 Fe) MG Tablet 1 tablet Orally Once a day, Notes: 3 times a week, Discontinued Zyrtec 10 mg 1 tab Oral qd, Discontinued Tri-Linyah{Norgestimate-Ethinyl Estradiol) 0.18/0.215/0.25 MG-35 MCG Tablet 1 tablet Orally Once a day, Discantinued ProAir HFA(Albuterol Sulfate HFA) 108 (90 Base) MCG/ACT Aerasol Salution 2 puffs as needed Inhalation every 4 hrs, Medication List reviewed and reconciled with the patient
-
---- Segment 646 (Page 646) ---
 Allergies: N.K.D.A.
-
---- Segment 647 (Page 647) ---
 Objective: Vitals: Ht 63.5 in, Wt 148 Ibs, BP Nurse:110/68, BMI 25.80 Index.
-
---- Segment 648 (Page 648) ---
 Examination: General Examination: General Appearance: pleasant, alert and oriented, well developed and well- nourished.
-
---- Segment 649 (Page 649) ---
 Jefferson Health Care Now Stratford
 
---- Segment 650 (Page 650) ---
+--- Segment 41 (Page 43) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA
-
---- Segment 651 (Page 651) ---
 MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 652 (Page 652) ---
 Progress Note - UTI
-
---- Segment 653 (Page 653) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 4923118
-
---- Segment 654 (Page 654) ---
 HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric. Oral cavity: clear, moist mucus membranes. Heart: RRR, no murmurs. Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales. Abdomen soft, NT/ND, BS present, no hepatosplenomegaly. Extremities: no clubbing, no edema. Neurologic Exam: unremarkable, alert and oriented x 3. GU Female/GYN: External genitalia: no lesions. Urethra: normal. Vagina: healthy pink mucosa without any lesions, moderate amount, thick, yellow discharge. Cervix: normal appearance, CT/GC cultures taken, no cervical movement tenderness. Uterus: normal size, shape and consistency, normal mobility, nontender. Adnexa: no masses or tenderness bilaterally.
-
---- Segment 655 (Page 655) ---
 Assessment:
-
---- Segment 656 (Page 656) ---
 Assessment: 1. Dysuria - R30.0 (Primary) 2. Vaginal discharge - N89.8
-
---- Segment 657 (Page 657) ---
 Plan: 1. Dysuria
-
---- Segment 658 (Page 658) ---
 LAB: CULTURE, URINE, ROUTINE Negative
-
---- Segment 659 (Page 659) ---
 Result 1 rowth -
-
---- Segment 660 (Page 660) ---
 CULTURE Final - report
-
---- Segment 661 (Page 661) ---
 DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 662 (Page 662) ---
 LAB: Urinalysis, Dip Stick w/o microscopy Abnormal
-
---- Segment 663 (Page 663) ---
 Clarity cloudy
-
---- Segment 664 (Page 664) ---
 Color golden
-
---- Segment 665 (Page 665) ---
 Specific Gravity 1.020°
-
---- Segment 666 (Page 666) ---
-Ph 6
-
---- Segment 667 (Page 667) ---
 Blood trace
-
---- Segment 668 (Page 668) ---
 Leukocytes large
-
---- Segment 669 (Page 669) ---
 Nitrate -
-
---- Segment 670 (Page 670) ---
 Protein 10
-
---- Segment 671 (Page 671) ---
 Bilirubin .O5
-
---- Segment 672 (Page 672) ---
 Ketone -
-
---- Segment 673 (Page 673) ---
 Glucose -
-
---- Segment 674 (Page 674) ---
 Urobiliniogen 4
-
---- Segment 675 (Page 675) ---
 DeCicco,Rosemary A, PA 6/17/2018 3:29:46 PM >
-
---- Segment 676 (Page 676) ---
 2. Vaginal discharge Start Zithromax Tablet, 500 MG, 4 tablets, Orally, Once a day, 1 days, 4 Tablet, Refills 0 ; Start
-
---- Segment 677 (Page 677) ---
 Jefferson Health Care Now Stratford
 
---- Segment 678 (Page 678) ---
+--- Segment 42 (Page 44) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 679 (Page 679) ---
 Progress Note - UTI
-
---- Segment 680 (Page 680) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 4923118
-
---- Segment 681 (Page 681) ---
 Suprax Capsule, 400 MG, 1 capsule, Orally, once a day, 1 days, 1 Capsule, Refills 0. LAB: Chlamydia trachomatis, Neisseria qonorrhoear, & Trichomonas vaginalis NAA Negative
-
---- Segment 682 (Page 682) ---
 Trich vag by NAA Negative Negative -
-
---- Segment 683 (Page 683) ---
 Gonococcus by NAA Negative Negative -
-
---- Segment 684 (Page 684) ---
 Chlamydia by NAA Negative Negative - DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 685 (Page 685) ---
 LAB: Vaginitis/Vaginosis, DNA Probe Positive
-
---- Segment 686 (Page 686) ---
 Trichomonas vaginalis Negative Negative -
-
---- Segment 687 (Page 687) ---
 Candida species Positive A Negative -
-
---- Segment 688 (Page 688) ---
 Gardnerella vaginalis Negative Negative -
-
---- Segment 689 (Page 689) ---
 DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 690 (Page 690) ---
 Procedure: PELVIC EXAMINATION
-
---- Segment 691 (Page 691) ---
 Notes: suspect patient has an STI, will treat and await cultures. Partners will need to be treated, abstain from sexual activity x 1 week.
-
---- Segment 692 (Page 692) ---
 Procedure Codes: 81002 VA by dipstick or tablet reagent, w/o microscopy Follow Up: prn
-
---- Segment 693 (Page 693) ---
 Provider: Rosemary A DeCicco, PA Patient: SPENCE, ANYA DOB: 12/29/1992 Date: 06/17/2018
-
---- Segment 694 (Page 694) ---
 Electronically signed by John Lowe , D.O. on 06/25/2018 at 11:49 AM EDT Sign off status: Completed
-
---- Segment 695 (Page 695) ---
 Jefferson Health Care Now Stratford
 
---- Segment 696 (Page 696) ---
+--- Segment 43 (Page 45) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA
-
---- Segment 697 (Page 697) ---
 MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 698 (Page 698) ---
 Patient Name: SPENCE, ANYA Gender: MRN #: 63424
-
---- Segment 699 (Page 699) ---
 Female
-
---- Segment 700 (Page 700) ---
 Birth Date: 12/29/1992
-
---- Segment 701 (Page 701) ---
 Provider Information
-
---- Segment 702 (Page 702) ---
 Provider DeCicco, Rosemary A
-
---- Segment 703 (Page 703) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 704 (Page 704) ---
 Jefferson Health Care Now Stratford
 
---- Segment 705 (Page 705) ---
+--- Segment 44 (Page 46) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 706 (Page 706) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 707 (Page 707) ---
 Provider Information
-
---- Segment 708 (Page 708) ---
 Provider DeCicco, Rosemary A
-
---- Segment 709 (Page 709) ---
 Decicco, Rosemary Vaginitis/Vaginosis, DNA Probe
-
---- Segment 710 (Page 710) ---
 Ordering
-
---- Segment 711 (Page 711) ---
 Component | __ 06/20/2018 03:22:00 _ Reference | Uni
-
---- Segment 712 (Page 712) ---
 Candida Positive Negative species
-
---- Segment 713 (Page 713) ---
 Gardnerella Negative Negative vaginalis
-
---- Segment 714 (Page 714) ---
 Trichomonas Negative vaginalis
-
---- Segment 715 (Page 715) ---
 Result Comments () 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone
-
---- Segment 716 (Page 716) ---
 8006315250, Director - MDReyes
-
---- Segment 717 (Page 717) ---
 Flowsheet Comments
-
---- Segment 718 (Page 718) ---
 Vaginitis/Vaginosis, DNA Probe 06/19/2018 12:00:00 AM DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 719 (Page 719) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 720 (Page 720) ---
 Jefferson Health Care Now Stratford
 
---- Segment 721 (Page 721) ---
+--- Segment 45 (Page 47) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 722 (Page 722) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 723 (Page 723) ---
 Provider Information
-
---- Segment 724 (Page 724) ---
 DeCicco, Rosemary A
-
---- Segment 725 (Page 725) ---
 Provider
-
---- Segment 726 (Page 726) ---
 Decicco, Rosemary CULTURE, URINE, ROUTINE
-
---- Segment 727 (Page 727) ---
 Ordering
-
---- Segment 728 (Page 728) ---
 Please note
-
---- Segment 729 (Page 729) ---
 Result 1 pee growth
-
---- Segment 730 (Page 730) ---
 Urine Culture, Final report (1) Routine
-
---- Segment 731 (Page 731) ---
 Result Comments ()
-
---- Segment 732 (Page 732) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes - The date and/or time of collection was not indicated on the
-
---- Segment 733 (Page 733) ---
 requisition as required by state and federal law. The date of - receipt of the specimen was used as the collection date if not - supplied.
-
---- Segment 734 (Page 734) ---
 Flowsheet Comments
-
---- Segment 735 (Page 735) ---
 CULTURE, URINE, ROUTINE 06/19/2018 12:00:00 AM DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 736 (Page 736) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 737 (Page 737) ---
 Jefferson Health Care Now Stratford
 
---- Segment 738 (Page 738) ---
+--- Segment 46 (Page 48) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 739 (Page 739) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 740 (Page 740) ---
 Provider Information
-
---- Segment 741 (Page 741) ---
 Provider DeCicco, Rosemary A
-
---- Segment 742 (Page 742) ---
 Decicco, Rosemary Chlamydia trachomatis, Neisseria gonorrhoear, & Trichomonas vaginalis NAA
-
---- Segment 743 (Page 743) ---
 Ordering
-
---- Segment 744 (Page 744) ---
 Chlamydia by Negat tive Negative NAA Gonococcus by Negative Negative NAA
-
---- Segment 745 (Page 745) ---
 Trich vag by Negative Negative NAA
-
---- Segment 746 (Page 746) ---
 Component | _ OG/20/201803:22:00 _| Reference | Units
-
---- Segment 747 (Page 747) ---
 Result Comments ()
-
---- Segment 748 (Page 748) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 749 (Page 749) ---
 Flowsheet Comments
-
---- Segment 750 (Page 750) ---
 Chlamydia trachomatis, Neisseria gonorrhoear, & Trichomonas vaginalis NAA 06/19/2018 12:00:00 AM
-
---- Segment 751 (Page 751) ---
 DeCicco,Rosemary A, PA 6/21/2018 12:29:49 PM > spoke with patient. RX sent to pharmacy for yeast
-
---- Segment 752 (Page 752) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 753 (Page 753) ---
 Jefferson Health Care Now Stratford
 
---- Segment 754 (Page 754) ---
+--- Segment 47 (Page 49) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 755 (Page 755) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 4923118
-
---- Segment 756 (Page 756) ---
 [RxType] : New Rx
-
---- Segment 757 (Page 757) ---
 [StatusDesc]: Success
-
---- Segment 758 (Page 758) ---
 [doc_LName] : DeCicco
-
---- Segment 759 (Page 759) ---
 [PharmacyName] : RITE AID-375 WHITE HORSE PK [DrugDescription]: Suprax 400 MG Capsule [SentBy] : DeCicco,Rosemary A, PA [SentTime]: 2018-06-17
-
---- Segment 760 (Page 760) ---
 [Frequency]: once a day
-
---- Segment 761 (Page 761) ---
 [duration]: 1
-
---- Segment 762 (Page 762) ---
 [Quantity]: 1
-
---- Segment 763 (Page 763) ---
 [Take]: 1 capsule
-
---- Segment 764 (Page 764) ---
 [Refills]: 0
-
---- Segment 765 (Page 765) ---
 Jefferson Health Care Now Stratford
 
---- Segment 766 (Page 766) ---
+--- Segment 48 (Page 50) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 767 (Page 767) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 4923118
-
---- Segment 768 (Page 768) ---
 [RxType] : New Rx
-
---- Segment 769 (Page 769) ---
 [StatusDesc]: Success
-
---- Segment 770 (Page 770) ---
 [doc_LName] : DeCicco
-
---- Segment 771 (Page 771) ---
 [PharmacyName] : RITE AID-375 WHITE HORSE PK [DrugDescription]: Zithromax 500 MG Tablet [SentBy] : DeCicco,Rosemary A, PA [SentTime]: 2018-06-17
-
---- Segment 772 (Page 772) ---
 [Frequency]: Once a day
-
---- Segment 773 (Page 773) ---
 [duration]: 1
-
---- Segment 774 (Page 774) ---
 [Quantity]: 4
-
---- Segment 775 (Page 775) ---
 [Take]: 4 tablets
-
---- Segment 776 (Page 776) ---
 [Refills]: 0
-
---- Segment 777 (Page 777) ---
 Jefferson Health Care Now Stratford
 
---- Segment 778 (Page 778) ---
+--- Segment 49 (Page 51) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #4923118, DOB 12/29/1992
-
---- Segment 779 (Page 779) ---
 Patient Name: SPENCE, ANYA Gender: Female Vitals
-
---- Segment 780 (Page 780) ---
 Temp ee F
-
---- Segment 781 (Page 781) ---
 Flowsheet Comments
-
---- Segment 782 (Page 782) ---
 Flowsheet 06/17/2018 12:00:00 AM
-
---- Segment 783 (Page 783) ---
 Provider Information
-
---- Segment 784 (Page 784) ---
 Provider DeCicco, Rosemary
-
---- Segment 785 (Page 785) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 786 (Page 786) ---
 Jefferson Health Care Now Stratford
 
---- Segment 787 (Page 787) ---
+--- Segment 50 (Page 52) ---
 0 SIIWOU
-
---- Segment 788 (Page 788) ---
 ‘ainsdey 1 ‘sAep 1 ‘Aep e aouo ‘AIEIO ainsdeo | ‘SW OOP ‘ainsded xeJdns uels O SIIWeY ‘2 ‘sAep J ‘uapaq
-
---- Segment 789 (Page 789) ---
 ye Aep e a0u0 ‘AljeJO ‘pepeau se je|qe}
-
---- Segment 790 (Page 790) ---
 L ‘OW S JIGEL IOH SuUdezuaqojoAD Ye}S 0 SI|YOY
-
---- Segment 791 (Page 791) ---
 yax0eq | ‘Shep g ‘Ajlep ‘Aljeso ‘payoauip se ‘OW JIGeL 2d) jospay WEIS Aep @ 80UO Al|BJO BuiuaAe 3u}
-
---- Segment 792 (Page 792) ---
 Ul J9IGE} | JIGeL OW g (ePUO|YyoopAYIG SUIZUIS00AN7)eZAX Bue |
-
---- Segment 793 (Page 793) ---
 Yaem B SOLUI] € ‘SS]ON ‘Aep & SOUO AI|BIO 19192} | IGeL OW (84 S9) SzE UOJ Buel
-
---- Segment 794 (Page 794) ---
 Aep @ 80U0 Al|BJO
-
---- Segment 795 (Page 795) ---
 J9IG2} L JAIGEL OOW-OW O€-SL'0 (Jolpensy |Aulu}5-|eseBoseq)soAysuy Burye | -10N AlesO ainsdey - onoiqolg Bue
-
---- Segment 796 (Page 796) ---
 juayed au} UM
-
---- Segment 797 (Page 797) ---
 P9|IOUODAJ PUL PAMAIAS ISI UONLIIPaY|
-
---- Segment 798 (Page 798) ---
 0 SIII8Y ‘OE ‘WApaq
-
---- Segment 799 (Page 799) ---
 ye Aep e a0u0 ‘Al/e1O ‘papaau se j9|qe}
-
---- Segment 800 (Page 800) ---
 L ‘OW S JIGEL OH auudezuaqojoAd |You
-
---- Segment 801 (Page 801) ---
 CBBLIEC/CL
-
---- Segment 802 (Page 802) ---
 C661/6Z/ZL BOC ‘BL LEZ6r# 199" ‘PZ7VEO NUN VANV ‘SONAdS qwalled
-
---- Segment 803 (Page 803) ---
 PJOCNS MON aed UYeesH UOsJeyar
-
---- Segment 804 (Page 804) ---
 EZOC/V/O| UO peyeolD
-
---- Segment 805 (Page 805) ---
 WV O0-CL BSLOC/AL/9
-
---- Segment 806 (Page 806) ---
 NV 00: 8SLOZ/S/OL
-
---- Segment 807 (Page 807) ---
 WV 00:CL SLOC/S/OL
-
---- Segment 808 (Page 808) ---
 WY 00-71 BLOC/9C/OL
-
---- Segment 809 (Page 809) ---
 WV 00-21 BLOC/OC/OL
-
---- Segment 810 (Page 810) ---
 WV 00-21 BLOZ/OC/OL
-
---- Segment 811 (Page 811) ---
 WV 00-c1 BLOC/OC/OL
-
---- Segment 812 (Page 812) ---
-WV 00-c1 BLOC/OC/OL
-
---- Segment 813 (Page 813) ---
-WV 00-21 BLOZ/OC/OL
-
---- Segment 814 (Page 814) ---
 4 Jepuag ayeq yg
-
---- Segment 815 (Page 815) ---
 NEDIPIIA| P> MO? OW? CNH
-
---- Segment 816 (Page 816) ---
-Vv
-
---- Segment 817 (Page 817) ---
 Arewasoy ‘0001I98q
-
---- Segment 818 (Page 818) ---
-Vv
-
---- Segment 819 (Page 819) ---
 Alewasoy ‘0991I998q
-
---- Segment 820 (Page 820) ---
-Vv
-
---- Segment 821 (Page 821) ---
 Alewasoy ‘0991ID98q
-
---- Segment 822 (Page 822) ---
-Vv
-
---- Segment 823 (Page 823) ---
 Alewasoy ‘0991998q
-
---- Segment 824 (Page 824) ---
-Vv
-
---- Segment 825 (Page 825) ---
-Alewasoy ‘0991I998q
-
---- Segment 826 (Page 826) ---
 y Alewasoy ‘0091IDNeq
-
---- Segment 827 (Page 827) ---
 y Alewasoy ‘009198q
-
---- Segment 828 (Page 828) ---
 y Alewasoy ‘009ID9q
-
---- Segment 829 (Page 829) ---
 vy Alewasoy ‘009198q
-
---- Segment 830 (Page 830) ---
-y Alewasoy ‘009198q
-
---- Segment 831 (Page 831) ---
-vy Alewasoy ‘009198q
-
---- Segment 832 (Page 832) ---
 y Alewasoy ‘009198 y Alewasoy ‘009198
-
---- Segment 833 (Page 833) ---
 y Alewasoy
-
---- Segment 834 (Page 834) ---
 VANV ‘SONSdS 9p ZCeSCOP IdiAJ
-
---- Segment 835 (Page 835) ---
-sWeN
-
---- Segment 836 (Page 836) ---
 PIOJJENS MON AeD YyeoaH Uosuayer
 
---- Segment 837 (Page 837) ---
-|
-
---- Segment 838 (Page 838) ---
+--- Segment 51 (Page 54) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 839 (Page 839) ---
 Progress Note - dizziness, nausea
-
---- Segment 840 (Page 840) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5345659
-
---- Segment 841 (Page 841) ---
 Patient: SPENCE, ANYA Account Number: 63424 DOB: 12/29/1992 Age:25 Y Sex: Female Date: 10/05/2018 Phone: 856-361-3414
-
---- Segment 842 (Page 842) ---
 Address: 11 WILLARD WAY, BERLIN, NJ-08009
-
---- Segment 843 (Page 843) ---
 Pep: Rosemary Decicco, PA-C
-
---- Segment 844 (Page 844) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 845 (Page 845) ---
 Subjective:
-
---- Segment 846 (Page 846) ---
 Chief Complaints:
-
---- Segment 847 (Page 847) ---
 1. Dizziness, nausea. 2. Patient states she has been having really bad headaches she was seen in ER in Virginia and had a CT scan . 3. Patient was burned on right calf from a motorcycle exhaust area is painful to touch. .
-
---- Segment 848 (Page 848) ---
 HPI: Chief complaints: Patient has a headahce x about 3 weeks. The pain is around her eyes and in her b/I temples. The pain is consistent and is worse when she lays down at night. There is intermittent nausea, no dizziness, no photophobia, no vision changes. Was taking Advil, tylenol and sometimes Excedrin migraine and this is not helping. She went to an ER in Virginia 2 weeks ago and had a negative CT.
-
---- Segment 849 (Page 849) ---
 ROS: CONSTITUTIONAL: no Fever. no Chills. No Sweats. no Night Sweats. CARDIOLOGY: no Chest Pain. no Shortness of Breath. no Palpitations. ENT:
-
---- Segment 850 (Page 850) ---
 no Rhinorrhea. No Sore Throat. NO Hoarseness. NO Cough. No Sinus Pain. no Teeth Pain. no Otalgia. no Ringing in Ears. no Hearing Loss. no Epistaxis. no Post nasal Drip. no Swollen Lymph Nodes. no Dizziness.
-
---- Segment 851 (Page 851) ---
 GASTROENTEROLOGY:
-
---- Segment 852 (Page 852) ---
 no Abdominal Pain. no Nausea. no Vomiting. OPHTHALMOLOGY:
-
---- Segment 853 (Page 853) ---
 no Blurred Vision. no Change in Vision. No Eye Redness. no Eye Irritation. RESPIRATORY:
-
---- Segment 854 (Page 854) ---
 no Shortness of Breath. No DOE (dyspnea an exertion). no Persistent Cough. no Chest Congestion.
-
---- Segment 855 (Page 855) ---
 Medical History: Allergic rhinitis, Iron deficiency anemia.
-
---- Segment 856 (Page 856) ---
 Surgical History: Denies Past Surgical History.
-
---- Segment 857 (Page 857) ---
 Hospitalization /Major Diagnostic Procedure: Denies Past Hospitalization. Family History: Father: alive 55 yrs. Mother: alive 54 yrs.
-
---- Segment 858 (Page 858) ---
 Social History:
-
---- Segment 859 (Page 859) ---
 Drug/Alcohol: Alcohol Points: 0, Intrepretation: Negative.
-
---- Segment 860 (Page 860) ---
 Tobacco Use: Smoking Are you a:: never smoker. Exposure to second hand smoke Exposed to environmental tobacco smoke (ETS)? No. Smoker and CT scan review Current or former smoker No.
-
---- Segment 861 (Page 861) ---
 Medications: Taking Xyzal(Levocetirizine Dihydrochloride) 5 MG Tablet 1 tablet in the evening Orally Once a day, Taking Probiotic - Capsule Orally , Taking Iron 325 (65 Fe) MG Tablet 1 tablet
-
---- Segment 862 (Page 862) ---
 Jefferson Health Care Now Stratford
 
---- Segment 863 (Page 863) ---
+--- Segment 52 (Page 55) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 864 (Page 864) ---
 Progress Note - dizziness, nausea
-
---- Segment 865 (Page 865) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5345659
-
---- Segment 866 (Page 866) ---
 Orally Once a day, Notes: 3 times a week, Not-Taking Enskyce(Desogestrel-Ethinyl Estradiol) 0.15- 30 MG-MCG Tablet 1 tablet Orally Once a day, Medication List reviewed and reconciled with the patient
-
---- Segment 867 (Page 867) ---
 Allergies: N.K.D.A.
-
---- Segment 868 (Page 868) ---
 Objective: Vitals: Ht 63.5 in, Wt 153.4 Ibs, BP Nurse:110/80, BMI 26.74 Index. Examination: General Examination: General Appearance: pleasant, alert and oriented, well developed and well- nourished . Skin: posterio right calf, there is a verticl burn that is approx. 5 cm x 2 cm, there isa small area of blistering in the center, there is no surrounding induration or pus drainiage.
-
---- Segment 869 (Page 869) ---
 HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric . Oral cavity: clear, moist mucus membranes . Neck, Thyroid : supple, no lymphadenopathy, no thyromegaly . Heart: RRR, no murmurs . Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales . Extremities: no clubbing, no edema. Neurologic Exam: unremarkable, alert and oriented x 3, non-focal exam, no meningeal signs. ENT: General Appearance : normal. Eyes: no nystagmus. Ears: auditory canals normal bilaterally, tympanic membranes normal bilaterally. Nose : normal pink nasal mucosa, good airflow. Sinuses : non tender bilaterally. Mouth: moist mucus membranes, normal mucosa, no lesions. Throat: no erythema or exudate.
-
---- Segment 870 (Page 870) ---
 Assessment:
-
---- Segment 871 (Page 871) ---
-Assessment:
-
---- Segment 872 (Page 872) ---
 1. Nonintractable headache, unspecified chronicity pattern, unspecified headache type - R51 (Primary)
-
---- Segment 873 (Page 873) ---
 2. Iron deficiency anemia, unspecified iron deficiency anemia type - D50.9
-
---- Segment 874 (Page 874) ---
 3. Partial thickness burn of right lower extremity, initial encounter - T24.201A
-
---- Segment 875 (Page 875) ---
 Plan:
-
---- Segment 876 (Page 876) ---
 1. Nonintractable headache, unspecified chronicity pattern, unspecified headache type Start Cyclobenzaprine HCl Tablet, 5 MG, 1 tablet as needed, Orally, once a day at bedtim, 7 days, 7, Refills 0 ; Start Medrol (Pak) Tablet, 4 MG, as directed, Orally, daily, 6 days, 1 Packet, Refills 0. Notes: stop any current headache medications. USe a heating pad on the areas that are painful. PAtient most likely having tension vs rebound headache. She will call if there's no improvement/worsening.
-
---- Segment 877 (Page 877) ---
 2. Iron deficiency anemia, unspecified iron deficiency anemia type LAB: FERRITIN Normal
-
---- Segment 878 (Page 878) ---
 Ferritin, Serum 16 15-150 - ng/mL
-
---- Segment 879 (Page 879) ---
 Jefferson Health Care Now Stratford
 
---- Segment 880 (Page 880) ---
+--- Segment 53 (Page 56) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 881 (Page 881) ---
 Progress Note - dizziness, nausea
-
---- Segment 882 (Page 882) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5345659
-
---- Segment 883 (Page 883) ---
 DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia,Bridgette 10/7/2018 9:38:46 AM > patient aware of results.
-
---- Segment 884 (Page 884) ---
 LAB: CBC with DIFF/PLT Normal
-
---- Segment 885 (Page 885) ---
 WHITE BLOOD CELL COUNT 7.9 3.4-10.8 - x10E3/uL ABSOLUTE NEUTROPHILS 3.9 1.4-7.0 - x10E3/uL LYMPHOCYTES 40 Not Estab. - % HEMATOCRIT 39.9 34.0-46.6 - % HEMOGLOBIN 12.7 11.1-15.9 - g/dL RED BLOOD CELL COUNT 4.26 3.77-5.28 - x10E6/uL MCV 94 79-97 -fL
-
---- Segment 886 (Page 886) ---
 MCH 29.8 26.6-33.0 - pg
-
---- Segment 887 (Page 887) ---
 RDW 12.8 12.3-15.4-% MCHC 31.8 31.5-35.7 - g/dL PLATELET COUNT 204 150-379 - x10E3/uL NEUTROPHILS 51 Not Estab. - % MONOCYTES 6 Not Estab, - % EOSINOPHILS 3 Not Estab. - % BASOPHILS 0 Not Estab. - % ABSOLUTE LYMPHOCYTES 3.2 H 0.7-3.1 - x10E3/uL ABSOLUTE MONOCYTES 0.5 0.1-0.9 - x10E3/uL ABSOLUTE EOSINOPHILS 0.3 0.0-0.4 - x10E3/uL ABSOLUTE BASOPHILS 0.0 0.0-0.2 - x10E3/uL Immature Granulocytes 0 Not Estab. - % Immature Grans (Abs) 0.0 0.0-0.1 - x10E3/uL
-
---- Segment 888 (Page 888) ---
-DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia,Bridgette 10/7/2018 9:38:46 AM > patient aware of results.
-
---- Segment 889 (Page 889) ---
 LAB: IRON AND TOTAL IRON BINDING CAPACITY Normal
-
---- Segment 890 (Page 890) ---
 IRON, TOTAL 70 27-159 - ug/dL IRON BINDING CAPACITY 401 250-450 - ug/dL % SATURATION 17 15-55 -%
-
---- Segment 891 (Page 891) ---
 UIBC 331 131-425 - ug/dL
-
---- Segment 892 (Page 892) ---
-DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia,Bridgette 10/7/2018 9:38:46 AM > patient aware of results.
-
---- Segment 893 (Page 893) ---
 Notes: continue iron, will check labs to assure improvement.
-
---- Segment 894 (Page 894) ---
 3. Partial thickness burn of right lower extremity, initial encounter Notes: continue wound care and call if there is any sign of infection.
-
---- Segment 895 (Page 895) ---
 Follow Up: prn
-
---- Segment 896 (Page 896) ---
 Provider: Rosemary A DeCicco, PA
-
---- Segment 897 (Page 897) ---
 Jefferson Health Care Now Stratford
 
---- Segment 898 (Page 898) ---
+--- Segment 54 (Page 57) ---
 Jefferson Health Care Now Stratford
-
---- Segment 899 (Page 899) ---
 Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 900 (Page 900) ---
 Progress Note - dizziness, nausea Patient Name: SPENCE, ANYA
-
---- Segment 901 (Page 901) ---
 MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5345659 Patient: SPENCE, ANYA DOB: 12/29/1992 Date: 10/05/2018
-
---- Segment 902 (Page 902) ---
 Electronically signed by John Lowe , D.O. on 10/09/2018 at 07:53 AM EDT Sign off status: Completed
 
---- Segment 903 (Page 903) ---
-Jefferson Health Care Now Stratford
-
---- Segment 904 (Page 904) ---
+--- Segment 55 (Page 58) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 905 (Page 905) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 906 (Page 906) ---
 Provider Information
-
---- Segment 907 (Page 907) ---
 Provider DeCicco, Rosemary A
-
---- Segment 908 (Page 908) ---
 Decicco, Rosemary IRON AND TOTAL IRON BINDING CAPACITY
-
---- Segment 909 (Page 909) ---
 Ordering
-
---- Segment 910 (Page 910) ---
 lron (1) 27-159 ug/dL Iron (1) 250-450 ug/dL Bind.Cap.(TIB-
-
---- Segment 911 (Page 911) ---
-C)
-
---- Segment 912 (Page 912) ---
-Iron
-
---- Segment 913 (Page 913) ---
 (1) 15-55 % Saturation UIBC (1) 131-425 ug/dL
-
---- Segment 914 (Page 914) ---
 Result Comments ()
-
---- Segment 915 (Page 915) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 916 (Page 916) ---
 Flowsheet Comments
-
---- Segment 917 (Page 917) ---
 IRON AND TOTAL IRON BINDING CAPACITY 10/05/2018 12:00:00 AM
-
---- Segment 918 (Page 918) ---
 DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia, Bridgette 10/7/2018 9:38:46 AM > patient aware of results.
-
---- Segment 919 (Page 919) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 920 (Page 920) ---
 Jefferson Health Care Now Stratford
 
---- Segment 921 (Page 921) ---
+--- Segment 56 (Page 59) ---
 Jefferson Health Care Now Stratford
-
---- Segment 922 (Page 922) ---
 Patient SPENCE, ANYA
-
---- Segment 923 (Page 923) ---
 MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 924 (Page 924) ---
 Patient Name: SPENCE, ANYA MRN #:
-
---- Segment 925 (Page 925) ---
 63424
-
---- Segment 926 (Page 926) ---
 Gender: Female
-
---- Segment 927 (Page 927) ---
 Birth Date: 12/29/1992
-
---- Segment 928 (Page 928) ---
 Provider Information
-
---- Segment 929 (Page 929) ---
 Provider
-
---- Segment 930 (Page 930) ---
 DeCicco, Rosemary A
-
---- Segment 931 (Page 931) ---
-Jefferson Health Care Now Stratford
-
---- Segment 932 (Page 932) ---
 Ordering Decicco, Rosemary CBC with DIFF/PLT Component 10/06/2013 09:12:00 Reference Units (Absolute) Hematocrit 3g q % Comments: Immature Grans 0.0 - x10E3/uL (Abs) Granulocytes Lymphs 0.7-3.1 x10E3/uL (Absolute) olute) Neutrophils . 1.4-7.0 X10E3/uL Created on 10/6/2023 Page 1 of 2
 
---- Segment 933 (Page 933) ---
+--- Segment 57 (Page 60) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 934 (Page 934) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 935 (Page 935) ---
 (Absolute)
-
---- Segment 936 (Page 936) ---
-a
-
---- Segment 937 (Page 937) ---
 Result Comments ()
-
---- Segment 938 (Page 938) ---
 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone - 8006315250, Director - MDReyes
-
---- Segment 939 (Page 939) ---
 x10E3/uL x10E6/uL
-
---- Segment 940 (Page 940) ---
 Platelets
-
---- Segment 941 (Page 941) ---
 X10E3/uL
-
---- Segment 942 (Page 942) ---
 Flowsheet Comments
-
---- Segment 943 (Page 943) ---
 CBC with DIFF/PLT 10/05/2018 12:00:00 AM
-
---- Segment 944 (Page 944) ---
 DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia, Bridgette 10/7/2018 9:38:4€ AM > patient aware of results.
-
---- Segment 945 (Page 945) ---
 Created on 10/6/2023 Page 2 of 2
-
---- Segment 946 (Page 946) ---
 Jefferson Health Care Now Stratford
 
---- Segment 947 (Page 947) ---
+--- Segment 58 (Page 61) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 948 (Page 948) ---
 Patient Name: SPENCE, ANYA Gender: Female
-
---- Segment 949 (Page 949) ---
 Provider Information
-
---- Segment 950 (Page 950) ---
 DeCicco, Rosemary A
-
---- Segment 951 (Page 951) ---
 Provider
-
---- Segment 952 (Page 952) ---
 Ordering Decicco, Rosemary
-
---- Segment 953 (Page 953) ---
 FERRITIN
-
---- Segment 954 (Page 954) ---
 10/06/2018 09:12:00
-
---- Segment 955 (Page 955) ---
 ‘Component
-
---- Segment 956 (Page 956) ---
 Ferritin, Serum Result Comments () 1 - PERFORMING LAB: LabCorp Raritan, 69 First Avenue, Raritan, NJ 088691800, Phone
-
---- Segment 957 (Page 957) ---
 8006315250, Director - MDReyes
-
---- Segment 958 (Page 958) ---
 Flowsheet Comments
-
---- Segment 959 (Page 959) ---
 FERRITIN 10/05/2018 12:00:00 AM DeCicco,Rosemary A, PA 10/7/2018 9:06:55 AM > iron levels much better, continue iron 3 times/week Garcia, Bridgette 10/7/2018 9:38:4¢€ AM > patient aware of results.
-
---- Segment 960 (Page 960) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 961 (Page 961) ---
 Jefferson Health Care Now Stratford
 
---- Segment 962 (Page 962) ---
+--- Segment 59 (Page 62) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 963 (Page 963) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 5345659
-
---- Segment 964 (Page 964) ---
 [RxType] : New Rx
-
---- Segment 965 (Page 965) ---
 [StatusDesc]: Success
-
---- Segment 966 (Page 966) ---
 [doc_LName] : DeCicco
-
---- Segment 967 (Page 967) ---
 [PharmacyName] : RITE AID-375 WHITE HORSE PK [DrugDescription] : Medrol (Pak) 4 MG Tablet [SentBy] : DeCicco,Rosemary A, PA [SentTime]: 2018-10-05
-
---- Segment 968 (Page 968) ---
 [Frequency]: daily
-
---- Segment 969 (Page 969) ---
 [duration]: 6
-
---- Segment 970 (Page 970) ---
 [Quantity]: 1
-
---- Segment 971 (Page 971) ---
 [Take]: as directed
-
---- Segment 972 (Page 972) ---
 [Refills]: 0
-
---- Segment 973 (Page 973) ---
 Jefferson Health Care Now Stratford
 
---- Segment 974 (Page 974) ---
+--- Segment 60 (Page 63) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 975 (Page 975) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 5345659
-
---- Segment 976 (Page 976) ---
 [RxType] : New Rx
-
---- Segment 977 (Page 977) ---
 [StatusDesc]: Success
-
---- Segment 978 (Page 978) ---
 [doc_LName] : DeCicco
-
---- Segment 979 (Page 979) ---
 [PharmacyName] : RITE AID-375 WHITE HORSE PK [DrugDescription]: Cyclobenzaprine HCl 5 MG Tablet [SentBy] : DeCicco,Rosemary A, PA [SentTime]: 2018-10-05
-
---- Segment 980 (Page 980) ---
 [Frequency]: once a day at bedtim [duration]: 7
-
---- Segment 981 (Page 981) ---
 [Quantity]: 7
-
---- Segment 982 (Page 982) ---
 [Take]: 1 tablet as needed
-
---- Segment 983 (Page 983) ---
 [Refills]: 0
-
---- Segment 984 (Page 984) ---
 Jefferson Health Care Now Stratford
 
---- Segment 985 (Page 985) ---
+--- Segment 61 (Page 64) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5345659, DOB 12/29/1992
-
---- Segment 986 (Page 986) ---
 Patient Name: SPENCE, ANYA Gender: Female Vitals
-
---- Segment 987 (Page 987) ---
 Temp pe F
-
---- Segment 988 (Page 988) ---
 Flowsheet Comments
-
---- Segment 989 (Page 989) ---
 Flowsheet 10/05/2018 12:00:00 AM
-
---- Segment 990 (Page 990) ---
 Provider Information
-
---- Segment 991 (Page 991) ---
 Provider DeCicco, Rosemary
-
---- Segment 992 (Page 992) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 993 (Page 993) ---
 Jefferson Health Care Now Stratford
 
---- Segment 994 (Page 994) ---
+--- Segment 62 (Page 65) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5459936, DOB 12/29/1992
-
---- Segment 995 (Page 995) ---
 Progress Note - headaches
-
---- Segment 996 (Page 996) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5459936
-
---- Segment 997 (Page 997) ---
 Taking 1. Headache Xyzal(Levocetirizine 5
-
---- Segment 998 (Page 998) ---
 Dihydrochloride) 5 MG Tablet 3 taht in the vwening Orally Om 2+ Was seen 2 weeks ago for headches w/ Rosemary, meds worked but headaches are back
-
---- Segment 999 (Page 999) ---
 a day again Probiotic - Capsule Orally
-
---- Segment 1000 (Page 1000) ---
 Iron 325 (65 Fe) MG Tablet 1 tablet Orally Once a dav, Notes: Chief complaints:
-
---- Segment 1001 (Page 1001) ---
 Rott Taking» Patinet notes that the medications helped her previous headahce, no pain, however now this | Enskyce(Desugestrel-Ethinyl started again. No pain when waking up, however as day goes on the pain starts again. The pain is . Estradiol) 0.15-30 MG-MCG _ tightness around face and eyes. She has had her eyes checked and there has been no change. She 1
-
---- Segment 1002 (Page 1002) ---
 Tablet 1 tablet Orally Once a da . Se Te «6 « . . - : wea Medication List revrewed and heating pad and this is helpful. She is not getting nauseous, and is no longer getting dizziness witl
-
---- Segment 1003 (Page 1003) ---
 reconciled with the patient Ht 63.5 in, Wt 152 lb 6 oz, BP Nurse:110/56, BMI 26.57 Index, HR 74 /min, Oxygen Saturation R: Allergic rhinitis.
-
---- Segment 1004 (Page 1004) ---
 Iron deficiency anemia. General Examination: General Appearance: NAD, pleasant, well developed and well- nourished .
-
---- Segment 1005 (Page 1005) ---
 Denies Past Surgical HEENT: Head - NC/AT, PERRLA, EOMI, sclera are anicteric, bulbar and palpebral conjunctr
-
---- Segment 1006 (Page 1006) ---
 History noninjected .
-
---- Segment 1007 (Page 1007) ---
 Oral cavity: clear, moist mucus membranes .
-
---- Segment 1008 (Page 1008) ---
 Neck, Thyroid : supple, no lymphadenopathy, no thyromegaly, trachea midline .
-
---- Segment 1009 (Page 1009) ---
 Father: alive 55 Heart: RRR, no murmurs .
-
---- Segment 1010 (Page 1010) ---
-yrs
-
---- Segment 1011 (Page 1011) ---
 Mother: alive 54 Lungs: clear to auscultation bilaterally, no wheezes/rhonchi/rales .
-
---- Segment 1012 (Page 1012) ---
 yrs Extremities: no clubbing, no lower extremity edema bilaterally . Neurologic Exam: unremarkable, alert and oriented x 3 , non-focal exam.
-
---- Segment 1013 (Page 1013) ---
 Drug /Alcohol: ENT:
-
---- Segment 1014 (Page 1014) ---
 ‘Alechul Points: 0 General Appearance : normal.
-
---- Segment 1015 (Page 1015) ---
 Intrepretation: Negative. Eyes: no nystagmus.
-
---- Segment 1016 (Page 1016) ---
 Tobacey Use: Ears: auditory canals normal bilaterally, tympanic membranes normal bilaterally.
-
---- Segment 1017 (Page 1017) ---
 Smoking Are vou a: never Nose : normal pink nasal mucosa, good airflow.
-
---- Segment 1018 (Page 1018) ---
 poker. Exp Expose Second Sinuses : non tender bilaterally.
-
---- Segment 1019 (Page 1019) ---
 environmental tobacco smoke Mouth: moist mucus membranes, normal mucosa, no lesions.
-
---- Segment 1020 (Page 1020) ---
 (ETS)? No. Throat: no erythema or exudate.
-
---- Segment 1021 (Page 1021) ---
 Jefferson Health Care Now Stratford
 
---- Segment 1022 (Page 1022) ---
+--- Segment 63 (Page 66) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5459936, DOB 12/29/1992
-
---- Segment 1023 (Page 1023) ---
 Progress Note - headaches
-
---- Segment 1024 (Page 1024) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424
-
---- Segment 1025 (Page 1025) ---
 Account #: 5459936 NEDA 1. Tension headache - G44.209 (Primary)
-
---- Segment 1026 (Page 1026) ---
 2. Need for vaccination - 223
-
---- Segment 1027 (Page 1027) ---
 1. Tension headache Denies Past Hospitalization Refill Cyelobenzaprine HCl Tablet, 5 MG, 1 tablet as needed, Orally, once a day at bedtim, 30, Ref: Notes: continue Muscle relaxer as needed, heat, stretching daily. reeommend Chiropractor to hel headache control. CONSTITUTIONAL: Referral To:Nutrition Center Kennedy Nutrition no Fever. no Chills. no Swe . - ts. Reason:possible headahce triggers ENT: no Rhinorrhea. noSere Referral To: Joseph Clements Chiropractor, licensed (effective July 1973)
-
---- Segment 1028 (Page 1028) ---
 Throat. no Cough. no Sinus Reason:recurrent headache Pain. no Otalgia.
-
---- Segment 1029 (Page 1029) ---
 Influenza Vaccine Fluzone Quadrivalent > 36 months : 0.5 mL (Dose No:1) (Route: Intramuscula) by Amanda Alexander on Left Deltvid (Need for vaccination)
-
---- Segment 1030 (Page 1030) ---
 90688 FLU VAC, QUAD VAL, 3 YRS & >, IM
-
---- Segment 1031 (Page 1031) ---
 90471 IMMUNIZATION
-
---- Segment 1032 (Page 1032) ---
 ADMIN
-
---- Segment 1033 (Page 1033) ---
-prn
-
---- Segment 1034 (Page 1034) ---
 Jefferson Health Care Now Stratford
 
---- Segment 1035 (Page 1035) ---
+--- Segment 64 (Page 67) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5459936, DOB 12/29/1992
-
---- Segment 1036 (Page 1036) ---
 Progress Note - headaches
-
---- Segment 1037 (Page 1037) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 42/29/1992 MRN: 63424 Account #: 5459936
-
---- Segment 1038 (Page 1038) ---
 Jefferson Health Care Now Stratford
 
---- Segment 1039 (Page 1039) ---
+--- Segment 65 (Page 68) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5459936, DOB 12/29/1992
-
---- Segment 1040 (Page 1040) ---
 Patient Name: SPENCE, ANYA MPI: 402532746 DOB: 12/29/1992 MRN: 63424 Account #: 5459936
-
---- Segment 1041 (Page 1041) ---
 [RxType] : New Rx
-
---- Segment 1042 (Page 1042) ---
 [StatusDesc]: Success
-
---- Segment 1043 (Page 1043) ---
 [doc_LName] : DeCicco
-
---- Segment 1044 (Page 1044) ---
 [PharmacyName] : RITE AID-375 WHITE HORSE PK [DrugDescription]: Cyclobenzaprine HCl 5 MG Tablet [SentBy] : DeCicco,Rosemary A, PA [SentTime]: 2018-10-26
-
---- Segment 1045 (Page 1045) ---
 [Frequency]: once a day at bedtim [duration] :
-
---- Segment 1046 (Page 1046) ---
 [Quantity]: 30
-
---- Segment 1047 (Page 1047) ---
 [Take]: 1 tablet as needed
-
---- Segment 1048 (Page 1048) ---
 [Refills]: 0
-
---- Segment 1049 (Page 1049) ---
 Jefferson Health Care Now Stratford
 
---- Segment 1050 (Page 1050) ---
+--- Segment 66 (Page 69) ---
 Jefferson Health Care Now Stratford Patient SPENCE, ANYA MRN 63424, Acct #5459936, DOB 12/29/1992
-
---- Segment 1051 (Page 1051) ---
 Patient Name: SPENCE, ANYA Gender: Female Vitals
-
---- Segment 1052 (Page 1052) ---
 Wt 152 lb € oz lbs
-
---- Segment 1053 (Page 1053) ---
 Flowsheet Comments Flowsheet 10/26/2018 12:00:00 AM
-
---- Segment 1054 (Page 1054) ---
 Provider Information
-
---- Segment 1055 (Page 1055) ---
 Provider DeCicco, Rosemary
-
---- Segment 1056 (Page 1056) ---
 Created on 10/6/2023 Page 1 of 1
-
---- Segment 1057 (Page 1057) ---
 Jefferson Health Care Now Stratford
 

@@ -4,6 +4,8 @@ Dual-pipeline AI system for VA disability rating analysis
 """
 
 import os
+from collections import defaultdict
+import re
 from pathlib import Path
 from typing import List, Dict, Any, Optional
 from dotenv import load_dotenv
@@ -11,6 +13,7 @@ from langchain_community.document_loaders import PyPDFLoader, Docx2txtLoader, Te
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_chroma import Chroma
+from langchain_core.documents import Document
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.runnables import RunnablePassthrough
@@ -192,6 +195,241 @@ def sanitize_metadata_for_vectorstore(metadata: Dict[str, Any]) -> Dict[str, Any
     return safe_metadata
 
 
+def consolidate_ocr_elements_to_pages(docs: List[Document], min_segment_chars: int = 5) -> List[Document]:
+    """
+    Consolidate noisy OCR element-level documents into page-level documents.
+
+    This reduces retrieval noise for long scanned PDFs where OCR returns hundreds
+    of tiny fragments per page.
+    """
+    if not docs:
+        return []
+
+    pages: Dict[int, List[str]] = defaultdict(list)
+    page_seen: Dict[int, set] = defaultdict(set)
+    unpaged_segments: List[str] = []
+    unpaged_seen: set = set()
+
+    for doc in docs:
+        text = (doc.page_content or "").strip()
+        if len(text) < min_segment_chars:
+            continue
+
+        normalized = " ".join(text.split())
+        if not normalized:
+            continue
+
+        raw_page = doc.metadata.get("page_number", doc.metadata.get("page"))
+        page_number = None
+        page_scalar = _to_scalar_metadata_value(raw_page)
+        if page_scalar is not None:
+            try:
+                page_number = int(page_scalar)
+            except Exception:
+                page_number = None
+
+        if page_number is None:
+            if normalized not in unpaged_seen:
+                unpaged_seen.add(normalized)
+                unpaged_segments.append(text)
+            continue
+
+        if normalized in page_seen[page_number]:
+            continue
+
+        page_seen[page_number].add(normalized)
+        pages[page_number].append(text)
+
+    base_metadata = sanitize_metadata_for_vectorstore(dict(docs[0].metadata))
+    consolidated_docs: List[Document] = []
+
+    for page_number in sorted(pages.keys()):
+        page_text = "\n".join(pages[page_number]).strip()
+        if not page_text:
+            continue
+
+        metadata = dict(base_metadata)
+        metadata["page"] = page_number
+        metadata["page_number"] = page_number
+        consolidated_docs.append(Document(page_content=page_text, metadata=metadata))
+
+    if unpaged_segments:
+        metadata = dict(base_metadata)
+        metadata["page"] = 0
+        metadata["page_number"] = 0
+        consolidated_docs.append(Document(page_content="\n".join(unpaged_segments), metadata=metadata))
+
+    return consolidated_docs if consolidated_docs else docs
+
+
+def _normalize_condition_key(name: str) -> str:
+    """Normalize condition text for deduplication."""
+    normalized = re.sub(r"[^a-z0-9]+", " ", (name or "").lower()).strip()
+    return re.sub(r"\s+", " ", normalized)
+
+
+def _clean_condition_name(name: str) -> str:
+    """Remove OCR noise around condition labels."""
+    cleaned = " ".join((name or "").split())
+    cleaned = re.sub(r"^(assessment|assessment:|plan|plan:|medical history|medical history:)\s*", "", cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r"^\d+\.\s*", "", cleaned)
+    cleaned = re.sub(r"\(\s*primary\s*\)$", "", cleaned, flags=re.IGNORECASE)
+    cleaned = cleaned.strip(" -:;,.\t()[]")
+    return cleaned
+
+
+def _clean_icd_code(raw_code: str) -> str:
+    """Normalize OCR-noisy ICD code text."""
+    code = (raw_code or "").upper().strip()
+    code = code.replace(" ", "").replace(",.", ".").replace(",", ".")
+    if len(code) >= 2:
+        # OCR often confuses numeric zero with letter O after the first letter.
+        code = code[0] + code[1:].replace("O", "0")
+    return code
+
+
+def _is_likely_icd_code(code: str) -> bool:
+    """Validate likely ICD-10-CM format and filter OCR garbage."""
+    if not code:
+        return False
+
+    normalized = _clean_icd_code(code)
+
+    # Common ICD-10-CM patterns: R51, D50.9, M25.561, T24.201A
+    if re.match(r"^[A-TV-Z][0-9]{2}(?:\.[0-9A-Z]{1,4})?$", normalized):
+        return True
+
+    return False
+
+
+def _is_likely_condition_name(name: str) -> bool:
+    """Filter out obvious non-condition text fragments."""
+    lower_name = (name or "").lower().strip()
+    if len(lower_name) < 3 or len(lower_name) > 90:
+        return False
+
+    noise_terms = [
+        "result",
+        "reference range",
+        "order status",
+        "collected",
+        "provider",
+        "follow up",
+        "procedure code",
+        "vitals",
+        "patient name",
+        "account",
+        "phone",
+        "address",
+    ]
+    if any(term in lower_name for term in noise_terms):
+        return False
+
+    # Reject lines that are mostly numeric/noise.
+    alpha_chars = sum(1 for c in lower_name if c.isalpha())
+    non_alnum_chars = sum(1 for c in lower_name if not c.isalnum() and not c.isspace())
+    if non_alnum_chars > alpha_chars:
+        return False
+
+    return alpha_chars >= 3
+
+
+def extract_condition_coverage_candidates(docs: List[Document], max_candidates: int = 40) -> List[Dict[str, Any]]:
+    """
+    Deterministically extract ICD-coded condition candidates from all loaded docs.
+
+    This complements retrieval by providing a checklist built from a full-document
+    scan, reducing missed diagnoses in OCR-heavy packets.
+    """
+    if not docs:
+        return []
+
+    pattern = re.compile(
+        r"(?P<name>[A-Za-z][A-Za-z0-9/(),'\-\s]{3,100}?)\s*-\s*(?P<code>[A-Z][0-9O]{1,2}(?:[.,]{1,2}[0-9A-Z]{1,4})?[A-Z]?)",
+        flags=re.IGNORECASE,
+    )
+
+    candidates: Dict[str, Dict[str, Any]] = {}
+
+    for doc in docs:
+        text = doc.page_content or ""
+        if not text.strip():
+            continue
+
+        page_raw = doc.metadata.get("page", doc.metadata.get("page_number", 0))
+        page_num = _to_scalar_metadata_value(page_raw)
+        try:
+            page_num = int(page_num) if page_num is not None else 0
+        except Exception:
+            page_num = 0
+
+        for match in pattern.finditer(text):
+            raw_name = match.group("name")
+            raw_code = match.group("code")
+
+            condition_name = _clean_condition_name(raw_name)
+            code = _clean_icd_code(raw_code)
+
+            if not _is_likely_icd_code(code):
+                continue
+
+            if not _is_likely_condition_name(condition_name):
+                continue
+
+            key = _normalize_condition_key(condition_name)
+            if not key:
+                continue
+
+            entry = candidates.setdefault(
+                key,
+                {
+                    "name": condition_name,
+                    "codes": set(),
+                    "pages": set(),
+                    "mentions": 0,
+                },
+            )
+
+            # Prefer the clearer, longer label if we see variants.
+            if len(condition_name) > len(entry["name"]):
+                entry["name"] = condition_name
+
+            if code:
+                entry["codes"].add(code)
+            if page_num:
+                entry["pages"].add(page_num)
+            entry["mentions"] += 1
+
+    ordered = sorted(
+        candidates.values(),
+        key=lambda item: (
+            min(item["pages"]) if item["pages"] else 9999,
+            item["name"].lower(),
+        ),
+    )
+
+    output: List[Dict[str, Any]] = []
+    for item in ordered[:max_candidates]:
+        output.append(
+            {
+                "name": item["name"],
+                "codes": sorted(item["codes"]),
+                "pages": sorted(item["pages"]),
+                "mentions": item["mentions"],
+            }
+        )
+
+    return output
+
+
+def truncate_for_prompt(text: str, max_chars: int) -> str:
+    """Trim long context blocks to control prompt size."""
+    cleaned = (text or "").strip()
+    if len(cleaned) <= max_chars:
+        return cleaned
+    return cleaned[:max_chars].rstrip() + "\n...[truncated]"
+
+
 def can_fallback_to_text_extraction(pdf_stats: Dict[str, Any], min_text_ratio: float = 0.80) -> bool:
     """
     Decide if fallback to plain text extraction is acceptable when OCR fails.
@@ -301,9 +539,60 @@ class VRISRAGSystem:
         
         # Document classifier
         self.classifier = VRISDocumentClassifier()
+
+        # Keep loaded veteran docs in memory for deterministic coverage passes.
+        self.veteran_documents: List[Document] = []
         
         # Store classified documents
         self.classified_docs = {}
+
+    def build_condition_coverage_hint(self, max_candidates: int = 12) -> str:
+        """Build a checklist of condition candidates detected across all veteran pages."""
+        candidates = extract_condition_coverage_candidates(self.veteran_documents, max_candidates=max_candidates)
+
+        if not candidates:
+            return "- No deterministic ICD-coded condition candidates detected."
+
+        lines = [
+            "Checklist generated from deterministic full-document scan (not retrieval-limited):"
+        ]
+        for idx, candidate in enumerate(candidates, start=1):
+            codes = ", ".join(candidate["codes"]) if candidate["codes"] else "None"
+            pages = ", ".join(str(p) for p in candidate["pages"]) if candidate["pages"] else "Unknown"
+            lines.append(f"{idx}. {candidate['name']} | ICD: {codes} | Pages: {pages}")
+
+        return "\n".join(lines)
+
+    def prepare_vris_a_for_reasoning(self, vris_a_text: str, max_chars: int = 4200) -> str:
+        """Trim VRIS-A output before sending it into VRIS-B to control token usage."""
+        base_text = (vris_a_text or "").strip()
+        if not base_text:
+            return base_text
+
+        # Avoid duplicating large deterministic appendix into the VRIS-B prompt.
+        if "SUPPLEMENTAL CONDITION COVERAGE INDEX:" in base_text:
+            base_text = base_text.split("SUPPLEMENTAL CONDITION COVERAGE INDEX:", 1)[0].rstrip()
+
+        if len(base_text) <= max_chars:
+            return base_text
+
+        return base_text[:max_chars].rstrip() + "\n\n[Truncated for token budget before VRIS-B reasoning]"
+
+    def append_condition_coverage_appendix(self, text: str, title: str, max_candidates: int = 12) -> str:
+        """Append deterministic condition coverage text to model output for transparency."""
+        coverage_hint = self.build_condition_coverage_hint(max_candidates=max_candidates)
+        if not coverage_hint or coverage_hint.startswith("- No deterministic ICD-coded"):
+            return text
+
+        appendix = f"{title}\n{coverage_hint}"
+        if appendix in text:
+            return text
+
+        base_text = (text or "").rstrip()
+        if not base_text:
+            return appendix
+
+        return f"{base_text}\n\n{appendix}"
     
     def load_documents(self, folder_path: str) -> List:
         """Load all PDF, DOCX, and TXT files from specified folder"""
@@ -339,7 +628,9 @@ class VRISRAGSystem:
                     try:
                         # ocr_only is more stable on Windows for mixed scanned PDFs
                         loader = UnstructuredPDFLoader(str(pdf_file), mode="elements", strategy="ocr_only")
-                        docs = loader.load()
+                        raw_docs = loader.load()
+                        docs = consolidate_ocr_elements_to_pages(raw_docs)
+                        print(f"  OCR consolidation: {len(raw_docs)} elements -> {len(docs)} page-level docs")
                         save_ocr_text_for_testing(docs, pdf_file.stem)
                         print(f"  OCR text saved to: ocr_output/{pdf_file.stem}_ocr.txt")
 
@@ -504,6 +795,8 @@ class VRISRAGSystem:
         if not documents:
             print("⚠️  No veteran documents found. Upload documents to process.")
             return
+
+        self.veteran_documents = documents
         
         # Classify documents
         self.classify_veteran_documents(documents)
@@ -552,7 +845,9 @@ class VRISRAGSystem:
                         try:
                             # ocr_only is more stable on Windows for mixed scanned PDFs
                             loader = UnstructuredPDFLoader(str(path), mode="elements", strategy="ocr_only")
-                            docs = loader.load()
+                            raw_docs = loader.load()
+                            docs = consolidate_ocr_elements_to_pages(raw_docs)
+                            print(f"  OCR consolidation: {len(raw_docs)} elements -> {len(docs)} page-level docs")
                             save_ocr_text_for_testing(docs, path.stem)
                             print(f"  OCR text saved to: ocr_output/{path.stem}_ocr.txt")
 
@@ -578,7 +873,6 @@ class VRISRAGSystem:
                 elif path.suffix.lower() == '.txt':
                     with open(path, 'r', encoding='utf-8') as f:
                         content = f.read()
-                    from langchain_core.documents import Document
                     doc = Document(
                         page_content=content,
                         metadata={'filename': path.name, 'source': str(path), 'file_type': 'txt'}
@@ -607,6 +901,8 @@ class VRISRAGSystem:
             raise ValueError("No documents could be loaded from the provided paths")
         
         print(f"Loaded {len(documents)} document(s)")
+
+        self.veteran_documents = documents
         
         # Classify documents
         self.classify_veteran_documents(documents)
@@ -636,7 +932,7 @@ class VRISRAGSystem:
         
         retriever = self.veteran_vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 10}  # More context for complete extraction
+            search_kwargs={"k": 14}  # Keep context under 8k-token model limits
         )
         
         template = """You are VRIS-A, the extraction component of the Veteran Rating Intelligence System.
@@ -655,14 +951,18 @@ Extract the following information from the provided context:
    - Effective dates
    - Service-connected conditions list
    - If VA Decision Letter shows PTSD at 30%, extract: "PTSD: 30% (DC: 9411)"
+    - If no VA Decision Letter/Code Sheet/rating document is present, explicitly state:
+      "Current VA rating data: NOT FOUND in provided documents"
 
-2. MEDICAL CONDITIONS:
+2. MEDICAL CONDITIONS (MANDATORY):
    - All diagnosed conditions (current and historical) - INCLUDING mental health and sleep conditions
+    - ICD/diagnosis codes when present (e.g., D50.9, M25.561, R30.0)
    - Symptoms and severity indicators
    - Functional impairments and limitations
    - ROM (Range of Motion) measurements if applicable
    - Test results (labs, imaging, sleep studies, etc.)
-   - NOTE: Only list conditions HERE if they are NOT already listed in section 1 above
+    - NOTE: Only list conditions HERE if they are NOT already listed in section 1 above
+    - NEVER claim "no medical conditions" if any diagnosis/assessment/plan/lab/imaging data exists
 
 3. TEMPORAL RELATIONSHIPS:
    - Onset dates
@@ -679,6 +979,17 @@ Extract the following information from the provided context:
 5. CONDITION CATEGORIES:
    Tag each condition: musculoskeletal, mental health, neurologic, auditory, respiratory, cardiac, sleep disorders, etc.
 
+6. DOCUMENT SUFFICIENCY STATUS:
+     - VA rating evidence present? (Yes/No)
+     - Service-connection evidence present? (Yes/No)
+     - C&P/DBQ evidence present? (Yes/No)
+     - List missing critical evidence if absent:
+         a) VA Decision Letter/Code Sheet
+         b) C&P exam or DBQ tied to claimed condition
+         c) Service-connection evidence (in-service event + nexus)
+     - If medical conditions are present but rating/service-connection evidence is missing, state:
+         "Medical conditions found, but insufficient VA rating/service-connection evidence for claim-ready rating analysis."
+
 Context from veteran documents:
 {context}
 
@@ -687,6 +998,8 @@ Query: {question}
 Provide a structured extraction in clear, organized format. Be thorough and precise.
 Extract ALL conditions mentioned across all documents - do not omit mental health, sleep disorders, or any other diagnosed conditions.
 Extract only what is explicitly stated - do not infer or reason about ratings.
+If section 1 is missing, you must still fully populate sections 2-6.
+If the query contains a "CONDITION COVERAGE CHECKLIST", explicitly address each checklist condition and provide citations.
 """
         
         prompt = ChatPromptTemplate.from_template(template)
@@ -697,7 +1010,8 @@ Extract only what is explicitly stated - do not infer or reason about ratings.
                 source = doc.metadata.get('filename', 'Unknown')
                 page = doc.metadata.get('page', 'Unknown')
                 doc_type = doc.metadata.get('document_type', 'Unknown')
-                formatted.append(f"[{doc_type} - {source}, Page {page}]\n{doc.page_content}")
+                snippet = truncate_for_prompt(doc.page_content, max_chars=900)
+                formatted.append(f"[{doc_type} - {source}, Page {page}]\n{snippet}")
             return "\n\n" + "="*60 + "\n\n".join(formatted)
         
         self.vris_a_chain = (
@@ -723,7 +1037,7 @@ Extract only what is explicitly stated - do not infer or reason about ratings.
         # Dual retriever: system docs (CFR rules) + veteran docs
         system_retriever = self.system_vectorstore.as_retriever(
             search_type="similarity",
-            search_kwargs={"k": 6}
+            search_kwargs={"k": 4}
         )
         veteran_retriever = self.veteran_vectorstore.as_retriever(
             search_type="similarity",
@@ -746,6 +1060,15 @@ Your role is to analyze extracted veteran data against VA rating criteria to ide
 2. Missed conditions (present in evidence but not rated)
 3. Secondary conditions (caused by service-connected conditions)
 4. Rating discrepancies and CFR inconsistencies
+
+IMPORTANT MEDICAL-ONLY HANDLING:
+- If medical conditions are present but CURRENT VA RATING DATA is missing, do NOT claim "no data".
+- In that case, provide:
+    1) Medical conditions found with evidence citations
+    2) Missing VA evidence checklist (VA decision/code sheet, C&P/DBQ, service-connection/nexus evidence)
+    3) Explicit statement that claim-ready rating analysis is limited until missing evidence is provided
+- In medical-only mode, create one numbered finding block for each medically supported condition from VRIS-A section 2 and any checklist conditions. Do not collapse the packet into a short representative subset.
+- Do not fabricate current VA ratings when they are not present in the documents.
 
 VRIS System Documentation and CFR Rules (USE THIS):
 {system_context}
@@ -770,8 +1093,15 @@ Format each finding as:
    - Potential Rating: X%
    - CFR Citations: [list CFR sections]
 
+If VA rating/service-connection evidence is insufficient, add a section:
+MEDICAL-ONLY GAP SUMMARY:
+- Conditions identified from records
+- Missing claim-critical evidence
+- Next required documents for full VRIS rating analysis
+
 Be precise, evidence-based, and always cite CFR sections.
 PROCEED WITH ANALYSIS NOW using the context provided above.
+If the query contains checklist conditions, address each one explicitly and avoid "Evidence: Not specified" when page hints exist.
 """
         
         prompt = ChatPromptTemplate.from_template(template)
@@ -781,7 +1111,8 @@ PROCEED WITH ANALYSIS NOW using the context provided above.
             for doc in docs:
                 source = doc.metadata.get('filename', 'Unknown')
                 page = doc.metadata.get('page', 'Unknown')
-                formatted.append(f"[{source}, Page {page}]\n{doc.page_content}")
+                snippet = truncate_for_prompt(doc.page_content, max_chars=700)
+                formatted.append(f"[{source}, Page {page}]\n{snippet}")
             return "\n\n" + "-"*60 + "\n\n".join(formatted)
         
         self.vris_b_chain = (
@@ -824,7 +1155,73 @@ PROCEED WITH ANALYSIS NOW using the context provided above.
         print("="*70)
         print(f"Analysis: {query}\n")
         
-        result = self.vris_b_chain.invoke(query)
+        try:
+            result = self.vris_b_chain.invoke(query)
+        except Exception as e:
+            error_text = str(e).lower()
+            is_context_error = (
+                "context_length_exceeded" in error_text
+                or "maximum context length" in error_text
+            )
+
+            if not is_context_error:
+                raise
+
+            print("⚠️  VRIS-B context length exceeded. Retrying with compact reasoning mode...")
+
+            if not self.system_vectorstore or not self.veteran_vectorstore:
+                raise
+
+            compact_system_retriever = self.system_vectorstore.as_retriever(
+                search_type="similarity",
+                search_kwargs={"k": 2},
+            )
+            compact_veteran_retriever = self.veteran_vectorstore.as_retriever(
+                search_type="similarity",
+                search_kwargs={"k": 4},
+            )
+
+            compact_template = """You are VRIS-B in compact fallback mode.
+
+Analyze the provided veteran evidence against VA criteria with concise output.
+If current VA ratings are missing, provide medical-only gap guidance and do not fabricate ratings.
+
+System CFR context:
+{system_context}
+
+Veteran context:
+{veteran_context}
+
+Analysis request:
+{question}
+
+Return concise structured findings with evidence citations.
+"""
+
+            compact_prompt = ChatPromptTemplate.from_template(compact_template)
+
+            def compact_format_docs(docs):
+                lines = []
+                for doc in docs:
+                    source = doc.metadata.get('filename', 'Unknown')
+                    page = doc.metadata.get('page', 'Unknown')
+                    snippet = truncate_for_prompt(doc.page_content, max_chars=450)
+                    lines.append(f"[{source}, Page {page}]\n{snippet}")
+                return "\n\n".join(lines)
+
+            compact_chain = (
+                {
+                    "system_context": compact_system_retriever | compact_format_docs,
+                    "veteran_context": compact_veteran_retriever | compact_format_docs,
+                    "question": RunnablePassthrough(),
+                }
+                | compact_prompt
+                | self.llm
+                | StrOutputParser()
+            )
+
+            compact_query = truncate_for_prompt(query, max_chars=2200)
+            result = compact_chain.invoke(compact_query)
         
         print("Analysis Complete")
         print("="*70 + "\n")
@@ -843,17 +1240,30 @@ PROCEED WITH ANALYSIS NOW using the context provided above.
         
         # Run VRIS-A
         vris_a_result = self.vris_a_extract(extraction_query)
+        vris_a_result = self.append_condition_coverage_appendix(
+            vris_a_result,
+            "SUPPLEMENTAL CONDITION COVERAGE INDEX:",
+            max_candidates=12,
+        )
+
+        vris_a_reasoning_payload = self.prepare_vris_a_for_reasoning(vris_a_result)
         
         # Run VRIS-B with VRIS-A's extraction included in the query
         vris_b_query = f"""
 VRIS-A EXTRACTED DATA:
-{vris_a_result}
+{vris_a_reasoning_payload}
 
 ---
 
 {reasoning_query}
 """
         vris_b_result = self.vris_b_analyze(vris_b_query)
+        if "current va rating data: not found" in vris_a_result.lower():
+            vris_b_result = self.append_condition_coverage_appendix(
+                vris_b_result,
+                "SUPPLEMENTAL MEDICAL RECORD CONDITION INDEX:",
+                max_candidates=12,
+            )
         
         # In production, implement sophisticated agreement scoring
         # For now, return both results
@@ -938,27 +1348,34 @@ VRIS-A EXTRACTED DATA:
         """
         Generate Second Look VRE (for already-rated veterans)
         """
-        extraction_query = """
-        Extract from VA Decision Letter and all supporting documents:
-        1. Current VA rating profile - CAREFULLY extract ALL service-connected conditions with their current ratings:
-           - List EVERY condition that has a current VA rating (including back, knees, PTSD, etc.)
-           - Include diagnostic codes, percentages, effective dates
-           - Do not miss mental health conditions like PTSD
-        2. All evidence from medical records, C&P exams, DBQs
-        3. Any conditions in evidence that are NOT currently rated (new conditions not yet service-connected)
-        4. Severity indicators that may exceed current rating criteria
-        5. Potential secondary conditions
-        
-        CRITICAL: If a condition appears in the VA Decision Letter with a percentage rating, 
-        it MUST be listed in section 1 with its current rating, even if there are also C&P exams about it.
+        coverage_hint = self.build_condition_coverage_hint(max_candidates=12)
+
+        extraction_query = f"""
+        Extract from all provided documents (VA decision docs, C&P, DBQ, private medical records):
+        1. Current VA rating profile:
+            - If present, extract ALL service-connected conditions with current ratings, DCs, and effective dates
+            - If absent, explicitly state: "Current VA rating data: NOT FOUND in provided documents"
+        2. Medical evidence regardless of VA rating status:
+            - Diagnosed conditions and diagnosis codes
+            - Symptoms, severity, functional impact, labs/imaging/clinical findings
+        3. Conditions in evidence that may be unrated or require additional claim evidence
+        4. Potential secondary relationships
+        5. Missing-evidence checklist for claim-ready VRIS analysis
+
+        CRITICAL:
+        - Do not output "no medical conditions" when diagnoses/assessments are present.
+        - If VA rating data is missing, still provide full medical-condition extraction.
+        - For each listed condition, include at least one evidence citation with source/page.
+        - Never write "Evidence: Not specified" for a condition that appears in checklist pages.
+
+        CONDITION COVERAGE CHECKLIST (MANDATORY TO ADDRESS):
+        {coverage_hint}
         """
-        
+
         reasoning_query = """
-        Using the VRIS-A extraction above, compare veteran's current VA rating to evidence:
-        
-        CRITICAL: Use the CURRENT RATINGS from VRIS-A extraction section 1 (CURRENT VA RATING DATA).
-        If VRIS-A shows a condition with a percentage (e.g., "PTSD: 30%"), that is the CURRENT rating, not "Not Rated".
-        
+        Using the VRIS-A extraction above, perform one of two paths:
+
+        PATH A - If current VA ratings are present:
         1. Identify conditions where evidence supports higher rating than currently assigned (UNDERRATED)
         2. Map current ratings to CFR criteria - identify underrating gaps
         3. Identify conditions present in evidence but with NO current rating (MISSED CONDITIONS)
@@ -966,12 +1383,23 @@ VRIS-A EXTRACTED DATA:
         5. Calculate potential increased combined rating
         6. Provide detailed CFR citations and evidence mappings
         7. Confidence scores for each finding
-        
-        IMPORTANT: 
+
+        PATH B - If current VA ratings are NOT present:
+        1. List every medically supported condition found in records as its own numbered finding block with evidence citations
+        2. Provide "MEDICAL-ONLY GAP SUMMARY" with missing evidence:
+            - VA Decision Letter/Code Sheet
+            - C&P exam or DBQ for key conditions
+            - Service-connection evidence (in-service event + nexus)
+        3. State clearly that claim-ready rating opportunity scoring is limited until missing VA evidence is provided
+        4. Use the format "Condition Name (Not Rated)" for each medical-only finding block
+        5. Do not fabricate current ratings or label all data as absent
+
+        IMPORTANT:
         - If a condition has a current rating (even 0%), it goes in UNDERRATED category
         - Only conditions with NO rating at all go in MISSED CONDITIONS
         - Always check VRIS-A section 1 for the current rating before labeling as "Not Rated"
-        
+        - For medical-only packets, use VRIS-A extracted conditions and citations as your source of truth.
+
         Phase 1: Strong increase opportunities (90%+ confidence)
         Phase 2: Plausible increases requiring VSO evaluation
         """
