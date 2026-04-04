@@ -3,8 +3,9 @@ VRIS™ Simple API - Single Endpoint
 Upload veteran documents → Get complete analysis
 """
 
-from fastapi import FastAPI, UploadFile, File, HTTPException
+from fastapi import FastAPI, UploadFile, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 from typing import List, Dict, Any
 from pathlib import Path
 import shutil
@@ -28,6 +29,33 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+def custom_openapi():
+    if app.openapi_schema:
+        return app.openapi_schema
+    schema = get_openapi(
+        title=app.title,
+        version=app.version,
+        description=app.description,
+        routes=app.routes,
+    )
+    # Swagger UI needs format:binary (OAS 3.0), not contentMediaType (OAS 3.1)
+    for comp in schema.get("components", {}).get("schemas", {}).values():
+        for prop in comp.get("properties", {}).values():
+            if prop.get("type") == "array":
+                items = prop.get("items", {})
+                if "contentMediaType" in items:
+                    del items["contentMediaType"]
+                    items["format"] = "binary"
+            elif "contentMediaType" in prop:
+                del prop["contentMediaType"]
+                prop["format"] = "binary"
+    app.openapi_schema = schema
+    return schema
+
+
+app.openapi = custom_openapi
 
 # Configuration
 SYSTEM_DOCS_FOLDER = "./system-doc"
@@ -201,10 +229,7 @@ def _enrich_medical_only_findings(findings: Dict[str, Any], vris_a_output: str, 
 
 @app.post("/api/vris/analyze")
 async def analyze_veteran_documents(
-    files: List[UploadFile] = File(
-        ..., 
-        description="Veteran documents (VA Decision Letter, C&P Exams, DBQs, Medical Records)"
-    )
+    files: List[UploadFile]
 ) -> Dict[str, Any]:
     """
     VRIS™ Complete Analysis Endpoint

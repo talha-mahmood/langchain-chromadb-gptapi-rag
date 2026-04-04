@@ -635,17 +635,9 @@ class VRISRAGSystem:
                         print(f"  OCR text saved to: ocr_output/{pdf_file.stem}_ocr.txt")
 
                     except Exception as ocr_error:
-                        if can_fallback_to_text_extraction(pdf_stats):
-                            print(f"  ⚠️ OCR failed, but most pages are text-based. Falling back to PyPDFLoader: {ocr_error}")
-                            loader = PyPDFLoader(str(pdf_file))
-                            docs = loader.load()
-                        else:
-                            raise RuntimeError(
-                                "OCR is required for this PDF but failed. "
-                                f"Detected {pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages with extractable text. "
-                                "Install OCR dependencies: pip install \"unstructured[pdf]\" pytesseract pdf2image pillow, "
-                                "and install system tools Tesseract OCR + Poppler."
-                            )
+                        print(f"  ⚠️ OCR failed ({ocr_error}). Falling back to PyPDFLoader to extract available text pages...")
+                        loader = PyPDFLoader(str(pdf_file))
+                        docs = loader.load()
                 else:
                     print("  -> Text-based PDF, using standard extraction...")
                     loader = PyPDFLoader(str(pdf_file))
@@ -852,17 +844,9 @@ class VRISRAGSystem:
                             print(f"  OCR text saved to: ocr_output/{path.stem}_ocr.txt")
 
                         except Exception as ocr_error:
-                            if can_fallback_to_text_extraction(pdf_stats):
-                                print(f"  ⚠️ OCR failed, but most pages are text-based. Falling back to PyPDFLoader: {ocr_error}")
-                                loader = PyPDFLoader(str(path))
-                                docs = loader.load()
-                            else:
-                                raise RuntimeError(
-                                    "OCR is required for this uploaded PDF but failed. "
-                                    f"Detected {pdf_stats.get('text_pages', 0)}/{pdf_stats.get('total_pages', 0)} pages with extractable text. "
-                                    "Install OCR dependencies: pip install \"unstructured[pdf]\" pytesseract pdf2image pillow, "
-                                    "and install system tools Tesseract OCR + Poppler."
-                                )
+                            print(f"  ⚠️ OCR failed ({ocr_error}). Falling back to PyPDFLoader to extract available text pages...")
+                            loader = PyPDFLoader(str(path))
+                            docs = loader.load()
                     else:
                         print("  -> Text-based PDF, using standard extraction...")
                         loader = PyPDFLoader(str(path))
