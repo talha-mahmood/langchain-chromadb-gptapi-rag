@@ -23,6 +23,86 @@ import json
 load_dotenv()
 
 
+# ---------------------------------------------------------------------------
+# VRIS™ Document Requirements & Secondary Conditions Questionnaire
+# Sourced from VRIS_Document_Requirements_and_Secondary_Questionnaire.docx
+# ---------------------------------------------------------------------------
+VRIS_DOCUMENT_REQUIREMENTS = """
+VRIS™ DOCUMENT SUBMISSION REQUIREMENTS
+=======================================
+
+MANDATORY DOCUMENTS (required for valid analysis):
+- VA Rating Decision Letter: Official summary of service-connected disabilities, diagnostic codes (DCs), and percentage ratings. Establishes baseline for analysis.
+- Code Sheet (if available): Details specific Diagnostic Codes and effective dates. Enables cross-reference against CFR rating tables.
+- Most Recent C&P (Compensation & Pension) Exam Report(s): VA-conducted medical evaluation of current severity. Required to compare against medical evidence for underrating or outdated data.
+- DD-214 or Proof of Service: Confirms periods of service, MOS/AFSC, and eligibility. Validates service-connection eligibility.
+- Secondary Conditions Questionnaire (completed online): Self-reported data identifying possible secondary or missed conditions for 38 CFR §3.310 correlation analysis.
+
+HIGHLY RECOMMENDED / OPTIONAL DOCUMENTS:
+- Service Treatment Records (STRs): Active duty medical records confirming chronicity or in-service event for missed/secondary conditions.
+- Private or Civilian Medical Records: Post-service treatment evidence demonstrating progression or worsening.
+- VA Progress Notes (MyHealtheVet / Blue Button Export): Ongoing VA care documentation showing continued symptoms.
+- Buddy Statements (Lay Statements): Firsthand accounts of symptoms (especially PTSD, migraines, sleep disorders).
+- Nexus Letter (if available): Physician opinion linking conditions — strengthens secondary condition confidence.
+- Imaging or Lab Results (X-ray, MRI, EKG, etc.): Objective diagnostic evidence for comparing against C&P findings.
+- Employment Impact Statements / SSDI Award or Denial: Documents functional impairment for TDIU consideration.
+- Medication Lists or Side-Effect Records: Detects secondary/medication-induced conditions (e.g., GERD from NSAIDs, weight gain, depression).
+- Prior VA Appeal or Supplemental Claim Decisions: Focuses analysis on new or missed evidence.
+
+SECONDARY CONDITIONS QUESTIONNAIRE
+====================================
+Use this to identify causal or secondary conditions that may have been overlooked.
+
+Musculoskeletal / Pain-Related:
+- Pain radiating from one area to another (e.g., back pain down leg or arm)?
+- Limited mobility, stiffness, or joint swelling not currently in VA rating?
+- Chronic pain causing sleep, mood, or daily functioning issues?
+- Additional pain or arthritis from over-compensating for another injury (e.g., opposite knee, hip, shoulder)?
+
+Neurological / Headache / Nerve:
+- Tingling, numbness, or weakness in arms, legs, hands, or feet?
+- Diagnosed/treated for migraines or chronic headaches?
+- Dizziness, balance problems, or tremors affecting work or daily life?
+
+Mental Health / Cognitive:
+- Diagnosed/treated for anxiety, depression, PTSD, or other mental health conditions?
+- Conditions interfering with work, sleep, or relationships?
+- Symptoms triggered or worsened by chronic pain, illness, or physical injury?
+
+Sleep / Fatigue:
+- Diagnosed with or suspect sleep apnea or chronic insomnia?
+- Fatigue, low energy, or daytime drowsiness due to lack of rest?
+- Pain, medication, or stress contributing to sleep problems?
+
+Cardiovascular / Metabolic:
+- Diagnosed with high blood pressure, heart disease, or diabetes since leaving service?
+- Long-term medication causing new symptoms (e.g., weight gain, mood changes)?
+- Changes in cholesterol, A1C, or blood pressure connected to medications or inactivity from service-connected injuries?
+
+Gastrointestinal / Digestive:
+- Reflux, GERD, IBS, or digestive issues related to stress or medication?
+- Long-term NSAIDs or pain meds causing stomach or liver problems?
+
+Hearing / Vision / ENT:
+- Tinnitus (ringing in ears) or hearing loss not currently rated?
+- Chronic sinus issues, allergies, or respiratory problems that began/worsened after service?
+- Vision changes or light sensitivity increased due to medications or head injuries?
+
+Endocrine / Sexual Health:
+- Hormonal changes, low testosterone, or thyroid issues since service?
+- Sexual dysfunction linked to medications or psychological stress?
+
+Daily Functioning & Employment:
+- Medical conditions limiting ability to perform work or daily activities?
+- Reduced hours, career change, or stopped working due to service-connected issues?
+- Denied SSDI or VA Individual Unemployability (TDIU)?
+
+General:
+- New medical conditions developed since last VA rating decision?
+- Any condition caused or worsened by an already service-connected disability?
+"""
+
+
 def configure_ocr_runtime() -> None:
     """
     Configure OCR binaries for the current process.
@@ -973,6 +1053,10 @@ Extract the following information from the provided context:
          c) Service-connection evidence (in-service event + nexus)
      - If medical conditions are present but rating/service-connection evidence is missing, state:
          "Medical conditions found, but insufficient VA rating/service-connection evidence for claim-ready rating analysis."
+     - Cross-reference the uploaded documents against the MANDATORY DOCUMENTS list below and explicitly note what is missing.
+
+VRIS™ DOCUMENT REQUIREMENTS & SECONDARY CONDITIONS REFERENCE:
+{document_requirements}
 
 Context from veteran documents:
 {context}
@@ -1001,7 +1085,8 @@ If the query contains a "CONDITION COVERAGE CHECKLIST", explicitly address each 
         self.vris_a_chain = (
             {
                 "context": retriever | format_docs,
-                "question": RunnablePassthrough()
+                "question": RunnablePassthrough(),
+                "document_requirements": lambda _: VRIS_DOCUMENT_REQUIREMENTS
             }
             | prompt
             | self.llm
@@ -1080,8 +1165,12 @@ Format each finding as:
 If VA rating/service-connection evidence is insufficient, add a section:
 MEDICAL-ONLY GAP SUMMARY:
 - Conditions identified from records
-- Missing claim-critical evidence
+- Missing claim-critical evidence (cross-reference against the MANDATORY DOCUMENTS list in the reference below)
 - Next required documents for full VRIS rating analysis
+- Secondary conditions to investigate based on the Secondary Conditions Questionnaire below
+
+VRIS™ DOCUMENT REQUIREMENTS & SECONDARY CONDITIONS REFERENCE:
+{document_requirements}
 
 Be precise, evidence-based, and always cite CFR sections.
 PROCEED WITH ANALYSIS NOW using the context provided above.
@@ -1103,7 +1192,8 @@ If the query contains checklist conditions, address each one explicitly and avoi
             {
                 "system_context": system_retriever | format_docs,
                 "veteran_context": veteran_retriever | format_docs,
-                "question": RunnablePassthrough()
+                "question": RunnablePassthrough(),
+                "document_requirements": lambda _: VRIS_DOCUMENT_REQUIREMENTS
             }
             | prompt
             | self.llm
