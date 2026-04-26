@@ -229,6 +229,123 @@ def _is_medical_only_packet(vris_a_output: str, vris_b_output: str) -> bool:
     )
 
 
+def _extract_veteran_name(uploaded_file_paths: List[str], vris_a_data: str = "", vris_b_data: str = "") -> Optional[str]:
+    """
+    Attempt to extract the veteran/patient name from:
+    1. Raw text of uploaded files (PDF/TXT)
+    2. VRIS-A / VRIS-B output text as fallback
+    3. Uploaded filenames as last resort
+    Returns the name in 'Firstname Lastname' format, or None if not found.
+    """
+    def _clean(text: str) -> str:
+        return re.sub(r'[ \t]+', ' ', text)
+
+    patterns = [
+        # "Patient Name: SPENCE, ANYA" or "Patient: SPENCE, ANYA M" — LAST, FIRST [MIDDLE]
+        re.compile(r'Patient\s*Name:\s*([A-Z][A-Z\-\']+,\s*[A-Z][A-Z\s\.\-\']{1,30})', re.IGNORECASE),
+        re.compile(r'Patient:\s*([A-Z][A-Z\-\']+,\s*[A-Z][A-Z\s\.\-\']{1,30})', re.IGNORECASE),
+        # "VETERAN: John M. Sample" or "VETERAN:  John  M.  Sample" (VA decision letter)
+        re.compile(r'VETERAN:\s*([A-Z][a-zA-Z\'\-]+(?:\s+[A-Z][a-zA-Z\.\'\-]+){1,3})', re.IGNORECASE),
+        # "Veteran: John Smith"
+        re.compile(r'Veteran:\s*([A-Z][a-z]+(?:\s[A-Z][a-z]+){1,3})', re.IGNORECASE),
+        # "Name: SMITH, JOHN" or "Name: John Smith"
+        re.compile(r'(?:^|\n)\s*Name:\s*([A-Z][A-Z\-\']+,\s*[A-Z][A-Z\s\.\-\']{1,30})', re.IGNORECASE | re.MULTILINE),
+        re.compile(r'(?:^|\n)\s*Name:\s*([A-Z][a-z]+(?:\s[A-Z][a-z]+){1,3})', re.IGNORECASE | re.MULTILINE),
+        # "VETERAN NAME: JOHN SMITH"
+        re.compile(r'VETERAN\s+NAME:\s*([A-Z][A-Z\s\.\-\']{3,40})', re.IGNORECASE),
+        # "BENEFICIARY: JOHN SMITH"
+        re.compile(r'BENEFICIARY:\s*([A-Z][A-Z\s\.\-\']{3,40})', re.IGNORECASE),
+        # "Claimant Name: John Smith"
+        re.compile(r'Claimant\s+Name:\s*([A-Z][a-zA-Z\'\-]+(?:\s[A-Z][a-zA-Z\'\-]+){1,3})', re.IGNORECASE),
+    ]
+
+    def _normalise(raw: str) -> str:
+        """Convert 'SPENCE, ANYA M' -> 'Anya Spence', plain names -> Title Case."""
+        raw = re.sub(r'\s+', ' ', raw).strip().rstrip('.')
+        # Strip trailing field labels or SSN that VA records append on same line
+        raw = re.sub(
+            r'\s+(SSN|DOB|DOD|MPI|MRN|Date|Appt|Clinic|Phone|Provider|Treatment|Status'
+            r'|\d{3}[-\s]\d{2}[-\s]\d{4}).*$',
+            '', raw, flags=re.IGNORECASE
+        ).strip()
+        if ',' in raw:
+            parts = [p.strip() for p in raw.split(',', 1)]
+            first_parts = parts[1].split()
+            # Drop single-letter middle initials AND known field-label words
+            _field_labels = {'date', 'appt', 'clinic', 'phone', 'type', 'provider',
+                             'treatment', 'status', 'ssn', 'dob'}
+            first = ' '.join(
+                p for p in first_parts
+                if len(p) > 1 and p.lower() not in _field_labels
+            )
+            return f"{first.title()} {parts[0].title()}"
+        return raw.title()
+
+    _NOISE_WORDS = {'the', 'and', 'for', 'rating', 'decision', 'medical',
+                    'health', 'clinic', 'center', 'affairs', 'veterans'}
+
+    def _valid(name: str) -> bool:
+        words = name.split()
+        return (2 <= len(words) <= 5
+                and all(len(w) >= 2 for w in words)
+                and not any(w.lower() in _NOISE_WORDS for w in words))
+
+    def _search(text: str) -> Optional[str]:
+        cleaned = _clean(text)
+        for pat in patterns:
+            m = pat.search(cleaned)
+            if m:
+                candidate = _normalise(m.group(1))
+                if _valid(candidate):
+                    return candidate
+        return None
+
+    # 1. Read raw text from uploaded files
+    for path in uploaded_file_paths:
+        try:
+            ext = Path(path).suffix.lower()
+            text = ""
+            if ext == '.pdf':
+                try:
+                    import pypdf
+                    reader = pypdf.PdfReader(path)
+                    for page in reader.pages[:5]:
+                        text += (page.extract_text() or "")
+                except Exception:
+                    pass
+            elif ext in ('.txt', '.docx'):
+                with open(path, 'r', errors='ignore') as f:
+                    text = f.read(3000)
+            name = _search(text)
+            if name:
+                return name
+        except Exception:
+            continue
+
+    # 2. Fallback: scan VRIS output
+    for text in (vris_a_data, vris_b_data):
+        name = _search(text)
+        if name:
+            return name
+
+    # 3. Last resort: extract from filename (e.g. "Anya Spence Sleep Apnea Records.pdf")
+    for path in uploaded_file_paths:
+        stem = Path(path).stem
+        stem_clean = re.sub(
+            r'[-_\s]*(sleep|medical|health|records|report|exam|decision|letter|'
+            r'dbq|cp|allergic|rhinitis|headache|migraine|knee|anemia|general|pcm|'
+            r'copy|final|va|army|navy|air|force|marine|jefferson|request|inrlmr).*$',
+            '', stem, flags=re.IGNORECASE
+        ).strip(' _-')
+        words = re.findall(r'[A-Za-z]{2,}', stem_clean)
+        if 2 <= len(words) <= 3:
+            candidate = ' '.join(w.title() for w in words)
+            if _valid(candidate):
+                return candidate
+
+    return None
+
+
 def _enrich_medical_only_findings(findings: Dict[str, Any], vris_a_output: str, vris_b_output: str) -> Dict[str, Any]:
     findings["missed_conditions"].extend(_parse_condition_coverage_index(vris_a_output))
     findings["missed_conditions"].extend(_parse_condition_coverage_index(vris_b_output))
@@ -321,12 +438,17 @@ async def _run_vris_analysis(files: List[UploadFile]) -> Dict[str, Any]:
         print("✅ Analysis complete")
         print(f"{'='*70}\n")
 
+        veteran_name = _extract_veteran_name(uploaded_files, vris_a_data, vris_b_data)
+        if veteran_name:
+            print(f"👤 Veteran name extracted: {veteran_name}")
+
         return {
             "findings": findings,
             "summary": summary,
             "vris_a_data": vris_a_data,
             "vris_b_data": vris_b_data,
             "file_info": file_info,
+            "veteran_name": veteran_name,
         }
     finally:
         if os.path.exists(temp_dir):
@@ -387,6 +509,7 @@ async def analyze_veteran_documents(
             "timestamp": datetime.now().isoformat(),
             "analysis_type": "VRIS Complete Analysis",
             "files_analyzed": file_info,
+            "veteran_name": data.get("veteran_name"),
             "vris_a_extraction": {
                 "description": "Extracted data from veteran documents",
                 "data": vris_a_data
@@ -892,6 +1015,7 @@ def generate_pdf_report(
     vris_a_data: str,
     vris_b_data: str,
     files_analyzed: List[Dict[str, Any]],
+    veteran_name: Optional[str] = None,
 ) -> bytes:
     """Generate a styled GET VA HELP™ Full Gap Analysis PDF using ReportLab."""
     S = _pdf_styles()
@@ -957,7 +1081,7 @@ def generate_pdf_report(
     conf_text  = (f"{overall_confidence}% Agreement (VRIS-A / VRIS-B)"
                   if overall_confidence else "N/A")
     info_data = [
-        ["Veteran:",            "[Name Redacted for Privacy]"],
+        ["Veteran:",            veteran_name or "[Name Not Provided]"],
         ["Date of Report:",     date_str],
         ["Report Prepared By:", "Veteran Rating Intelligence System (VRIS\u2122)"],
         ["Confidence Level:",   conf_text],
@@ -1388,12 +1512,14 @@ async def generate_pdf_from_json(request: Request):
             "total_opportunities": 0,
         })
         summary       = body.get("summary", {})
-        vris_a_data   = body.get("vris_a_extraction", {}).get("data", "")
-        vris_b_data   = body.get("vris_b_reasoning",  {}).get("data", "")
+        vris_a_data    = body.get("vris_a_extraction", {}).get("data", "")
+        vris_b_data    = body.get("vris_b_reasoning",  {}).get("data", "")
         files_analyzed = body.get("files_analyzed", [])
+        veteran_name   = body.get("veteran_name") or body.get("veteran", {}).get("name")
 
         pdf_bytes = generate_pdf_report(
-            findings, summary, vris_a_data, vris_b_data, files_analyzed
+            findings, summary, vris_a_data, vris_b_data, files_analyzed,
+            veteran_name=veteran_name,
         )
         return StreamingResponse(
             io.BytesIO(pdf_bytes),
@@ -1425,6 +1551,7 @@ async def analyze_veteran_documents_pdf(files: List[UploadFile]):
             data["vris_a_data"],
             data["vris_b_data"],
             data["file_info"],
+            veteran_name=data.get("veteran_name"),
         )
         return StreamingResponse(
             io.BytesIO(pdf_bytes),
