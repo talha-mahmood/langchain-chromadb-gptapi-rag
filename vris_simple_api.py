@@ -3,17 +3,25 @@ VRIS™ Simple API - Single Endpoint
 Upload veteran documents → Get complete analysis
 """
 
-from fastapi import FastAPI, UploadFile, HTTPException
+from fastapi import FastAPI, UploadFile, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.openapi.utils import get_openapi
+from fastapi.responses import StreamingResponse
 from typing import Any, Dict, List, Optional
 from pathlib import Path
 import shutil
 import os
 import re
+import io
 from datetime import datetime
 import tempfile
 from vris_rag_system import VRISRAGSystem
+from reportlab.lib.pagesizes import letter
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.units import inch
+from reportlab.lib.colors import HexColor, white
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Table, TableStyle, Spacer, KeepTogether
+from reportlab.lib.enums import TA_LEFT, TA_CENTER
 
 app = FastAPI(
     title="VRIS™ API", 
@@ -227,106 +235,72 @@ def _enrich_medical_only_findings(findings: Dict[str, Any], vris_a_output: str, 
     return _dedupe_findings(findings)
 
 
-@app.post("/api/vris/analyze")
-async def analyze_veteran_documents(
-    files: List[UploadFile]
-) -> Dict[str, Any]:
-    """
-    VRIS™ Complete Analysis Endpoint
-    
-    Upload veteran documents and receive comprehensive analysis identifying:
-    - Underrated conditions (current rating too low)
-    - Missed conditions (in evidence but not rated)
-    - Secondary conditions (caused by service-connected conditions)
-    
-    VRIS-A extracts all data (diagnostic codes, CFR references, symptoms)
-    VRIS-B reasons through findings and flags inconsistencies
-    
-    Both pipelines must agree by 90%+ for high-confidence opportunities.
-    """
-    temp_dir = None
-    
+async def _run_vris_analysis(files: List[UploadFile]) -> Dict[str, Any]:
+    """Core VRIS analysis pipeline shared by JSON and PDF endpoints."""
+    if not files or len(files) == 0:
+        raise HTTPException(
+            status_code=400,
+            detail="No files provided. Please upload veteran documents."
+        )
+
+    temp_dir = tempfile.mkdtemp(prefix="vris_")
     try:
-        # Validate files
-        if not files or len(files) == 0:
-            raise HTTPException(
-                status_code=400, 
-                detail="No files provided. Please upload veteran documents."
-            )
-        
-        # Create temporary directory for this analysis
-        temp_dir = tempfile.mkdtemp(prefix="vris_")
         uploaded_files = []
         file_info = []
-        
-        # Save uploaded files
+
         for file in files:
             file_ext = Path(file.filename).suffix.lower()
             if file_ext not in ['.pdf', '.docx', '.txt']:
                 print(f"⚠️  Skipping unsupported file type: {file.filename}")
                 continue
-            
             file_path = Path(temp_dir) / file.filename
             with open(file_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
-            
             uploaded_files.append(str(file_path))
             file_info.append({
                 "filename": file.filename,
                 "size": os.path.getsize(file_path),
                 "type": file_ext[1:]
             })
-        
+
         if not uploaded_files:
             raise HTTPException(
-                status_code=400, 
+                status_code=400,
                 detail="No valid files uploaded. Supported formats: PDF, DOCX, TXT"
             )
-        
+
         print(f"\n{'='*70}")
         print(f"📄 Analyzing {len(uploaded_files)} document(s) for veteran")
         print(f"{'='*70}")
-        
-        # Create VRIS instance for this analysis
+
         vris = VRISRAGSystem(
             system_docs_folder=SYSTEM_DOCS_FOLDER,
             veteran_docs_folder="",
             persist_directory=CHROMA_DB_DIR,
             model_name="gpt-4"
         )
-        
-        # Use pre-loaded system vectorstore
         vris.system_vectorstore = vris_system.system_vectorstore
-        
-        # Process veteran documents (in-memory, not persisted)
         vris.process_veteran_documents_from_upload(uploaded_files)
-        
+
         print("\n🔄 Running VRIS dual-pipeline analysis...")
         print("   VRIS-A: Extracting diagnostic codes, symptoms, evidence...")
-        
-        # Run complete VRIS analysis (Second Look VRE for comprehensive analysis)
+
         analysis_result = vris.generate_second_look_vre()
-        
+
         print("   VRIS-B: Reasoning against CFR Title 38 criteria...")
-        
-        # Extract findings and structure response
+
         vris_a_data = analysis_result.get('vris_a_result', '')
         vris_b_data = analysis_result.get('vris_b_result', '')
-        
-        # Check if VRIS-B failed to analyze
+
         if "I don't have the ability" in vris_b_data or "I can't" in vris_b_data or len(vris_b_data) < 200:
-            print("⚠️  Warning: VRIS-B analysis may have failed - retrying with explicit instructions...")
-            # This shouldn't happen with the updated prompts, but log it
             raise Exception("VRIS-B refused to analyze. Please check system vectorstore has CFR documentation.")
-        
-        # Parse VRIS-B output to extract structured findings
+
         findings = parse_vris_findings(vris_b_data)
 
         medical_only = _is_medical_only_packet(vris_a_data, vris_b_data)
         if medical_only:
             findings = _enrich_medical_only_findings(findings, vris_a_data, vris_b_data)
 
-        # Generate summary with medical-only fallback guidance
         summary = generate_summary(findings)
         combined_analysis_text = f"{vris_a_data}\n{vris_b_data}".lower()
         medical_only_signals = [
@@ -344,77 +318,93 @@ async def analyze_veteran_documents(
                 "and service-connection evidence (in-service event + nexus)."
             )
 
-        formatted_report = generate_full_report(findings, summary, vris_a_data, vris_b_data, file_info)
-
-        # Build response
-        response = {
-            "success": True,
-            "timestamp": datetime.now().isoformat(),
-            "analysis_type": "VRIS Complete Analysis",
-            "files_analyzed": file_info,
-            
-            # VRIS-A: Raw extraction
-            "vris_a_extraction": {
-                "description": "Extracted data from veteran documents",
-                "data": vris_a_data
-            },
-            
-            # VRIS-B: Reasoning and findings
-            "vris_b_reasoning": {
-                "description": "Analysis against VA rating criteria (38 CFR)",
-                "data": vris_b_data
-            },
-            
-            # Structured findings
-            "findings": findings,
-            
-            # Summary
-            "summary": summary,
-
-            # GET VA HELP™ formatted report
-            "formatted_report": formatted_report,
-
-            # Compliance
-            "data_retention": "Files processed in-memory only. Not stored. Deleted immediately after analysis.",
-            "system_info": "VRIS™ - Veteran Rating Intelligence System"
-        }
-        
         print("✅ Analysis complete")
         print(f"{'='*70}\n")
-        
-        return response
-    
-    except HTTPException:
-        raise
-    except Exception as e:
-        error_text = str(e)
-        print(f"❌ Error during analysis: {error_text}")
 
-        # OCR/setup issues should be user-actionable (400), not server-fault (500)
-        if "OCR is required" in error_text or "Install OCR dependencies" in error_text:
-            raise HTTPException(status_code=400, detail=error_text)
-
-        # Token-limit errors should be surfaced as actionable request issues.
-        lowered = error_text.lower()
-        if "context_length_exceeded" in lowered or "maximum context length" in lowered:
-            raise HTTPException(
-                status_code=400,
-                detail=(
-                    "Analysis input exceeded model context limit. "
-                    "Retry with fewer/lower-length documents or use a higher-context model configuration."
-                ),
-            )
-
-        raise HTTPException(status_code=500, detail=f"Analysis failed: {error_text}")
-    
+        return {
+            "findings": findings,
+            "summary": summary,
+            "vris_a_data": vris_a_data,
+            "vris_b_data": vris_b_data,
+            "file_info": file_info,
+        }
     finally:
-        # Cleanup: Delete temporary files immediately
-        if temp_dir and os.path.exists(temp_dir):
+        if os.path.exists(temp_dir):
             try:
                 shutil.rmtree(temp_dir)
                 print(f"🗑️  Temporary files deleted: {temp_dir}")
             except Exception as e:
                 print(f"⚠️  Warning: Could not delete temp files: {e}")
+
+
+def _handle_analysis_exception(e: Exception) -> None:
+    """Re-raise analysis exceptions as appropriate HTTPException."""
+    error_text = str(e)
+    print(f"❌ Error during analysis: {error_text}")
+    if "OCR is required" in error_text or "Install OCR dependencies" in error_text:
+        raise HTTPException(status_code=400, detail=error_text)
+    lowered = error_text.lower()
+    if "context_length_exceeded" in lowered or "maximum context length" in lowered:
+        raise HTTPException(
+            status_code=400,
+            detail=(
+                "Analysis input exceeded model context limit. "
+                "Retry with fewer/lower-length documents or use a higher-context model configuration."
+            ),
+        )
+    raise HTTPException(status_code=500, detail=f"Analysis failed: {error_text}")
+
+
+@app.post("/api/vris/analyze")
+async def analyze_veteran_documents(
+    files: List[UploadFile]
+) -> Dict[str, Any]:
+    """
+    VRIS™ Complete Analysis Endpoint
+
+    Upload veteran documents and receive comprehensive analysis identifying:
+    - Underrated conditions (current rating too low)
+    - Missed conditions (in evidence but not rated)
+    - Secondary conditions (caused by service-connected conditions)
+
+    VRIS-A extracts all data (diagnostic codes, CFR references, symptoms)
+    VRIS-B reasons through findings and flags inconsistencies
+
+    Both pipelines must agree by 90%+ for high-confidence opportunities.
+    """
+    try:
+        data = await _run_vris_analysis(files)
+        findings  = data["findings"]
+        summary   = data["summary"]
+        vris_a_data = data["vris_a_data"]
+        vris_b_data = data["vris_b_data"]
+        file_info   = data["file_info"]
+
+        formatted_report = generate_full_report(findings, summary, vris_a_data, vris_b_data, file_info)
+
+        return {
+            "success": True,
+            "timestamp": datetime.now().isoformat(),
+            "analysis_type": "VRIS Complete Analysis",
+            "files_analyzed": file_info,
+            "vris_a_extraction": {
+                "description": "Extracted data from veteran documents",
+                "data": vris_a_data
+            },
+            "vris_b_reasoning": {
+                "description": "Analysis against VA rating criteria (38 CFR)",
+                "data": vris_b_data
+            },
+            "findings": findings,
+            "summary": summary,
+            "formatted_report": formatted_report,
+            "data_retention": "Files processed in-memory only. Not stored. Deleted immediately after analysis.",
+            "system_info": "VRIS™ - Veteran Rating Intelligence System"
+        }
+    except HTTPException:
+        raise
+    except Exception as e:
+        _handle_analysis_exception(e)
 
 
 def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
@@ -450,6 +440,8 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
                 "potential_rating": None,
                 "confidence": None,
                 "phase": None,
+                "analysis": None,
+                "recommendation": None,
                 "evidence": [],
                 "cfr_citations": []
             }
@@ -479,13 +471,25 @@ def parse_vris_findings(vris_b_output: str) -> Dict[str, Any]:
             except:
                 pass
         
+        # Extract Analysis narrative
+        elif current_condition and line.startswith('Analysis:'):
+            text = line.split('Analysis:', 1)[1].strip()
+            if text:
+                current_condition["analysis"] = text
+
+        # Extract Recommendation
+        elif current_condition and line.startswith('Recommendation:'):
+            text = line.split('Recommendation:', 1)[1].strip()
+            if text:
+                current_condition["recommendation"] = text
+
         # Extract CFR citations
         elif current_condition and ('38 CFR' in line or 'Diagnostic Code' in line) and 'Evidence:' not in line:
             current_condition["cfr_citations"].append(line)
         
         # Extract evidence (make sure "Evidence:" lines go to evidence, not cfr_citations)
         elif current_condition and 'Evidence:' in line:
-            evidence_text = line.split('Evidence:')[1].strip() if ':' in line else line
+            evidence_text = line.split('Evidence:', 1)[1].strip() if ':' in line else line
             if evidence_text:
                 current_condition["evidence"].append(evidence_text)
         
@@ -808,6 +812,529 @@ def generate_full_report(
     return "\n".join(L)
 
 
+# ---------------------------------------------------------------------------
+# PDF Report Generation
+# ---------------------------------------------------------------------------
+
+# Brand colours
+_PDF_BRAND_BLUE  = HexColor('#15467A')
+_PDF_HEADER_BG   = HexColor('#1A4A8A')
+_PDF_LIGHT_BG    = HexColor('#EBF2FA')
+_PDF_STRIPE      = HexColor('#F4F7FC')
+_PDF_DARK_TEXT   = HexColor('#1A1A2E')
+
+
+def _pdf_styles() -> Dict[str, ParagraphStyle]:
+    """Return a dict of named ParagraphStyle objects used by generate_pdf_report."""
+    return {
+        "title": ParagraphStyle(
+            'VRISTitle', fontName='Helvetica-Bold', fontSize=20,
+            textColor=white, backColor=_PDF_HEADER_BG,
+            alignment=TA_CENTER, spaceAfter=0, spaceBefore=0,
+            leftIndent=8, rightIndent=8, leading=26,
+        ),
+        "subtitle": ParagraphStyle(
+            'VRISSubtitle', fontName='Helvetica-Bold', fontSize=13,
+            textColor=white, backColor=_PDF_BRAND_BLUE,
+            alignment=TA_CENTER, spaceAfter=0, spaceBefore=0, leading=18,
+        ),
+        "section": ParagraphStyle(
+            'VRISSectionHeader', fontName='Helvetica-Bold', fontSize=10,
+            textColor=white, backColor=_PDF_BRAND_BLUE,
+            spaceAfter=5, spaceBefore=10,
+            leftIndent=6, leading=15,
+        ),
+        "condition": ParagraphStyle(
+            'VRISCondition', fontName='Helvetica-Bold', fontSize=10,
+            textColor=_PDF_BRAND_BLUE, spaceAfter=2, spaceBefore=6,
+        ),
+        "normal": ParagraphStyle(
+            'VRISNormal', fontName='Helvetica', fontSize=9,
+            textColor=_PDF_DARK_TEXT, spaceAfter=2, leading=13,
+        ),
+        "meta": ParagraphStyle(
+            'VRISMeta', fontName='Helvetica', fontSize=9,
+            textColor=HexColor('#444444'), spaceAfter=2, leading=13,
+        ),
+        "bullet": ParagraphStyle(
+            'VRISBullet', fontName='Helvetica', fontSize=9,
+            textColor=_PDF_DARK_TEXT, leftIndent=14, spaceAfter=3, leading=13,
+        ),
+        "disclaimer": ParagraphStyle(
+            'VRISDisclaimer', fontName='Helvetica-Oblique', fontSize=8,
+            textColor=HexColor('#555555'), spaceAfter=2, leading=11,
+        ),
+    }
+
+
+def _table_style(has_stripe: bool = True) -> TableStyle:
+    """Standard table style with dark-blue header row."""
+    cmds = [
+        ('BACKGROUND',   (0, 0), (-1, 0), _PDF_HEADER_BG),
+        ('TEXTCOLOR',    (0, 0), (-1, 0), white),
+        ('FONTNAME',     (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTNAME',     (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE',     (0, 0), (-1, -1), 9),
+        ('VALIGN',       (0, 0), (-1, -1), 'MIDDLE'),
+        ('TOPPADDING',   (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING',(0, 0), (-1, -1), 4),
+        ('LEFTPADDING',  (0, 0), (-1, -1), 6),
+        ('GRID',         (0, 0), (-1, -1), 0.25, HexColor('#CCCCCC')),
+    ]
+    if has_stripe:
+        cmds.append(('ROWBACKGROUNDS', (0, 1), (-1, -1), [white, _PDF_STRIPE]))
+    return TableStyle(cmds)
+
+
+def generate_pdf_report(
+    findings: Dict[str, Any],
+    summary: Dict[str, Any],
+    vris_a_data: str,
+    vris_b_data: str,
+    files_analyzed: List[Dict[str, Any]],
+) -> bytes:
+    """Generate a styled GET VA HELP™ Full Gap Analysis PDF using ReportLab."""
+    S = _pdf_styles()
+
+    # ── Computed values (same logic as generate_full_report) ──────────────
+    date_str      = datetime.now().strftime("%B %d, %Y")
+    underrated    = findings.get("underrated_conditions", [])
+    missed        = findings.get("missed_conditions", [])
+    secondary     = findings.get("secondary_conditions", [])
+    all_non_rated = missed + secondary
+
+    phase1 = [c for c in all_non_rated
+              if (c.get("phase") in (1, "1")) or ((c.get("confidence") or 0) >= 85)]
+    phase2 = [c for c in all_non_rated if c not in phase1]
+
+    current_ratings = [r for r in
+                       [_parse_rating_int(c.get("current_rating")) for c in underrated]
+                       if r is not None]
+    current_combined = calculate_va_combined_rating(current_ratings) if current_ratings else None
+    current_comp     = get_monthly_compensation(current_combined) if current_combined is not None else None
+
+    projected_ratings = list(current_ratings)
+    for c in underrated:
+        old_r = _parse_rating_int(c.get("current_rating"))
+        new_r = _parse_rating_int(c.get("potential_rating"))
+        if old_r is not None and new_r is not None and new_r > old_r:
+            try:
+                projected_ratings.remove(old_r)
+            except ValueError:
+                pass
+            projected_ratings.append(new_r)
+    for c in phase1:
+        r = _parse_rating_int(c.get("potential_rating"))
+        if r and r > 0:
+            projected_ratings.append(r)
+
+    projected_combined = calculate_va_combined_rating(projected_ratings) if projected_ratings else None
+    projected_comp     = get_monthly_compensation(projected_combined) if projected_combined is not None else None
+
+    all_confs = [(c.get("confidence") or 0)
+                 for c in underrated + missed + secondary
+                 if c.get("confidence") is not None]
+    overall_confidence = int(sum(all_confs) / len(all_confs)) if all_confs else None
+
+    # ── Document setup ────────────────────────────────────────────────────
+    buffer  = io.BytesIO()
+    doc     = SimpleDocTemplate(
+        buffer, pagesize=letter,
+        topMargin=0.75*inch, bottomMargin=0.75*inch,
+        leftMargin=0.75*inch, rightMargin=0.75*inch,
+    )
+    # Usable content width
+    CW = letter[0] - 1.5*inch
+
+    elements: List[Any] = []
+
+    # ── HEADER ────────────────────────────────────────────────────────────
+    elements.append(Paragraph("GET VA HELP\u2122", S["title"]))
+    elements.append(Paragraph("Full Gap Analysis Report", S["subtitle"]))
+    elements.append(Spacer(1, 0.12*inch))
+
+    doc_names  = ", ".join(f["filename"] for f in files_analyzed) if files_analyzed else "N/A"
+    conf_text  = (f"{overall_confidence}% Agreement (VRIS-A / VRIS-B)"
+                  if overall_confidence else "N/A")
+    info_data = [
+        ["Veteran:",            "[Name Redacted for Privacy]"],
+        ["Date of Report:",     date_str],
+        ["Report Prepared By:", "Veteran Rating Intelligence System (VRIS\u2122)"],
+        ["Confidence Level:",   conf_text],
+        ["Documents Analyzed:", doc_names],
+    ]
+    info_table = Table(info_data, colWidths=[1.6*inch, CW - 1.6*inch])
+    info_table.setStyle(TableStyle([
+        ('FONTNAME',     (0, 0), (0, -1), 'Helvetica-Bold'),
+        ('FONTNAME',     (1, 0), (1, -1), 'Helvetica'),
+        ('FONTSIZE',     (0, 0), (-1, -1), 9),
+        ('TEXTCOLOR',    (0, 0), (0, -1), _PDF_BRAND_BLUE),
+        ('VALIGN',       (0, 0), (-1, -1), 'TOP'),
+        ('TOPPADDING',   (0, 0), (-1, -1), 2),
+        ('BOTTOMPADDING',(0, 0), (-1, -1), 2),
+    ]))
+    elements.append(info_table)
+    elements.append(Spacer(1, 0.12*inch))
+
+    # ── OVERVIEW ──────────────────────────────────────────────────────────
+    elements.append(Paragraph("OVERVIEW", S["section"]))
+    elements.append(Paragraph(
+        "VRIS\u2122 conducted a comprehensive evaluation of the veteran\u2019s claim record including "
+        "VA Rating Decision Letter, C&amp;P Exams, STRs, private records, and Secondary Conditions "
+        "Questionnaire. The goal was to identify underrating, missed secondary conditions, and "
+        "causal links under 38 CFR Part\u00a04 and \u00a73.310 that could increase the veteran\u2019s "
+        "combined rating.",
+        S["normal"]
+    ))
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── CURRENT RATING OVERVIEW ───────────────────────────────────────────
+    elements.append(Paragraph("CURRENT RATING OVERVIEW", S["section"]))
+    if underrated:
+        cr_data = [["Condition", "DC", "Current Rating", "Potential Rating"]]
+        for c in underrated:
+            dc = ""
+            for cit in (c.get("cfr_citations") or []):
+                m = re.search(r'DC\s*[:#]?\s*(\d{4,5})', cit, re.IGNORECASE)
+                if m:
+                    dc = m.group(1)
+                    break
+            cr_data.append([
+                c.get("name") or "",
+                dc,
+                str(c.get("current_rating") or "?"),
+                str(c.get("potential_rating") or "?"),
+            ])
+        if current_combined is not None:
+            cr_data.append([
+                "Combined Rating", "",
+                f"{current_combined}%",
+                f"{projected_combined}%" if projected_combined else "?",
+            ])
+        cr_table = Table(cr_data, colWidths=[3.1*inch, 0.7*inch, 1.15*inch, 1.25*inch])
+        ts = _table_style()
+        if current_combined is not None:
+            ts.add('FONTNAME',   (0, -1), (-1, -1), 'Helvetica-Bold')
+            ts.add('BACKGROUND', (0, -1), (-1, -1), _PDF_LIGHT_BG)
+        cr_table.setStyle(ts)
+        elements.append(cr_table)
+        if current_comp is not None:
+            elements.append(Spacer(1, 0.04*inch))
+            elements.append(Paragraph(
+                f"<b>Monthly Compensation (Est.):</b> ${current_comp:,.2f}"
+                " (Single Veteran, 2025 VA Chart)",
+                S["normal"]
+            ))
+    else:
+        elements.append(Paragraph(
+            "No current VA rating data found in provided documents. "
+            "Upload VA Decision Letter and Code Sheet for full rating analysis.",
+            S["normal"]
+        ))
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── VRIS™ FINDINGS & ANALYSIS (all conditions combined) ─────────────
+    all_findings = list(underrated) + list(phase1)
+    if all_findings:
+        elements.append(Paragraph("VRIS\u2122 FINDINGS &amp; ANALYSIS", S["section"]))
+        for c in all_findings:
+            block: List[Any] = []
+            is_underrated = c in underrated
+
+            # Condition title line: name + DC code if available
+            dc = ""
+            for cit in (c.get("cfr_citations") or []):
+                m = re.search(r'DC\s*[:#]?\s*(\d{4,5})', cit, re.IGNORECASE)
+                if m:
+                    dc = m.group(1)
+                    break
+            title = c.get('name', 'Unknown')
+            if dc:
+                title = f"{title} (DC {dc})"
+            elif not is_underrated:
+                title = f"{title}"
+            block.append(Paragraph(title, S["condition"]))
+
+            # Analysis line - prefer parsed analysis text, fall back to evidence
+            analysis_text = c.get("analysis")
+            if not analysis_text:
+                ev = (c.get("evidence") or [])
+                if ev and not ev[0].lower().startswith("documented in"):
+                    analysis_text = ev[0]
+                elif ev:
+                    # Reframe page reference as an evidence note
+                    analysis_text = (
+                        ev[0] + ". See VA records for full clinical details."
+                    )
+            if analysis_text:
+                block.append(Paragraph(f"<b>Analysis:</b> {analysis_text}", S["normal"]))
+
+            # Recommendation line
+            rec_text = c.get("recommendation")
+            if not rec_text:
+                if is_underrated:
+                    pot = c.get('potential_rating')
+                    cur = c.get('current_rating', '?')
+                    rec_text = (
+                        f"File Supplemental Claim for increased rating"
+                        + (f" from {cur}% \u2192 {pot}%" if pot and pot != '?' else ".")
+                    )
+                else:
+                    pot = c.get('potential_rating')
+                    rec_text = (
+                        "File New Secondary Claim"
+                        + (f", suggested rating {pot}%" if pot and pot not in ('?', 'Not specified due to missing VA rating evidence') else ".")
+                    )
+            block.append(Paragraph(f"<b>Recommendation:</b> {rec_text}", S["normal"]))
+
+            # Confidence line
+            conf = c.get("confidence")
+            if conf is not None:
+                block.append(Paragraph(
+                    f"<b>Confidence:</b> {conf}% ({_confidence_label(conf)})", S["normal"]
+                ))
+
+            elements.append(KeepTogether(block))
+            elements.append(Spacer(1, 0.04*inch))
+        elements.append(Spacer(1, 0.06*inch))
+
+    # ── PHASE 2 CORRELATIVE FINDINGS ─────────────────────────────────────
+    # Deduplicate phase2 against phase1 by condition name (case-insensitive)
+    phase1_names = {(c.get("name") or "").lower().strip() for c in phase1}
+    seen_p2 = set()
+    phase2_display = []
+    for c in phase2:
+        n = (c.get("name") or "").lower().strip()
+        if n not in phase1_names and n not in seen_p2:
+            phase2_display.append(c)
+            seen_p2.add(n)
+
+    if phase2_display:
+        elements.append(Paragraph("PHASE 2 CORRELATIVE FINDINGS", S["section"]))
+        elements.append(Paragraph(
+            "Lower-confidence findings that may merit review by a VSO representative:",
+            S["normal"]
+        ))
+        # Header row uses bold Paragraphs so they wrap safely too
+        hdr = ParagraphStyle('p2hdr', parent=S["normal"], fontName='Helvetica-Bold',
+                             textColor=white, backColor=_PDF_HEADER_BG)
+        p2_data = [
+            [Paragraph("Potential Condition", hdr),
+             Paragraph("Possible Connection", hdr),
+             Paragraph("Confidence", hdr)]
+        ]
+        for c in phase2_display:
+            # Extract just ICD code + page from evidence string
+            ev_raw = (c.get("evidence") or ["Secondary relationship"])[0]
+            icd_match = re.search(
+                r'[-\u2013]\s*([A-Z][0-9][\w.]*)\s*(\(Pages?[\s\d,]+\))',
+                ev_raw
+            )
+            ev_short = (
+                f"ICD: {icd_match.group(1)} {icd_match.group(2)}"
+                if icd_match
+                else (ev_raw[:40] + ("..." if len(ev_raw) > 40 else ""))
+            )
+            conf = c.get("confidence")
+            conf_str = f"{conf}% ({_confidence_label(conf)})" if conf is not None else "Unscored"
+            p2_data.append([
+                Paragraph(c.get("name") or "", S["normal"]),
+                Paragraph(ev_short, S["normal"]),
+                Paragraph(conf_str, S["normal"]),
+            ])
+        # Dedicate larger share to Condition name; ICD is always short
+        p2_table = Table(p2_data, colWidths=[3.2*inch, 2.0*inch, 1.5*inch],
+                         repeatRows=1)
+        p2_ts = TableStyle([
+            ('BACKGROUND',    (0, 0), (-1, 0), _PDF_HEADER_BG),
+            ('FONTNAME',      (0, 1), (-1, -1), 'Helvetica'),
+            ('FONTSIZE',      (0, 0), (-1, -1), 9),
+            ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+            ('TOPPADDING',    (0, 0), (-1, -1), 4),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ('LEFTPADDING',   (0, 0), (-1, -1), 6),
+            ('GRID',          (0, 0), (-1, -1), 0.25, HexColor('#CCCCCC')),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [white, _PDF_STRIPE]),
+        ])
+        p2_table.setStyle(p2_ts)
+        elements.append(p2_table)
+        elements.append(Spacer(1, 0.08*inch))
+
+    # ── CONFIDENCE SUMMARY ────────────────────────────────────────────────
+    elements.append(Paragraph("CONFIDENCE SUMMARY", S["section"]))
+    conf_data = [["Category", "VRIS-A", "VRIS-B", "Agreement Level"]]
+    for label, group in [("Primary Conditions", underrated),
+                         ("Secondary Conditions", phase1),
+                         ("Phase 2 Correlations", phase2)]:
+        if group:
+            avg = int(sum((c.get("confidence") or 0) for c in group) / len(group))
+            conf_data.append([label, f"{avg}%", f"{avg}%", f"{avg}%"])
+    if len(conf_data) == 1:
+        conf_data.append(["No findings", "N/A", "N/A", "N/A"])
+    conf_table = Table(conf_data, colWidths=[2.5*inch, 1.1*inch, 1.1*inch, 1.5*inch])
+    conf_table.setStyle(_table_style())
+    elements.append(conf_table)
+    if overall_confidence:
+        elements.append(Spacer(1, 0.04*inch))
+        suffix = (" \u2014 Eligible for refund-backed rating prediction guarantee"
+                  if overall_confidence >= 90 else "")
+        elements.append(Paragraph(
+            f"<b>Overall Confidence Score: {overall_confidence}%</b>{suffix}",
+            S["normal"]
+        ))
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── PROJECTED RATING & COMPENSATION ──────────────────────────────────
+    elements.append(Paragraph("PROJECTED RATING &amp; COMPENSATION IMPACT", S["section"]))
+
+    def _fmt_rating(val: Any) -> str:
+        """Clean potential_rating for display."""
+        if val is None:
+            return "Pending VA Rating"
+        s = str(val).strip().rstrip('%')
+        if not s or s == '?' or 'not specified' in s.lower() or 'missing' in s.lower():
+            return "Pending VA Rating"
+        return s + "%"
+
+    if underrated or phase1:
+        hdr2 = ParagraphStyle('projhdr', parent=S["normal"], fontName='Helvetica-Bold',
+                              textColor=white, backColor=_PDF_HEADER_BG)
+        proj_data = [
+            [Paragraph("Condition", hdr2), Paragraph("Projected Rating", hdr2)]
+        ]
+        for c in list(underrated) + list(phase1):
+            proj_data.append([
+                Paragraph(c.get("name") or "", S["normal"]),
+                Paragraph(_fmt_rating(c.get("potential_rating")), S["normal"]),
+            ])
+        proj_table = Table(proj_data, colWidths=[4.8*inch, 1.9*inch], repeatRows=1)
+        proj_ts = TableStyle([
+            ('BACKGROUND',    (0, 0), (-1, 0), _PDF_HEADER_BG),
+            ('FONTSIZE',      (0, 0), (-1, -1), 9),
+            ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+            ('TOPPADDING',    (0, 0), (-1, -1), 4),
+            ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+            ('LEFTPADDING',   (0, 0), (-1, -1), 6),
+            ('GRID',          (0, 0), (-1, -1), 0.25, HexColor('#CCCCCC')),
+            ('ROWBACKGROUNDS', (0, 1), (-1, -1), [white, _PDF_STRIPE]),
+        ])
+        proj_table.setStyle(proj_ts)
+        elements.append(proj_table)
+        elements.append(Spacer(1, 0.04*inch))
+        if projected_combined is not None:
+            if current_combined is not None:
+                elements.append(Paragraph(
+                    f"<b>Projected Combined Rating:</b> {projected_combined}%"
+                    f" (from {current_combined}%)",
+                    S["normal"]
+                ))
+                if projected_comp is not None and current_comp is not None:
+                    delta = projected_comp - current_comp
+                    elements.append(Paragraph(
+                        f"<b>Projected Monthly Compensation:</b> ${projected_comp:,.2f}"
+                        f" (+${delta:,.2f}/month increase)",
+                        S["normal"]
+                    ))
+            else:
+                elements.append(Paragraph(
+                    f"<b>Projected Combined Rating:</b> {projected_combined}%", S["normal"]
+                ))
+                if projected_comp is not None:
+                    elements.append(Paragraph(
+                        f"<b>Projected Monthly Compensation (Est.):</b> ${projected_comp:,.2f}",
+                        S["normal"]
+                    ))
+    else:
+        elements.append(Paragraph(
+            "Upload VA Decision Letter and C&amp;P exams to enable projected rating calculation.",
+            S["normal"]
+        ))
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── FILING RECOMMENDATIONS ────────────────────────────────────────────
+    elements.append(Paragraph("FILING RECOMMENDATIONS", S["section"]))
+    hdr3 = ParagraphStyle('filinghdr', parent=S["normal"], fontName='Helvetica-Bold',
+                          textColor=white, backColor=_PDF_HEADER_BG)
+    filing_data = [
+        [Paragraph("Action", hdr3), Paragraph("Claim Type", hdr3), Paragraph("Confidence", hdr3)]
+    ]
+    for c in underrated:
+        conf_str = f"{c['confidence']}%" if c.get("confidence") is not None else "\u2014"
+        filing_data.append([
+            Paragraph(f"Increase: {c.get('name') or ''}", S["normal"]),
+            Paragraph("Supplemental", S["normal"]),
+            Paragraph(conf_str, S["normal"]),
+        ])
+    for c in phase1:
+        conf_str = f"{c['confidence']}%" if c.get("confidence") is not None else "\u2014"
+        filing_data.append([
+            Paragraph(f"Secondary: {c.get('name') or ''}", S["normal"]),
+            Paragraph("New Claim", S["normal"]),
+            Paragraph(conf_str, S["normal"]),
+        ])
+    if len(filing_data) == 1:
+        filing_data.append([
+            Paragraph("No recommendations available", S["normal"]),
+            Paragraph("\u2014", S["normal"]),
+            Paragraph("\u2014", S["normal"]),
+        ])
+    filing_ts = TableStyle([
+        ('BACKGROUND',    (0, 0), (-1, 0), _PDF_HEADER_BG),
+        ('FONTSIZE',      (0, 0), (-1, -1), 9),
+        ('VALIGN',        (0, 0), (-1, -1), 'TOP'),
+        ('TOPPADDING',    (0, 0), (-1, -1), 4),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+        ('LEFTPADDING',   (0, 0), (-1, -1), 6),
+        ('GRID',          (0, 0), (-1, -1), 0.25, HexColor('#CCCCCC')),
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1), [white, _PDF_STRIPE]),
+    ])
+    filing_table = Table(filing_data, colWidths=[3.8*inch, 1.5*inch, 1.4*inch], repeatRows=1)
+    filing_table.setStyle(filing_ts)
+    elements.append(filing_table)
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── NEXT STEPS ────────────────────────────────────────────────────────
+    elements.append(Paragraph("NEXT STEPS FOR THE VETERAN", S["section"]))
+    for step in [
+        "File Supplemental Claim (VA Form 20-0995) for recommended increases.",
+        "Attach supporting documentation (C&amp;P exams, STRs, private records).",
+        "Consult your VSO or accredited representative (DAV, VFW, American Legion).",
+        "Monitor VA.gov for claim updates.",
+        "If denied, request Higher-Level Review (VA Form 20-0996) or BVA Appeal.",
+    ]:
+        elements.append(Paragraph(f"\u2022 {step}", S["bullet"]))
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── BILLING SUMMARY ───────────────────────────────────────────────────
+    elements.append(Paragraph("BILLING SUMMARY", S["section"]))
+    billing_data = [
+        ["Projected Rating Increase", "Fee", "Refund Policy"],
+        ["5\u201315%",  "$499", "Refund difference if increase <15%, no less than $499 minimum"],
+        ["16\u201325%", "$649", "Partial refund based on actual increase"],
+        ["26\u201350%", "$799", "Partial refund based on actual increase"],
+        ["51%+",        "$999", "Refund only if increase <5%"],
+    ]
+    billing_table = Table(billing_data, colWidths=[1.7*inch, 0.8*inch, 3.7*inch])
+    billing_ts = _table_style()
+    billing_ts.add('VALIGN', (0, 0), (-1, -1), 'TOP')
+    billing_table.setStyle(billing_ts)
+    elements.append(billing_table)
+    elements.append(Spacer(1, 0.08*inch))
+
+    # ── DISCLAIMER ────────────────────────────────────────────────────────
+    elements.append(Paragraph("DISCLAIMER", S["section"]))
+    elements.append(Paragraph(
+        "This report was prepared by VRIS\u2122 (Veteran Rating Intelligence System) as part of "
+        "the Get VA Help\u2122 initiative. It is an intelligence-based assessment tool and not "
+        "legal or medical advice. Findings are based on data provided and CFR regulations as of "
+        "the report date. Veterans should consult a certified VSO for official submission.",
+        S["disclaimer"]
+    ))
+
+    doc.build(elements)
+    return buffer.getvalue()
+
+
 @app.get("/api/vris/health")
 async def health_check() -> Dict[str, Any]:
     """Health check endpoint"""
@@ -840,6 +1367,76 @@ async def root():
         },
         "data_privacy": "Documents processed in-memory only. Not stored. Deleted immediately after analysis."
     }
+
+
+@app.post("/api/vris/report/pdf")
+async def generate_pdf_from_json(request: Request):
+    """
+    VRIS™ PDF Report from existing JSON analysis
+
+    Pass the full JSON response from /api/vris/analyze as the request body.
+    Returns a styled GET VA HELP™ PDF report immediately without re-running analysis.
+
+    Returns: application/pdf — attachment filename VRIS_Gap_Analysis_Report.pdf
+    """
+    try:
+        body = await request.json()
+        findings = body.get("findings", {
+            "underrated_conditions": [],
+            "missed_conditions": [],
+            "secondary_conditions": [],
+            "total_opportunities": 0,
+        })
+        summary       = body.get("summary", {})
+        vris_a_data   = body.get("vris_a_extraction", {}).get("data", "")
+        vris_b_data   = body.get("vris_b_reasoning",  {}).get("data", "")
+        files_analyzed = body.get("files_analyzed", [])
+
+        pdf_bytes = generate_pdf_report(
+            findings, summary, vris_a_data, vris_b_data, files_analyzed
+        )
+        return StreamingResponse(
+            io.BytesIO(pdf_bytes),
+            media_type="application/pdf",
+            headers={
+                "Content-Disposition": 'attachment; filename="VRIS_Gap_Analysis_Report.pdf"'
+            },
+        )
+    except Exception as e:
+        raise HTTPException(status_code=400, detail=f"PDF generation failed: {e}")
+
+
+@app.post("/api/vris/analyze/pdf")
+async def analyze_veteran_documents_pdf(files: List[UploadFile]):
+    """
+    VRIS™ PDF Report Endpoint
+
+    Upload veteran documents and receive a styled GET VA HELP™ PDF report.
+    Runs the same dual-pipeline analysis as /api/vris/analyze but returns
+    a downloadable PDF instead of JSON.
+
+    Returns: application/pdf — attachment filename VRIS_Gap_Analysis_Report.pdf
+    """
+    try:
+        data = await _run_vris_analysis(files)
+        pdf_bytes = generate_pdf_report(
+            data["findings"],
+            data["summary"],
+            data["vris_a_data"],
+            data["vris_b_data"],
+            data["file_info"],
+        )
+        return StreamingResponse(
+            io.BytesIO(pdf_bytes),
+            media_type="application/pdf",
+            headers={
+                "Content-Disposition": 'attachment; filename="VRIS_Gap_Analysis_Report.pdf"'
+            },
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        _handle_analysis_exception(e)
 
 
 if __name__ == "__main__":
