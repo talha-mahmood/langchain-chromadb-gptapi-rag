@@ -499,7 +499,7 @@ def generate_summary(findings: Dict[str, Any]) -> Dict[str, Any]:
     """
     high_confidence_count = sum(
         1 for cond in findings["underrated_conditions"] + findings["missed_conditions"] 
-        if cond.get("confidence", 0) >= 90
+        if (cond.get("confidence") or 0) >= 90
     )
     
     return {

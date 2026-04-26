@@ -15,6 +15,9 @@ ENV/
 # ChromaDB
 chroma_db/
 
+# OCR output files (generated at runtime, may contain sensitive veteran data)
+ocr_output/
+
 # IDEs
 .vscode/
 .idea/
